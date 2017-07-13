@@ -124,38 +124,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="build\jquery.datetimepicker.full.js" />
-    <Content Include="build\jquery.datetimepicker.full.min.js" />
-    <Content Include="build\jquery.datetimepicker.min.css" />
-    <Content Include="build\jquery.datetimepicker.min.js" />
-    <Content Include="css\bg-patterns\pattern-default.css" />
-    <Content Include="css\bg-patterns\pattern-eight.css" />
-    <Content Include="css\bg-patterns\pattern-eleven.css" />
-    <Content Include="css\bg-patterns\pattern-five.css" />
-    <Content Include="css\bg-patterns\pattern-four.css" />
-    <Content Include="css\bg-patterns\pattern-nine.css" />
-    <Content Include="css\bg-patterns\pattern-one.css" />
-    <Content Include="css\bg-patterns\pattern-seven.css" />
-    <Content Include="css\bg-patterns\pattern-six.css" />
-    <Content Include="css\bg-patterns\pattern-ten.css" />
-    <Content Include="css\bg-patterns\pattern-three.css" />
-    <Content Include="css\bg-patterns\pattern-two.css" />
-    <Content Include="css\bootstrap-datetimepicker.min.css" />
-    <Content Include="css\colors\green.css" />
-    <Content Include="css\colors\lightblue.css" />
-    <Content Include="css\colors\lightgreen.css" />
-    <Content Include="css\colors\olive.css" />
-    <Content Include="css\colors\orange.css" />
-    <Content Include="css\colors\pink.css" />
-    <Content Include="css\colors\red.css" />
-    <Content Include="css\colors\sea.css" />
-    <Content Include="css\colors\violet.css" />
-    <Content Include="css\datepicker.css" />
-    <Content Include="css\font-awesome\css\font-awesome.min.css" />
-    <Content Include="css\font-awesome\fonts\fontawesome-webfont.svg" />
-    <Content Include="css\reset.css" />
-    <Content Include="css\responsive-leyouts.css" />
-    <Content Include="css\style.css" />
     <Content Include="Global.asax" />
     <Content Include="images\amex.png" />
     <Content Include="images\Gem-Banner-1.jpg" />
@@ -169,97 +137,6 @@
     <Content Include="jquery.datetimepicker.js" />
     <Content Include="jquery.datetimepicker.min.js" />
     <Content Include="jquery.js" />
-    <Content Include="js\accordion\custom.js" />
-    <Content Include="js\accordion\plusminus.png" />
-    <Content Include="js\accordion\plusminus2.png" />
-    <Content Include="js\accordion\plusminus3.png" />
-    <Content Include="js\accordion\plusminus4.png" />
-    <Content Include="js\accordion\smk-accordion.css" />
-    <Content Include="js\accordion\smk-accordion.js" />
-    <Content Include="js\animations\animations.min.js" />
-    <Content Include="js\animations\appear.min.js" />
-    <Content Include="js\animations\css\animations.min.css" />
-    <Content Include="js\autohidemenu\navmain.css" />
-    <Content Include="js\autohidemenu\navmain.js" />
-    <Content Include="js\bootstrap-datepicker.js" />
-    <Content Include="js\bootstrap-timepicker.js" />
-    <Content Include="js\bootstrap.js" />
-    <Content Include="js\cubeportfolio\ajax\loadMore.html" />
-    <Content Include="js\cubeportfolio\cbp-loading-popup.gif" />
-    <Content Include="js\cubeportfolio\cbp-loading.gif" />
-    <Content Include="js\cubeportfolio\cbp-sprite.png" />
-    <Content Include="js\cubeportfolio\cubeportfolio.min.css" />
-    <Content Include="js\cubeportfolio\jquery.cubeportfolio.min.js" />
-    <Content Include="js\cubeportfolio\main-two-col.js" />
-    <Content Include="js\cubeportfolio\main.js" />
-    <Content Include="js\cubeportfolio\main5.js" />
-    <Content Include="js\cubeportfolio\main6.js" />
-    <Content Include="js\cubeportfolio\main7.js" />
-    <Content Include="js\cubeportfolio\main8.js" />
-    <Content Include="js\cubeportfolio\main9.js" />
-    <Content Include="js\form\css\sky-forms.css" />
-    <Content Include="js\form\jquery-1.9.1.min.js" />
-    <Content Include="js\form\jquery-ui-1.10.3.custom.min.js" />
-    <Content Include="js\form\jquery.form.min.js" />
-    <Content Include="js\form\jquery.maskedinput.min.js" />
-    <Content Include="js\form\jquery.modal.js" />
-    <Content Include="js\form\jquery.placeholder.min.js" />
-    <Content Include="js\form\jquery.validate.min.js" />
-    <Content Include="js\form\sky-forms-ie8.js" />
-    <Content Include="js\jquery.js" />
-    <Content Include="js\mainmenu\bootstrap.min.css" />
-    <Content Include="js\mainmenu\bootstrap.min.js" />
-    <Content Include="js\mainmenu\customeUI.js" />
-    <Content Include="js\mainmenu\demo.css" />
-    <Content Include="js\mainmenu\jquery-scrolltofixed.js" />
-    <Content Include="js\mainmenu\menu.css" />
-    <Content Include="js\mainmenu\ScrollToFixed_custom.js" />
-    <Content Include="js\mainmenu\sticky.css" />
-    <Content Include="js\mainmenu\stickytwo.css" />
-    <Content Include="js\owl-carousel\custom.js" />
-    <Content Include="js\owl-carousel\owl.carousel.css" />
-    <Content Include="js\owl-carousel\owl.carousel.js" />
-    <Content Include="js\owl-carousel\owl.theme.css" />
-    <Content Include="js\owl-carousel\owl.transitions.css" />
-    <Content Include="js\pagescroll\animatescroll.js" />
-    <Content Include="js\parallax-background\parallax.js" />
-    <Content Include="js\progressbar\progress.js" />
-    <Content Include="js\progressbar\ui.progress-bar.css" />
-    <Content Include="js\revolutionslider\css\extralayers.css" />
-    <Content Include="js\revolutionslider\css\style.css" />
-    <Content Include="js\revolutionslider\custom1.js" />
-    <Content Include="js\revolutionslider\rs-plugin\assets\arrowleft.png" />
-    <Content Include="js\revolutionslider\rs-plugin\assets\arrowright.png" />
-    <Content Include="js\revolutionslider\rs-plugin\assets\arrow_left.png" />
-    <Content Include="js\revolutionslider\rs-plugin\assets\arrow_left2.png" />
-    <Content Include="js\revolutionslider\rs-plugin\assets\arrow_right.png" />
-    <Content Include="js\revolutionslider\rs-plugin\assets\arrow_right2.png" />
-    <Content Include="js\revolutionslider\rs-plugin\assets\large_left.png" />
-    <Content Include="js\revolutionslider\rs-plugin\assets\large_right.png" />
-    <Content Include="js\revolutionslider\rs-plugin\assets\loader.gif" />
-    <Content Include="js\revolutionslider\rs-plugin\assets\small_left.png" />
-    <Content Include="js\revolutionslider\rs-plugin\assets\small_left_boxed.png" />
-    <Content Include="js\revolutionslider\rs-plugin\assets\small_right.png" />
-    <Content Include="js\revolutionslider\rs-plugin\assets\small_right_boxed.png" />
-    <Content Include="js\revolutionslider\rs-plugin\assets\timer.png" />
-    <Content Include="js\revolutionslider\rs-plugin\css\settings.css" />
-    <Content Include="js\revolutionslider\rs-plugin\font\revicons.svg" />
-    <Content Include="js\revolutionslider\rs-plugin\js\jquery.themepunch.revolution.js" />
-    <Content Include="js\revolutionslider\rs-plugin\js\jquery.themepunch.revolution.min.js" />
-    <Content Include="js\revolutionslider\rs-plugin\js\jquery.themepunch.tools.min.js" />
-    <Content Include="js\scrolltotop\totop.js" />
-    <Content Include="js\simplenav\simplemenu.css" />
-    <Content Include="js\simplenav\simplemenu.js" />
-    <Content Include="js\style-switcher\color-switcher.css" />
-    <Content Include="js\style-switcher\colors-swi.png" />
-    <Content Include="js\style-switcher\jquery-1.js" />
-    <Content Include="js\style-switcher\styleselector.js" />
-    <Content Include="js\style-switcher\styleswitcher.js" />
-    <Content Include="js\tabs\assets\css\responsive-tabs.css" />
-    <Content Include="js\tabs\assets\css\responsive-tabs7.css" />
-    <Content Include="js\tabs\assets\js\responsive-tabs.min.js" />
-    <Content Include="js\universal\custom.js" />
-    <Content Include="js\universal\jquery.js" />
     <Content Include="OfficeAutomationdb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OfficeAutomationdb.edmx</DependentUpon>
@@ -270,16 +147,6 @@
       <DependentUpon>OfficeAutomationdb.edmx</DependentUpon>
       <LastGenOutput>OfficeAutomationdb.cs</LastGenOutput>
     </Content>
-    <Content Include="SpryAssets\SpryValidationConfirm.css" />
-    <Content Include="SpryAssets\SpryValidationConfirm.js" />
-    <Content Include="SpryAssets\SpryValidationPassword.css" />
-    <Content Include="SpryAssets\SpryValidationPassword.js" />
-    <Content Include="SpryAssets\SpryValidationSelect.css" />
-    <Content Include="SpryAssets\SpryValidationSelect.js" />
-    <Content Include="SpryAssets\SpryValidationTextarea.css" />
-    <Content Include="SpryAssets\SpryValidationTextarea.js" />
-    <Content Include="SpryAssets\SpryValidationTextField.css" />
-    <Content Include="SpryAssets\SpryValidationTextField.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -337,13 +204,6 @@
     </Content>
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Config\Index.cshtml" />
-    <Content Include="js\revolutionslider\rs-plugin\font\revicons.eot" />
-    <Content Include="js\revolutionslider\rs-plugin\font\revicons.ttf" />
-    <Content Include="js\revolutionslider\rs-plugin\font\revicons.woff" />
-    <Content Include="css\font-awesome\fonts\fontawesome-webfont.eot" />
-    <Content Include="css\font-awesome\fonts\fontawesome-webfont.ttf" />
-    <Content Include="css\font-awesome\fonts\fontawesome-webfont.woff" />
-    <Content Include="css\font-awesome\fonts\FontAwesome.otf" />
     <Content Include="Views\Config\ManageModels.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -354,6 +214,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="build\" />
+    <Folder Include="css\" />
+    <Folder Include="js\" />
+    <Folder Include="SpryAssets\" />
     <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
