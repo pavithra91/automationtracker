@@ -344,6 +344,7 @@
     <Content Include="css\font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="css\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="css\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Views\Config\ManageModels.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

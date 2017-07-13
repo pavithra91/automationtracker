@@ -4,9 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
-
 
 <div class="clearfix"></div>
 <section class="header-section">
@@ -20,104 +17,51 @@
 <!-- end page header -->
 <div class="clearfix"></div>
 
+
+
+
 <section class="common_section">
     <div class="container">
         <div class="reg_form">
 
-            @using (Html.BeginForm("AddModel", "Config", FormMethod.Post, new { @class = "sky-form" }))
-            {
-                @*@Html.AntiForgeryToken()*@
+            <footer>
+                <button type="submit" name="Submit" class="btn button">Add New</button>
+            </footer>
 
-                        <header>Growth and Emerging Markets Committee</header>
+            <fieldset>
+                <section>
+                    <table class="table table-list2" id="example">
+                        <thead>
+                            <tr>Unit Type Name</tr>
+                            <tr>Model Name</tr>
+                            <tr>Description</tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var items in Model.model)
+                            {
+                                <tr>
+                                    <td>
+                                        @items.UnitType1.UnitTypeName
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink(items.ModelName, "ManageModels", new { id = items.ModelID })
+                                    </td>
+                                    <td>
+                                        @items.Description
 
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </section>
+            </fieldset>
 
-                        <fieldset>
-                            <section>
-                                <span id="sprytextfield1">
-                                    <label class="input">
-                                        @Html.DropDownListFor(m => m.unitType, new SelectList(Model.unitType, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -", new { @name = "drpUnitType", @class = "select", @id = "drpUnitType" })
-                                    </label>
-                                    <span class="textfieldRequiredMsg">A value is required.</span>
-                                </span>
-                            </section>
-
-
-                            <section>
-                                <span id="sprytextfield1">
-                                    <label class="input">
-                                        @Html.TextBoxFor(m => Model.model.ModelName, new { @name = "txtModelName", @placeholder = "Model Name", @id = "txtModelName" })
-                                    </label>
-                                    <span class="textfieldRequiredMsg">A value is required.</span>
-                                </span>
-                            </section>
-
-
-
-                            <section>
-                                <span id="sprytextfield1">
-                                    <label class="input">
-                                       @Html.TextBoxFor(m => m.model.Description, new { @name = "txtDescription", @placeholder = "Description", @id = "txtDescription" })
-                                    </label>
-                                    <span class="textfieldRequiredMsg">A value is required.</span>
-                                </span>
-                            </section>
-
-
-                            <div class="row">
-                                <section class="col col-6">
-                                    <span id="sprytextfield5">
-                                        <label class="input">
-                                           @*@Html.DropDownListFor(m => m.unitType, new SelectList(Model.unitType, "UnitTypeID", "UnitType"), "- Please Select Unit type -")*@
-                                        </label> <span class="textfieldRequiredMsg">A value is required.</span><span class="textfieldInvalidFormatMsg">Invalid format.</span>
-                                    </span>
-                                </section>
-
-                                <section class="col col-6">
-                                    <span id="sprytextfield2">
-                                        <label class="input">
-                                            
-                                        </label>
-                                        <span class="textfieldRequiredMsg">A value is required.</span><span class="textfieldInvalidFormatMsg">Invalid format (+94112494034).</span><span class="textfieldMinCharsMsg">Minimum number of characters not met.</span><span class="textfieldMaxCharsMsg">Exceeded maximum number of characters.</span>
-                                    </span>
-                                </section>
-
-
-                                <section>
-                                    <span id="spryselect3">
-                                        <label for="chkPassport">
-                                            <input type="checkbox" id="chkPassport" name="chkPassport" onclick="ShowHideDiv(this)" />
-                                            Transport
-                                        </label><br /><br />
-                                        <div id="dvPassport" style="display: none">
-
-                                            <section class="col col-6">
-                                                <span id="spryselect3">
-                                                    <label class="select">                                                        
-                                                        <select name="txtVehicleType" id="txtVehicleType">
-                                                                <option value="0" selected="" disabled="">Vehicle Type</option>
-                                                                <option value="1">Car</option>
-                                                                <option value="2">Micro</option>
-                                                            </select>
-                                                        <i></i>
-                                                    </label>
-                                                    <span class="selectRequiredMsg">Please select an item.</span>
-                                                </span>
-                                            </section>
-                                    </span>
-                                </section>
-                            </div>
-
-                            <br />
-
-                            <footer>
-                                <button type="submit" name="Submit" class="btn button">Submit</button>
-                            </footer>
-                        </fieldset>
-            }
         </div>
 
     </div>
 </section>
+
 <!-- end section 1 -->
 <div class="clearfix"></div>
 
@@ -133,3 +77,9 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>

@@ -7,16 +7,21 @@ namespace AutomationTracker.Models
 {
     public class AssetModel
     {
-        public Model model { get; set; }
-        public IEnumerable<UnitType> unitType { get; set; }
+        public ModelType Modeltype { get; set; }
+        public UnitType Unittype { get; set; }
+        public List<ModelType> model { get; set; }
+        public List<UnitType> unittype { get; set; }
+        //public IEnumerable<UnitType> unitType { get; set; }
+
+
     }
 
-    public class Model
-    {
-        public string ModelName { get; set; }
-        public UnitType UnitType { get; set; }        
-        public string Description { get; set; }
-    }
+    //public class ModelTypes
+    //{
+    //    public string ModelName { get; set; }
+    //    public UnitType UnitType { get; set; }        
+    //    public string Description { get; set; }
+    //}
 
     //public class UnitType
     //{

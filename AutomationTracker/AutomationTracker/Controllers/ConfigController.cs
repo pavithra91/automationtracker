@@ -9,36 +9,56 @@ namespace AutomationTracker.Controllers
 {
     public class ConfigController : Controller
     {
-        OfficeAutomationdbEntities en = new OfficeAutomationdbEntities();
+        OfficeAutomationdbEntities _context = new OfficeAutomationdbEntities();
         // GET: Config
         public ActionResult Index()
         {
             AssetModel objModel = new AssetModel();
 
-            List<UnitType> lst = en.UnitTypes.ToList();
-
-            objModel.unitType = lst;
+            objModel.model = _context.ModelTypes.ToList();
 
             return View(objModel);
         }
 
-        public ActionResult ManageModels(int? id)
+        public ActionResult ManageModels(int id)
         {
-            if (id == 0)
+            if(id==0)
             {
+                AssetModel objModel = new AssetModel();
+                objModel.model = _context.ModelTypes.ToList();
+                objModel.unittype = _context.UnitTypes.ToList();
 
+                return View(objModel);
+            }
+            else
+            {
+                ModelType model = _context.ModelTypes.Where(m => m.ModelID == id).FirstOrDefault();
+                if(model !=null)
+                {
+                    AssetModel objModel = new AssetModel();
+                    objModel.Modeltype = model;
+                    objModel.unittype = _context.UnitTypes.ToList();
+                    return View(objModel);
+                }
+
+            }
+            return null;
+        }
+
+        [HttpPost]
+        public ActionResult SaveModels(AssetModel asset)
+        {
+            if(asset.model.FirstOrDefault().ModelID == 0)
+            {
+                _context.ModelTypes.Add(asset.model.FirstOrDefault());
+                _context.SaveChanges();
             }
             else
             {
 
             }
-            AssetModel objModel = new AssetModel();
 
-            List<UnitType> lst = en.UnitTypes.ToList();
-
-
-
-            return View(objModel);
+            return null;
         }
     }
 }

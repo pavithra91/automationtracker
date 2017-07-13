@@ -1,0 +1,43 @@
+﻿@model AutomationTracker.Models.AssetModel
+@{
+    ViewBag.Title = "ManageModels";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="clearfix"></div>
+
+@using (Html.BeginForm("SaveModels", "Config"))
+{
+<section class="common_section">
+    <div class="container">
+        <div class="reg_form">
+
+            <fieldset>
+                <section>
+                    <span id="sprytextfield1">
+                        <label class="input">
+                            @Html.TextBoxFor(m => Model.Modeltype.ModelName, new { @name = "txtModelName", @placeholder = "Model Name", @class="form-control", @id = "txtModelName" })
+                        </label>
+                        <span class="textfieldRequiredMsg">A value is required.</span>
+                    </span>
+                </section>
+
+                <section class="col col-6">
+                    <span id="sprytextfield5">
+                        <label class="input">
+                            @Html.DropDownListFor(m => Model.unittype, new SelectList(Model.unittype, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -")
+                        </label> <span class="textfieldRequiredMsg">A value is required.</span><span class="textfieldInvalidFormatMsg">Invalid format.</span>
+                    </span>
+                </section>
+
+                <footer>
+                    <button type="submit" name="Submit" class="btn button">Submit</button>
+                </footer>
+
+            </fieldset>
+
+        </div>
+
+    </div>
+</section>
+}
