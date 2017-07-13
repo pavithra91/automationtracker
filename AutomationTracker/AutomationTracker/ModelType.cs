@@ -12,10 +12,17 @@ namespace AutomationTracker
     using System;
     using System.Collections.Generic;
     
-    public partial class Model
+    public partial class ModelType
     {
         public int ModelID { get; set; }
         public string ModelName { get; set; }
-        public string Type { get; set; }
+        public Nullable<int> UnitType { get; set; }
+        public string Description { get; set; }
+        public string AddedBy { get; set; }
+        public Nullable<System.DateTime> AddedDate { get; set; }
+        public string UpdateBy { get; set; }
+        public Nullable<System.DateTime> UpdateDate { get; set; }
+    
+        public virtual UnitType UnitType1 { get; set; }
     }
 }

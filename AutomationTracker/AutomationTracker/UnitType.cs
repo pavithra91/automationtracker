@@ -14,7 +14,18 @@ namespace AutomationTracker
     
     public partial class UnitType
     {
+        public UnitType()
+        {
+            this.ModelTypes = new HashSet<ModelType>();
+        }
+    
         public int UnitTypeID { get; set; }
-        public string UnitType1 { get; set; }
+        public string UnitTypeName { get; set; }
+        public string AddedBy { get; set; }
+        public Nullable<System.DateTime> AddedDate { get; set; }
+        public string UpdateBy { get; set; }
+        public Nullable<System.DateTime> UpdateDate { get; set; }
+    
+        public virtual ICollection<ModelType> ModelTypes { get; set; }
     }
 }

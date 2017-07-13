@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OfficeAutomationdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OfficeAutomationdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'OfficeAutomationdb.dbo.Market' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Market">
@@ -15,15 +15,18 @@ warning 6002: The table/view 'OfficeAutomationdb.dbo.Market' does not have a pri
           <Property Name="MarketName" Type="varchar" MaxLength="100" />
           <Property Name="CompanyID" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'OfficeAutomationdb.dbo.Model' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="Model">
+        <EntityType Name="ModelType">
           <Key>
             <PropertyRef Name="ModelID" />
           </Key>
           <Property Name="ModelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ModelName" Type="varchar" MaxLength="100" />
-          <Property Name="Type" Type="varchar" MaxLength="50" />
+          <Property Name="UnitType" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="AddedDate" Type="date" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="UpdateDate" Type="date" />
         </EntityType>
         <EntityType Name="Software">
           <Key>
@@ -38,7 +41,11 @@ warning 6002: The table/view 'OfficeAutomationdb.dbo.Model' does not have a prim
             <PropertyRef Name="UnitTypeID" />
           </Key>
           <Property Name="UnitTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UnitType" Type="varchar" MaxLength="100" />
+          <Property Name="UnitTypeName" Type="varchar" MaxLength="100" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="AddedDate" Type="date" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="UpdateDate" Type="date" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -58,7 +65,20 @@ warning 6002: The table/view 'OfficeAutomationdb.dbo.Model' does not have a prim
           <Property Name="AddedDate" Type="date" />
           <Property Name="AddedBy" Type="varchar" MaxLength="100" />
         </EntityType>
+        <Association Name="fk_UnitTypeID_Models">
+          <End Role="UnitType" Type="Self.UnitType" Multiplicity="0..1" />
+          <End Role="ModelType" Type="Self.ModelType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitType">
+              <PropertyRef Name="UnitTypeID" />
+            </Principal>
+            <Dependent Role="ModelType">
+              <PropertyRef Name="UnitType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="OfficeAutomationdbModelStoreContainer">
+          <EntitySet Name="ModelType" EntityType="Self.ModelType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Software" EntityType="Self.Software" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnitType" EntityType="Self.UnitType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -69,19 +89,40 @@ warning 6002: The table/view 'OfficeAutomationdb.dbo.Model' does not have a prim
 [Market].[CompanyID] AS [CompanyID]
 FROM [dbo].[Market] AS [Market]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Model" EntityType="Self.Model" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[Model].[ModelID] AS [ModelID], 
-[Model].[ModelName] AS [ModelName], 
-[Model].[Type] AS [Type]
-FROM [dbo].[Model] AS [Model]</DefiningQuery>
-          </EntitySet>
+          <AssociationSet Name="fk_UnitTypeID_Models" Association="Self.fk_UnitTypeID_Models">
+            <End Role="UnitType" EntitySet="UnitType" />
+            <End Role="ModelType" EntitySet="ModelType" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OfficeAutomationdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="OfficeAutomationdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ModelTypes" EntityType="OfficeAutomationdbModel.ModelType" />
+          <EntitySet Name="Softwares" EntityType="OfficeAutomationdbModel.Software" />
+          <EntitySet Name="UnitTypes" EntityType="OfficeAutomationdbModel.UnitType" />
+          <EntitySet Name="Users" EntityType="OfficeAutomationdbModel.User" />
+          <EntitySet Name="Markets" EntityType="OfficeAutomationdbModel.Market" />
+          <AssociationSet Name="fk_UnitTypeID_Models" Association="OfficeAutomationdbModel.fk_UnitTypeID_Models">
+            <End Role="UnitType" EntitySet="UnitTypes" />
+            <End Role="ModelType" EntitySet="ModelTypes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ModelType">
+          <Key>
+            <PropertyRef Name="ModelID" />
+          </Key>
+          <Property Name="ModelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModelName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UnitType" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AddedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="UnitType1" Relationship="OfficeAutomationdbModel.fk_UnitTypeID_Models" FromRole="ModelType" ToRole="UnitType" />
+        </EntityType>
         <EntityType Name="Software">
           <Key>
             <PropertyRef Name="SoftwareID" />
@@ -95,7 +136,12 @@ FROM [dbo].[Model] AS [Model]</DefiningQuery>
             <PropertyRef Name="UnitTypeID" />
           </Key>
           <Property Name="UnitTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UnitType1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UnitTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AddedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AddedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="ModelTypes" Relationship="OfficeAutomationdbModel.fk_UnitTypeID_Models" FromRole="UnitType" ToRole="ModelType" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -107,7 +153,7 @@ FROM [dbo].[Model] AS [Model]</DefiningQuery>
           <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Company" Type="Int32" />
           <Property Name="Market" Type="Int32" />
-          <Property Name="PANo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PANo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="SAPNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="NIC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
@@ -123,77 +169,83 @@ FROM [dbo].[Model] AS [Model]</DefiningQuery>
           <Property Name="MarketName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CompanyID" Type="Int32" />
         </EntityType>
-        <EntityType Name="Model">
-          <Key>
-            <PropertyRef Name="ModelID" />
-          </Key>
-          <Property Name="ModelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ModelName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityContainer Name="OfficeAutomationdbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Softwares" EntityType="Self.Software" />
-          <EntitySet Name="UnitTypes" EntityType="Self.UnitType" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="Markets" EntityType="Self.Market" />
-          <EntitySet Name="Models" EntityType="Self.Model" />
-        </EntityContainer>
+        <Association Name="fk_UnitTypeID_Models">
+          <End Type="OfficeAutomationdbModel.UnitType" Role="UnitType" Multiplicity="0..1" />
+          <End Type="OfficeAutomationdbModel.ModelType" Role="ModelType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitType">
+              <PropertyRef Name="UnitTypeID" />
+            </Principal>
+            <Dependent Role="ModelType">
+              <PropertyRef Name="UnitType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="OfficeAutomationdbModelStoreContainer" CdmEntityContainer="OfficeAutomationdbEntities">
+          <EntitySetMapping Name="ModelTypes">
+            <EntityTypeMapping TypeName="OfficeAutomationdbModel.ModelType">
+              <MappingFragment StoreEntitySet="ModelType">
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UnitType" ColumnName="UnitType" />
+                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+                <ScalarProperty Name="ModelID" ColumnName="ModelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Softwares">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.Software">
               <MappingFragment StoreEntitySet="Software">
-                <ScalarProperty Name="SoftwareID" ColumnName="SoftwareID" />
-                <ScalarProperty Name="SoftwareName" ColumnName="SoftwareName" />
                 <ScalarProperty Name="SoftwareType" ColumnName="SoftwareType" />
+                <ScalarProperty Name="SoftwareName" ColumnName="SoftwareName" />
+                <ScalarProperty Name="SoftwareID" ColumnName="SoftwareID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UnitTypes">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.UnitType">
               <MappingFragment StoreEntitySet="UnitType">
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="UnitTypeName" ColumnName="UnitTypeName" />
                 <ScalarProperty Name="UnitTypeID" ColumnName="UnitTypeID" />
-                <ScalarProperty Name="UnitType1" ColumnName="UnitType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.User">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="Company" ColumnName="Company" />
-                <ScalarProperty Name="Market" ColumnName="Market" />
-                <ScalarProperty Name="PANo" ColumnName="PANo" />
-                <ScalarProperty Name="SAPNo" ColumnName="SAPNo" />
-                <ScalarProperty Name="NIC" ColumnName="NIC" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
-                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
                 <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="NIC" ColumnName="NIC" />
+                <ScalarProperty Name="SAPNo" ColumnName="SAPNo" />
+                <ScalarProperty Name="PANo" ColumnName="PANo" />
+                <ScalarProperty Name="Market" ColumnName="Market" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Markets">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.Market">
               <MappingFragment StoreEntitySet="Market">
-                <ScalarProperty Name="MarketID" ColumnName="MarketID" />
-                <ScalarProperty Name="MarketName" ColumnName="MarketName" />
                 <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Models">
-            <EntityTypeMapping TypeName="OfficeAutomationdbModel.Model">
-              <MappingFragment StoreEntitySet="Model">
-                <ScalarProperty Name="ModelID" ColumnName="ModelID" />
-                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="MarketName" ColumnName="MarketName" />
+                <ScalarProperty Name="MarketID" ColumnName="MarketID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

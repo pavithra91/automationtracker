@@ -25,10 +25,10 @@ namespace AutomationTracker
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<ModelType> ModelTypes { get; set; }
         public DbSet<Software> Softwares { get; set; }
         public DbSet<UnitType> UnitTypes { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Market> Markets { get; set; }
-        public DbSet<Model> Models { get; set; }
     }
 }

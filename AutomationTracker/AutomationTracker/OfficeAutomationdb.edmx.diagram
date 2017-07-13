@@ -5,11 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="68f6eb0174a44f78a107043ad732c960" Name="Diagram1">
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.Software" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.UnitType" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.User" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.Market" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.Model" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.ModelType" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.Software" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.UnitType" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.User" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.Market" Width="1.5" PointX="4.75" PointY="4.75" />
+        <AssociationConnector Association="OfficeAutomationdbModel.fk_UnitTypeID_Models" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
