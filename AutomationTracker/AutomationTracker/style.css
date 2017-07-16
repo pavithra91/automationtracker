@@ -1,0 +1,22 @@
+﻿/* common features section */
+.common_section{
+	float: left;
+	width: 100%;
+	padding: 0px 0px;
+	position: relative;
+	margin-top: 10px;
+}
+
+.container {
+	width: 1170px;
+	margin: auto auto auto auto;
+}
+
+.labelcls {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}

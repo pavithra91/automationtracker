@@ -30,11 +30,13 @@
 
             <fieldset>
                 <section>
-                    <table class="table table-list2" id="example">
+                    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
-                            <tr>Unit Type Name</tr>
-                            <tr>Model Name</tr>
-                            <tr>Description</tr>
+                            <tr>
+                                <th>Unit Type Name</th>
+                                <th>Model Name</th>
+                                <th>Description</th>
+                            </tr>
                         </thead>
                         <tbody>
                             @foreach (var items in Model.model)
@@ -48,7 +50,6 @@
                                     </td>
                                     <td>
                                         @items.Description
-
                                     </td>
                                 </tr>
                             }
@@ -77,9 +78,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        $('#example').DataTable();
-    });
-</script>
