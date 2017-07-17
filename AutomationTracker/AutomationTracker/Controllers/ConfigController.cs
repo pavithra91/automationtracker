@@ -60,5 +60,11 @@ namespace AutomationTracker.Controllers
 
             return null;
         }
+
+
+        public ActionResult Test()
+        {
+            return View();
+        }
     }
 }
