@@ -1,18 +1,30 @@
 ﻿@model AutomationTracker.Models.AssetModel
 @{
     ViewBag.Title = "ManageModels";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_SystemLayout.cshtml";
 }
 
-<div class="clearfix"></div>
 
 @using (Html.BeginForm("SaveModels", "Config"))
 {
 <section class="common_section">
     <div class="container">
-        <div class="reg_form">
 
-            <fieldset>
+        <div class='input-container'>
+            <label for="txtModelName" class="labelcls">Model Name: </label>
+            <div class="icon-ph"><i class="icon-envelope"></i></div>
+            @Html.TextBoxFor(m => Model.Modeltype.ModelName, new { @name = "txtModelName", @placeholder = "Model Name", @class = "form-control", @id = "txtModelName" })
+        </div>
+
+        <div class='input-container'>
+            <label for="dropUnitType" class="labelcls">Unit Type: </label>
+            <div class="icon-ph"><i class="icon-envelope"></i></div>
+            @Html.DropDownListFor(m => Model.unittype, new SelectList(Model.unittype, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -", new { @name = "dropUnitType", @class = "form-control", @id = "dropUnitType" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+            @*<fieldset>
                 <section>
                     <span id="sprytextfield1">
                         <label class="input">
@@ -34,10 +46,8 @@
                     <button type="submit" name="Submit" class="btn button">Submit</button>
                 </footer>
 
-            </fieldset>
+            </fieldset>*@
 
         </div>
-
-    </div>
 </section>
 }

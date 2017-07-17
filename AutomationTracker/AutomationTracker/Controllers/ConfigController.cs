@@ -61,10 +61,13 @@ namespace AutomationTracker.Controllers
             return null;
         }
 
-
-        public ActionResult Test()
+        public ActionResult ViewModels()
         {
-            return View();
+            AssetModel objModel = new AssetModel();
+
+            objModel.model = _context.ModelTypes.ToList();
+
+            return View(objModel);
         }
     }
 }
