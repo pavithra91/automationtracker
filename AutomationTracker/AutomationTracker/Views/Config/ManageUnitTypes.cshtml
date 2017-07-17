@@ -1,0 +1,23 @@
+﻿@model AutomationTracker.Models.AssetModel
+@{
+    ViewBag.Title = "ManageUnitTypes";
+    Layout = "~/Views/Shared/_SystemLayout.cshtml";
+}
+
+@using (Html.BeginForm("SaveUnitTypes", "Config"))
+{
+    <section class="common_section">
+        <div class="container">
+
+            <div class='input-container'>
+                <label for="txtModelName" class="labelcls">Unit Type Name: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.TextBoxFor(m => Model.Unittype.UnitTypeName, new { @name = "txtUnitTypeName", @placeholder = "Unit Type Name", @class = "form-control", @id = "txtUnitTypeName" })
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </div>
+    </section>
+}
+

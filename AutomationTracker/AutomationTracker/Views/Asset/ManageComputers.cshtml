@@ -1,0 +1,41 @@
+﻿@model AutomationTracker.Models.AssetModel
+@{
+    ViewBag.Title = "ManageComputers";
+    Layout = "~/Views/Shared/_SystemLayout.cshtml";
+}
+
+@using (Html.BeginForm("SaveComputers", "Asset"))
+{
+    <section class="common_section">
+        <div class="container">
+
+            <div class='input-container'>
+                <label for="dropUnitType" class="labelcls">Unit Type: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.DropDownListFor(m => Model.unittype, new SelectList(Model.unittype, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -", new { @name = "dropUnitType", @class = "form-control", @id = "dropUnitType" })
+            </div>
+
+            <div class='input-container'>
+                <label for="dropModelType" class="labelcls">Model Type: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.DropDownListFor(m => Model.Modeltype, new SelectList(Model.unittype, "ModelID", "ModelName"), "- Please Select Model type -", new { @name = "dropModel", @class = "form-control", @id = "dropModel" })
+            </div>
+
+            <div class='input-container'>
+                <label for="txtAssestNo" class="labelcls">Assest No: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.TextBoxFor(m => Model.computers.AssestNo, new { @name = "txtAssestNo", @placeholder = "Assest No", @class = "form-control", @id = "txtAssestNo" })
+            </div>
+
+            <div class='input-container'>
+                <label for="txtSerialNo" class="labelcls">Serial No: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.TextBoxFor(m => Model.computers.SerialNo, new { @name = "txtSerialNo", @placeholder = "Serial No", @class = "form-control", @id = "txtSerialNo" })
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </div>
+    </section>
+}
+

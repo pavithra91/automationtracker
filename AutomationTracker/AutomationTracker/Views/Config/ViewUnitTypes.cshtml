@@ -1,0 +1,32 @@
+﻿@model AutomationTracker.Models.AssetModel
+@{
+    ViewBag.Title = "ViewUnitTypes";
+    Layout = "~/Views/Shared/_SystemLayout.cshtml";
+}
+
+<section class="common_section">
+    <div class="container">
+        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Unit Type ID</th>
+                    <th>Unit Type Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var items in Model.unittype)
+                {
+                    <tr>
+                        <td>
+                            @items.UnitTypeID
+                        </td>
+                        <td>
+                            @Html.ActionLink(items.UnitTypeName, "ManageModels", new { id = items.UnitTypeID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
+

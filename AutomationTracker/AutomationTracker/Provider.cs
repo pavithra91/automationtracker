@@ -12,19 +12,10 @@ namespace AutomationTracker
     using System;
     using System.Collections.Generic;
     
-    public partial class Software
+    public partial class Provider
     {
-        public Software()
-        {
-            this.Computers = new HashSet<Computer>();
-            this.Computers1 = new HashSet<Computer>();
-        }
-    
-        public int SoftwareID { get; set; }
-        public string SoftwareName { get; set; }
-        public string SoftwareType { get; set; }
-    
-        public virtual ICollection<Computer> Computers { get; set; }
-        public virtual ICollection<Computer> Computers1 { get; set; }
+        public int AUTOID { get; set; }
+        public string ProviderName { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -152,7 +152,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Computer.cs">
+      <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AssetController.cs" />
     <Compile Include="Controllers\ConfigController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -179,7 +183,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OfficeAutomationdb.edmx</DependentUpon>
     </Compile>
+    <Compile Include="PhoneDongle.cs">
+      <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provider.cs">
+      <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Software.cs">
       <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
     </Compile>
@@ -187,6 +197,12 @@
       <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
+      <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAsset.cs">
+      <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VOIP.cs">
       <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -208,6 +224,10 @@
     <Content Include="Views\Config\ManageModels.cshtml" />
     <Content Include="Views\Shared\_SystemLayout.cshtml" />
     <Content Include="Views\Config\ViewModels.cshtml" />
+    <Content Include="Views\Config\ViewUnitTypes.cshtml" />
+    <Content Include="Views\Config\ManageUnitTypes.cshtml" />
+    <Content Include="Views\Asset\ViewComputers.cshtml" />
+    <Content Include="Views\Asset\ManageComputers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

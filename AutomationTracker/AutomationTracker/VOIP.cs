@@ -12,27 +12,21 @@ namespace AutomationTracker
     using System;
     using System.Collections.Generic;
     
-    public partial class ModelType
+    public partial class VOIP
     {
-        public ModelType()
-        {
-            this.Computers = new HashSet<Computer>();
-            this.PhoneDongles = new HashSet<PhoneDongle>();
-            this.VOIPs = new HashSet<VOIP>();
-        }
-    
-        public int ModelID { get; set; }
-        public string ModelName { get; set; }
+        public int AUTOID { get; set; }
         public Nullable<int> UnitType { get; set; }
-        public string Description { get; set; }
-        public string AddedBy { get; set; }
+        public Nullable<int> ModelType { get; set; }
+        public string AssetNo { get; set; }
+        public string SerialNo { get; set; }
+        public Nullable<int> ExtentionNo { get; set; }
+        public string Remarks { get; set; }
         public Nullable<System.DateTime> AddedDate { get; set; }
-        public string UpdateBy { get; set; }
+        public string AddedBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
+        public string UpdateBy { get; set; }
     
-        public virtual ICollection<Computer> Computers { get; set; }
+        public virtual ModelType ModelType1 { get; set; }
         public virtual UnitType UnitType1 { get; set; }
-        public virtual ICollection<PhoneDongle> PhoneDongles { get; set; }
-        public virtual ICollection<VOIP> VOIPs { get; set; }
     }
 }

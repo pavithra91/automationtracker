@@ -25,10 +25,15 @@ namespace AutomationTracker
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<Computer> Computers { get; set; }
         public DbSet<ModelType> ModelTypes { get; set; }
+        public DbSet<PhoneDongle> PhoneDongles { get; set; }
+        public DbSet<Provider> Providers { get; set; }
         public DbSet<Software> Softwares { get; set; }
         public DbSet<UnitType> UnitTypes { get; set; }
+        public DbSet<UserAsset> UserAssets { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<VOIP> VOIPs { get; set; }
         public DbSet<Market> Markets { get; set; }
     }
 }

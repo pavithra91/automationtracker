@@ -16,7 +16,10 @@ namespace AutomationTracker
     {
         public UnitType()
         {
+            this.Computers = new HashSet<Computer>();
             this.ModelTypes = new HashSet<ModelType>();
+            this.PhoneDongles = new HashSet<PhoneDongle>();
+            this.VOIPs = new HashSet<VOIP>();
         }
     
         public int UnitTypeID { get; set; }
@@ -26,6 +29,9 @@ namespace AutomationTracker
         public string UpdateBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
     
+        public virtual ICollection<Computer> Computers { get; set; }
         public virtual ICollection<ModelType> ModelTypes { get; set; }
+        public virtual ICollection<PhoneDongle> PhoneDongles { get; set; }
+        public virtual ICollection<VOIP> VOIPs { get; set; }
     }
 }
