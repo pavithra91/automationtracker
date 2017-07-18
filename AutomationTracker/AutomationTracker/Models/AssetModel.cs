@@ -9,11 +9,10 @@ namespace AutomationTracker.Models
     {
         public ModelType Modeltype { get; set; }
         public UnitType Unittype { get; set; }
-        
         public Computer computers { get; set; }
         public PhoneDongle phonesanddongles { get; set; }
         public VOIP voip { get; set; }
-
+   
         public AssetList assetList { get; set; }
     }
 
@@ -27,17 +26,4 @@ namespace AutomationTracker.Models
         public List<Software> softwareList { get; set; }
         public List<Provider> providerList { get; set; }
     }
-        
-
-    //public class ModelTypes
-    //{
-    //    public string ModelName { get; set; }
-    //    public UnitType UnitType { get; set; }        
-    //    public string Description { get; set; }
-    //}
-
-    //public class UnitType
-    //{
-    //    public string UnitName { get; set; }
-    //}
 }
