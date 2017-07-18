@@ -9,28 +9,37 @@
     <section class="common_section">
         <div class="container">
 
+            @Html.HiddenFor(m=> Model.computers.AUOTID)
+
             <div class='input-container'>
                 <label for="dropUnitType" class="labelcls">Unit Type: </label>
                 <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.DropDownListFor(m => Model.assetList.unittypeList, new SelectList(Model.assetList.unittypeList, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -", new { @name = "dropUnitType", @class = "form-control", @id = "dropUnitType" })
+                @{ 
+                    var hiddenstyle = "";
+                    if(Model.computers.AUOTID > 0)
+                    {
+                        hiddenstyle = "disabled";
+                    }
+                }
+                @Html.DropDownListFor(m => Model.computers.UnitType, new SelectList(Model.assetList.unittypeList, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -", new { @name = "dropUnitType", @disabled = hiddenstyle, @class = "form-control", @id = "dropUnitType" })
             </div>
 
             <div class='input-container'>
                 <label for="dropModelType" class="labelcls">Model Type: </label>
                 <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.DropDownListFor(m => Model.Modeltype, new SelectList(Model.assetList.modelList, "ModelID", "ModelName"), "- Please Select Model type -", new { @name = "dropModel", @class = "form-control", @id = "dropModel" })
+                @Html.DropDownListFor(m => Model.computers.ModelType, new SelectList(Model.assetList.modelList, "ModelID", "ModelName"), "- Please Select Model type -", new { @name = "dropModel", @disabled = hiddenstyle, @class = "form-control", @id = "dropModel" })
             </div>
 
             <div class='input-container'>
                 <label for="txtAssestNo" class="labelcls">Assest No: </label>
                 <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.computers.AssestNo, new { @name = "txtAssestNo", @placeholder = "Assest No", @class = "form-control", @id = "txtAssestNo" })
+                @Html.TextBoxFor(m => Model.computers.AssestNo, new { @name = "txtAssestNo", @placeholder = "Assest No", @disabled = hiddenstyle, @class = "form-control", @id = "txtAssestNo" })
             </div>
 
             <div class='input-container'>
                 <label for="txtSerialNo" class="labelcls">Serial No: </label>
                 <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.computers.SerialNo, new { @name = "txtSerialNo", @placeholder = "Serial No", @class = "form-control", @id = "txtSerialNo" })
+                @Html.TextBoxFor(m => Model.computers.SerialNo, new { @name = "txtSerialNo", @placeholder = "Serial No", @disabled = hiddenstyle, @class = "form-control", @id = "txtSerialNo" })
             </div>
 
             <div class='input-container'>
@@ -51,11 +60,11 @@
                 @Html.DropDownListFor(m => Model.computers.OS, new SelectList(Model.assetList.softwareList.Where(w=>w.SoftwareType == "OS"), "SoftwareID", "SoftwareName"), "- Please Select Model type -", new { @name = "drpOS", @class = "form-control", @id = "drpOS" })
             </div>
 
-            @*<div class='input-container'>
+            <div class='input-container'>
                 <label for="drpOffice" class="labelcls">Office Version: </label>
                 <div class="icon-ph"><i class="icon-envelope"></i></div>
                 @Html.DropDownListFor(m => Model.computers.OfficeVersion, new SelectList(Model.assetList.softwareList.Where(w => w.SoftwareType == "Office"), "SoftwareID", "SoftwareName"), "- Please Select Model type -", new { @name = "drpOffice", @class = "form-control", @id = "drpOffice" })
-            </div>*@
+            </div>
 
             <div class='input-container'>
                 <label for="txtRemarks" class="labelcls">Remarks: </label>
@@ -134,7 +143,52 @@
             }
         });
     });
+    </script>
 
+    <script>
+        debugger;
+        var drpOSval = $('#drpOS').val();
+        var drpOfficeval = $('#drpOffice').val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: "http://localhost:15707/Asset/GetSoftwares",
+                    data: JSON.stringify({ "UnitTypeID": 1 }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        var r = result;
+                        if (result != null) {
+                            var drpOS = $("[id*=drpOS]");
+                            var drpOffice = $("[id*=drpOffice]");
+                            drpOS.empty().append('<option selected="selected" value="0">Please select OS Version</option>');
+                            drpOffice.empty().append('<option selected="selected" value="0">Please select Office Version</option>');
+
+                            $.each(result, function () {
+                                if (this['softwaretype'] == "OS") {
+                                    debugger;
+                                    if (drpOSval  == this['id']) {
+                                        drpOS.append($("<option selected></option>").val(this['id']).html(this['name']));
+                                    }
+                                    else {
+                                        drpOS.append($("<option></option>").val(this['id']).html(this['name']));
+                                    }
+                                }
+                                if (this['softwaretype'] == "Office") {
+                                    debugger;
+                                    if (drpOfficeval == this['id']) {
+                                        drpOffice.append($("<option selected></option>").val(this['id']).html(this['name']));
+                                    }
+                                    else {
+                                        drpOffice.append($("<option></option>").val(this['id']).html(this['name']));
+                                    }
+                                }
+                            });
+                        } else {
+                            alert("fail");
+                        }
+                    }
+                });
     </script>
 }
 

@@ -57,18 +57,18 @@ warning 6002: The table/view 'OfficeAutomationdb.dbo.Market' does not have a pri
           <Property Name="AUOTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UnitType" Type="int" />
           <Property Name="ModelType" Type="int" />
-          <Property Name="Provider" Type="nvarchar" MaxLength="1" />
-          <Property Name="AssestNo" Type="nvarchar" MaxLength="1" />
-          <Property Name="SerialNo" Type="nvarchar" MaxLength="1" />
+          <Property Name="Provider" Type="int" />
+          <Property Name="AssestNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="SerialNo" Type="nvarchar" MaxLength="50" />
           <Property Name="ConnectionNo" Type="int" />
           <Property Name="SimNo" Type="int" />
           <Property Name="EMEINo1" Type="int" />
-          <Property Name="EMEINo2" Type="nvarchar" MaxLength="1" />
-          <Property Name="Remarks" Type="nvarchar" MaxLength="1" />
+          <Property Name="EMEINo2" Type="int" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
           <Property Name="AddedDate" Type="date" />
-          <Property Name="AddedBy" Type="nvarchar" MaxLength="1" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="UpdateDate" Type="date" />
-          <Property Name="UpdateBy" Type="nvarchar" MaxLength="1" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
           <Property Name="ActualAssignee" Type="int" />
         </EntityType>
         <EntityType Name="Provider">
@@ -106,6 +106,7 @@ warning 6002: The table/view 'OfficeAutomationdb.dbo.Market' does not have a pri
           <Property Name="UserID" Type="int" />
           <Property Name="ItemID" Type="int" />
           <Property Name="Category" Type="nvarchar" MaxLength="1" />
+          <Property Name="ActualAssignee" Type="int" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -213,6 +214,18 @@ warning 6002: The table/view 'OfficeAutomationdb.dbo.Market' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Providerfk_Phones">
+          <End Role="Provider" Type="Self.Provider" Multiplicity="0..1" />
+          <End Role="PhoneDongles" Type="Self.PhoneDongles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provider">
+              <PropertyRef Name="AUTOID" />
+            </Principal>
+            <Dependent Role="PhoneDongles">
+              <PropertyRef Name="Provider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="UnitTypefk_Computers">
           <End Role="UnitType" Type="Self.UnitType" Multiplicity="0..1" />
           <End Role="Computers" Type="Self.Computers" Multiplicity="*" />
@@ -290,6 +303,10 @@ FROM [dbo].[Market] AS [Market]</DefiningQuery>
             <End Role="Software" EntitySet="Software" />
             <End Role="Computers" EntitySet="Computers" />
           </AssociationSet>
+          <AssociationSet Name="Providerfk_Phones" Association="Self.Providerfk_Phones">
+            <End Role="Provider" EntitySet="Provider" />
+            <End Role="PhoneDongles" EntitySet="PhoneDongles" />
+          </AssociationSet>
           <AssociationSet Name="UnitTypefk_Computers" Association="Self.UnitTypefk_Computers">
             <End Role="UnitType" EntitySet="UnitType" />
             <End Role="Computers" EntitySet="Computers" />
@@ -345,6 +362,10 @@ FROM [dbo].[Market] AS [Market]</DefiningQuery>
           <AssociationSet Name="ModelTypefk_VOIP" Association="OfficeAutomationdbModel.ModelTypefk_VOIP">
             <End Role="ModelType" EntitySet="ModelTypes" />
             <End Role="VOIP" EntitySet="VOIPs" />
+          </AssociationSet>
+          <AssociationSet Name="Providerfk_Phones" Association="OfficeAutomationdbModel.Providerfk_Phones">
+            <End Role="Provider" EntitySet="Providers" />
+            <End Role="PhoneDongle" EntitySet="PhoneDongles" />
           </AssociationSet>
           <AssociationSet Name="UnitTypefk_Phone" Association="OfficeAutomationdbModel.UnitTypefk_Phone">
             <End Role="UnitType" EntitySet="UnitTypes" />
@@ -405,20 +426,21 @@ FROM [dbo].[Market] AS [Market]</DefiningQuery>
           <Property Name="AUOTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UnitType" Type="Int32" />
           <Property Name="ModelType" Type="Int32" />
-          <Property Name="Provider" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="AssestNo" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="SerialNo" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Provider" Type="Int32" />
+          <Property Name="AssestNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SerialNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ConnectionNo" Type="Int32" />
           <Property Name="SimNo" Type="Int32" />
           <Property Name="EMEINo1" Type="Int32" />
-          <Property Name="EMEINo2" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="Remarks" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="EMEINo2" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="AddedDate" Type="DateTime" Precision="0" />
-          <Property Name="AddedBy" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdateDate" Type="DateTime" Precision="0" />
-          <Property Name="UpdateBy" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ActualAssignee" Type="Int32" />
           <NavigationProperty Name="ModelType1" Relationship="OfficeAutomationdbModel.ModelTypefk_Phone" FromRole="PhoneDongle" ToRole="ModelType" />
+          <NavigationProperty Name="Provider1" Relationship="OfficeAutomationdbModel.Providerfk_Phones" FromRole="PhoneDongle" ToRole="Provider" />
           <NavigationProperty Name="UnitType1" Relationship="OfficeAutomationdbModel.UnitTypefk_Phone" FromRole="PhoneDongle" ToRole="UnitType" />
         </EntityType>
         <EntityType Name="Provider">
@@ -428,6 +450,7 @@ FROM [dbo].[Market] AS [Market]</DefiningQuery>
           <Property Name="AUTOID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProviderName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PhoneDongles" Relationship="OfficeAutomationdbModel.Providerfk_Phones" FromRole="Provider" ToRole="PhoneDongle" />
         </EntityType>
         <EntityType Name="Software">
           <Key>
@@ -462,6 +485,7 @@ FROM [dbo].[Market] AS [Market]</DefiningQuery>
           <Property Name="UserID" Type="Int32" />
           <Property Name="ItemID" Type="Int32" />
           <Property Name="Category" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="ActualAssignee" Type="Int32" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -591,6 +615,18 @@ FROM [dbo].[Market] AS [Market]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Providerfk_Phones">
+          <End Type="OfficeAutomationdbModel.Provider" Role="Provider" Multiplicity="0..1" />
+          <End Type="OfficeAutomationdbModel.PhoneDongle" Role="PhoneDongle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provider">
+              <PropertyRef Name="AUTOID" />
+            </Principal>
+            <Dependent Role="PhoneDongle">
+              <PropertyRef Name="Provider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="UnitTypefk_Phone">
           <End Type="OfficeAutomationdbModel.UnitType" Role="UnitType" Multiplicity="0..1" />
           <End Type="OfficeAutomationdbModel.PhoneDongle" Role="PhoneDongle" Multiplicity="*" />
@@ -713,6 +749,7 @@ FROM [dbo].[Market] AS [Market]</DefiningQuery>
           <EntitySetMapping Name="UserAssets">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.UserAsset">
               <MappingFragment StoreEntitySet="UserAssets">
+                <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="ItemID" ColumnName="ItemID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />

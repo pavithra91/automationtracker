@@ -17,13 +17,13 @@ namespace AutomationTracker
         public int AUOTID { get; set; }
         public Nullable<int> UnitType { get; set; }
         public Nullable<int> ModelType { get; set; }
-        public string Provider { get; set; }
+        public Nullable<int> Provider { get; set; }
         public string AssestNo { get; set; }
         public string SerialNo { get; set; }
         public Nullable<int> ConnectionNo { get; set; }
         public Nullable<int> SimNo { get; set; }
         public Nullable<int> EMEINo1 { get; set; }
-        public string EMEINo2 { get; set; }
+        public Nullable<int> EMEINo2 { get; set; }
         public string Remarks { get; set; }
         public Nullable<System.DateTime> AddedDate { get; set; }
         public string AddedBy { get; set; }
@@ -32,6 +32,7 @@ namespace AutomationTracker
         public Nullable<int> ActualAssignee { get; set; }
     
         public virtual ModelType ModelType1 { get; set; }
+        public virtual Provider Provider1 { get; set; }
         public virtual UnitType UnitType1 { get; set; }
     }
 }

@@ -1,8 +1,9 @@
 ﻿@model AutomationTracker.Models.AssetList
 @{
-    ViewBag.Title = "ViewComputers";
+    ViewBag.Title = "ViewMobilePhones";
     Layout = "~/Views/Shared/_SystemLayout.cshtml";
 }
+
 
 <section class="common_section">
     <div class="container">
@@ -14,13 +15,16 @@
                     <th>Model Name</th>
                     <th>Asset Number</th>
                     <th>Serial number</th>
-                    <th>Software Version</th>
+                    <th>Connection No</th>
+                    <th>EMEI No 1</th>
+                    <th>EMEI No 2</th>
+                    <th>Provider</th>
                     <th>Current User</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var items in Model.computerList)
+                @foreach (var items in Model.phonesanddongleList)
                 {
                     <tr>
                         <td>
@@ -39,13 +43,22 @@
                             @items.SerialNo
                         </td>
                         <td>
-                            @items.OS
+                            @items.ConnectionNo
+                        </td>
+                        <td>
+                            @items.EMEINo1
+                        </td>
+                        <td>
+                            @items.EMEINo2
+                        </td>
+                        <td>
+                            @items.Provider1.ProviderName
                         </td>
                         <td>
                             @items.ActualAssignee
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "ManageComputers", new { id = items.AUOTID })
+                            @Html.ActionLink("Edit", "ManageMobilePhones", new { id = items.AUOTID })
                         </td>
                     </tr>
                 }
@@ -53,9 +66,5 @@
         </table>
     </div>
 </section>
-
-@section scriptLocation{
-
-    }
 
 

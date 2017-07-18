@@ -25,6 +25,7 @@ namespace AutomationTracker.Models
         public List<PhoneDongle> phonesanddongleList { get; set; }
         public List<VOIP> voipList { get; set; }
         public List<Software> softwareList { get; set; }
+        public List<Provider> providerList { get; set; }
     }
         
 

@@ -14,8 +14,15 @@ namespace AutomationTracker
     
     public partial class Provider
     {
+        public Provider()
+        {
+            this.PhoneDongles = new HashSet<PhoneDongle>();
+        }
+    
         public int AUTOID { get; set; }
         public string ProviderName { get; set; }
         public string Description { get; set; }
+    
+        public virtual ICollection<PhoneDongle> PhoneDongles { get; set; }
     }
 }

@@ -229,6 +229,8 @@
     <Content Include="Views\Config\ManageUnitTypes.cshtml" />
     <Content Include="Views\Asset\ViewComputers.cshtml" />
     <Content Include="Views\Asset\ManageComputers.cshtml" />
+    <Content Include="Views\Asset\ViewMobilePhones.cshtml" />
+    <Content Include="Views\Asset\ManageMobilePhones.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

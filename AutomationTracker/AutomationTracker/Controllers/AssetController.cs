@@ -1,6 +1,7 @@
 ﻿using AutomationTracker.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -47,7 +48,18 @@ namespace AutomationTracker.Controllers
                 if (computers != null)
                 {
                     AssetModel objModel = new AssetModel();
-                    
+                    AssetList objList = new AssetList();
+                    objList.unittypeList = new List<UnitType>();
+                    objList.unittypeList.Add(computers.UnitType1);
+
+                    objList.modelList = new List<ModelType>();
+                    objList.modelList.Add(computers.ModelType1);
+
+                    objList.softwareList = new List<Software>();
+                    objList.softwareList.Add(computers.Software);
+                    objList.softwareList.Add(computers.Software1);
+
+                    objModel.assetList = objList;
                     objModel.computers = computers;
                     return View(objModel);
                 }
@@ -62,12 +74,12 @@ namespace AutomationTracker.Controllers
             if(objModel.computers.AUOTID == 0)
             {
                 Computer pc = new Computer();
-                pc.ModelType = objModel.computers.ModelType1.ModelID;
-                pc.UnitType = objModel.computers.UnitType1.UnitTypeID;
+                pc.ModelType = objModel.computers.ModelType;
+                pc.UnitType = objModel.computers.UnitType;
                 pc.AssestNo = objModel.computers.AssestNo;
                 pc.SerialNo = objModel.computers.SerialNo;
                 pc.OS = objModel.computers.OS;
-                //pc.OfficeVersion = objModel.computers.OfficeVersion;
+                pc.OfficeVersion = objModel.computers.OfficeVersion;
                 pc.HDDCapacity = objModel.computers.HDDCapacity;
                 pc.Remarks = objModel.computers.Remarks;
 
@@ -77,8 +89,119 @@ namespace AutomationTracker.Controllers
                 _context.Computers.Add(pc);
                 _context.SaveChanges();
             }
+            else
+            {
+                Computer pc = _context.Computers.Where(m => m.AUOTID == objModel.computers.AUOTID).FirstOrDefault();
+                pc.OS = objModel.computers.OS;
+                pc.OfficeVersion = objModel.computers.OfficeVersion;
+                pc.HDDCapacity = objModel.computers.HDDCapacity;
+                pc.Remarks = objModel.computers.Remarks;
+
+                pc.UpdateBy = "";
+                pc.UpdateDate = DateTime.Now;
+                
+                _context.Computers.Attach(pc);
+                _context.Entry(pc).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
             return RedirectToAction("ViewComputers");
         }
+
+
+        public ActionResult ViewMobilePhones()
+        {
+            AssetList objModel = new AssetList();
+
+            objModel.phonesanddongleList = _context.PhoneDongles.ToList();
+
+            return View(objModel);
+        }
+
+        public ActionResult ManageMobilePhones(int? id)
+        {
+            if (id == 0)
+            {
+                AssetModel objModel = new AssetModel();
+                AssetList objList = new AssetList();
+                objModel.phonesanddongles = new PhoneDongle();
+
+                objList.unittypeList = _context.UnitTypes.ToList();
+                objList.modelList = new List<ModelType>();
+                objList.providerList = _context.Providers.ToList();
+
+                objModel.assetList = objList;
+
+                return View(objModel);
+            }
+            else
+            {
+                PhoneDongle phones = _context.PhoneDongles.Where(m => m.AUOTID == id).FirstOrDefault();
+                if (phones != null)
+                {
+                    AssetModel objModel = new AssetModel();
+                    AssetList objList = new AssetList();
+                    objList.unittypeList = new List<UnitType>();
+                    objList.unittypeList.Add(phones.UnitType1);
+
+                    objList.modelList = new List<ModelType>();
+                    objList.modelList.Add(phones.ModelType1);
+                    objList.providerList = new List<Provider>();
+                    objList.providerList.Add(phones.Provider1);
+
+                    objModel.assetList = objList;
+                    objModel.phonesanddongles = phones;
+                    return View(objModel);
+                }
+
+            }
+            return null;
+        }
+
+        [HttpPost]
+        public ActionResult SavePhoneDevices(AssetModel objModel)
+        {
+            if (objModel.phonesanddongles.AUOTID == 0)
+            {
+                PhoneDongle mobile = new PhoneDongle();
+                mobile.ModelType = objModel.computers.ModelType;
+                mobile.UnitType = objModel.computers.UnitType;
+                mobile.AssestNo = objModel.computers.AssestNo;
+                mobile.SerialNo = objModel.computers.SerialNo;
+                mobile.Provider1 = objModel.phonesanddongles.Provider1;
+                mobile.ConnectionNo = objModel.phonesanddongles.ConnectionNo;
+                mobile.SimNo = objModel.phonesanddongles.SimNo;
+                mobile.EMEINo1 = objModel.phonesanddongles.EMEINo1;
+                mobile.EMEINo2 = objModel.phonesanddongles.EMEINo2;
+                mobile.Remarks = objModel.computers.Remarks;
+
+                mobile.AddedBy = "";
+                mobile.AddedDate = DateTime.Now;
+
+                _context.PhoneDongles.Add(mobile);
+                _context.SaveChanges();
+            }
+            else
+            {
+                PhoneDongle mobile = _context.PhoneDongles.Where(m => m.AUOTID == objModel.phonesanddongles.AUOTID).FirstOrDefault();
+                mobile.ConnectionNo = objModel.phonesanddongles.ConnectionNo;
+                mobile.EMEINo1 = objModel.phonesanddongles.EMEINo1;
+                mobile.EMEINo2 = objModel.phonesanddongles.EMEINo2;
+                mobile.SimNo = objModel.phonesanddongles.SimNo;
+                mobile.Remarks = objModel.phonesanddongles.Remarks;
+
+                mobile.UpdateBy = "";
+                mobile.UpdateDate = DateTime.Now;
+
+                _context.PhoneDongles.Attach(mobile);
+                _context.Entry(mobile).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+            return RedirectToAction("ViewMobilePhones");
+        }
+
+        
+
+
 
 
 
@@ -120,6 +243,24 @@ namespace AutomationTracker.Controllers
                         id = x.SoftwareID,
                         name = x.SoftwareName,
                         softwaretype = x.SoftwareType
+                    }), JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        [HttpGet]
+        public virtual JsonResult GetProviders()
+        {
+            try
+            {
+                return Json(
+                    _context.Providers.Select(x => new
+                    {
+                        id = x.AUTOID,
+                        name = x.ProviderName
                     }), JsonRequestBehavior.AllowGet);
             }
             catch

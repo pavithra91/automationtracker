@@ -18,5 +18,6 @@ namespace AutomationTracker
         public Nullable<int> UserID { get; set; }
         public Nullable<int> ItemID { get; set; }
         public string Category { get; set; }
+        public Nullable<int> ActualAssignee { get; set; }
     }
 }
