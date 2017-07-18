@@ -1,0 +1,64 @@
+﻿@model AutomationTracker.Models.UserModel
+@{
+    ViewBag.Title = "ViewUsers";
+    Layout = "~/Views/Shared/_SystemLayout.cshtml";
+}
+
+<section class="common_section">
+    <div class="container">
+        <table id="example" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>PA Number</th>
+                    <th>SAP number</th>
+                    <th>User Name</th>
+                    <th>Company</th>
+                    <th>Market</th>
+                    <th>NIC</th>
+                    <th>Remarks</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var items in Model.userList.usrList)
+                {
+                    <tr>
+                        <td>
+                            @items.UserID
+                        </td>
+                        <td>
+                            @items.PANo
+                        </td>
+                        <td>
+                            @items.SAPNo
+                        </td>
+                        <td>
+                            @items.FullName
+                        </td>
+                        <td>
+                            @items.Company1.CompanyCode
+                        </td>
+                        <td>
+                            @items.Market1.MarketName
+                        </td>
+                        <td>
+                            @items.NIC
+                        </td>
+                        <td>
+                            @items.Remarks
+                        </td>
+                        <td>
+                            @items.UserStatus
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "ManageUsers", new { id = items.UserID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
+

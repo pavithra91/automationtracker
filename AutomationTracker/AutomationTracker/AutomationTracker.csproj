@@ -152,6 +152,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Company.cs">
+      <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Computer.cs">
       <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
     </Compile>
@@ -166,6 +169,7 @@
       <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AssetModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="ModelType.cs">
       <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
     </Compile>
@@ -231,6 +235,8 @@
     <Content Include="Views\Asset\ManageComputers.cshtml" />
     <Content Include="Views\Asset\ViewMobilePhones.cshtml" />
     <Content Include="Views\Asset\ManageMobilePhones.cshtml" />
+    <Content Include="Views\Account\ViewUsers.cshtml" />
+    <Content Include="Views\Account\ManageUsers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -244,7 +250,6 @@
     <Folder Include="css\" />
     <Folder Include="js\" />
     <Folder Include="SpryAssets\" />
-    <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

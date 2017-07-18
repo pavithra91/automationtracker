@@ -1,0 +1,163 @@
+﻿@model AutomationTracker.Models.UserModel
+@{
+    ViewBag.Title = "ManageUsers";
+    Layout = "~/Views/Shared/_SystemLayout.cshtml";
+}
+
+@using (Html.BeginForm("SaveUser", "Account"))
+{
+    <section class="common_section">
+        <div class="container">
+
+            @Html.HiddenFor(m => Model.user.UserID)
+
+            
+            <div class='input-container'>
+                <label for="dropTitle" class="labelcls">Title: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.DropDownListFor(m => Model.user.Title, new SelectList(Model.userList.titlelist, "ID", "Title"), "- Please Select Title Type -", new { @name = "dropTitle", @*@disabled = hiddenstyle,*@ @class = "form-control", @id = "dropTitle"
+           })
+            </div>
+
+            <div class='input-container'>
+                <label for="txtFullName" class="labelcls">Full Name: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.TextBoxFor(m => Model.user.FullName, new { @name = "txtFullName", @placeholder = "Full Name", @class = "form-control", @id = "txtFullName" })
+            </div>
+
+            <div class='input-container'>
+                <label for="dropCompany" class="labelcls">Company: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.DropDownListFor(m => Model.user.Company, new SelectList(Model.userList.companyList, "CompanyID", "CompanyName"), "- Please Select Company -", new
+           {
+               @name = "dropCompany", @*@disabled = hiddenstyle,*@ @class = "form-control",
+               @id = "dropCompany"
+           })
+            </div>
+
+            <div class='input-container'>
+                <label for="dropMarket" class="labelcls">Market: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.DropDownListFor(m => Model.user.Market, new SelectList(Model.userList.marketList, "MarketID", "MarketName"), "- Please Select Market -", new
+           {
+               @name = "dropMarket", @*@disabled = hiddenstyle,*@ @class = "form-control",
+               @id = "dropMarket"
+           })
+            </div>
+            
+            <div class='input-container'>
+                <label for="txtPANo" class="labelcls">PA No: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.TextBoxFor(m => Model.user.PANo, new
+           {
+               @name = "txtPANo",
+               @placeholder = "PA No", @*@disabled = hiddenstyle,*@ @class = "form-control",
+               @id = "txtPANo"
+           })
+            </div>
+
+            <div class='input-container'>
+                <label for="txtSAPNo" class="labelcls">SAP No: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.TextBoxFor(m => Model.user.SAPNo, new
+           {
+               @name = "txtSAPNo",
+               @placeholder = "SAP No", @*@disabled = hiddenstyle,*@ @class = "form-control",
+               @id = "txtSAPNo"
+           })
+            </div>
+
+            <div class='input-container'>
+                <label for="txtNIC" class="labelcls">NIC No: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.TextBoxFor(m => Model.user.NIC, new
+           {
+               @name = "txtNIC",
+               @placeholder = "NIC No", @*@disabled = hiddenstyle,*@ @class = "form-control",
+               @id = "txtNIC"
+           })
+            </div>
+
+            <div class='input-container'>
+                <label for="txtRemarks" class="labelcls">Remarks: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.TextBoxFor(m => Model.user.Remarks, new { @name = "txtRemarks", @placeholder = "Remarks", @class = "form-control", @id = "txtRemarks" })
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </div>
+    </section>
+                    }
+
+@section scriptLocation{
+    <script>
+        $(function () {
+            $("#dropUnitType").change(function () {
+                debugger;
+                var unitID = $('#dropUnitType').val();
+                if (unitID == 3 || unitID == 4) {
+                    $.ajax({
+                        type: 'GET',
+                        url: "http://localhost:15707/Asset/GetModels?UnitTypeID=" + unitID,
+                        data: JSON.stringify({ "UnitTypeID": 1 }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (result) {
+                            var r = result;
+                            if (result != null) {
+                                var dropModel = $("[id*=dropModel]");
+                                dropModel.empty().append('<option selected="selected" value="0">Please select</option>');
+
+                                $.each(result, function () {
+                                    dropModel.append($("<option></option>").val(this['id']).html(this['name']));
+                                });
+
+                            } else {
+                                alert("fail");
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script>
+        debugger;
+        var drpProviderval = $('#drpProvider').val();
+
+        $.ajax({
+            type: 'GET',
+            url: "http://localhost:15707/Asset/GetProviders",
+            data: JSON.stringify({ "UnitTypeID": 1 }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var r = result;
+                if (result != null) {
+                    var drpProvider = $("[id*=drpProvider]");
+
+                    drpProvider.empty().append('<option selected="selected" value="0">Please select Provider</option>');
+
+                    $.each(result, function () {
+                        if (drpProviderval == this['id']) {
+                            drpProvider.append($("<option selected></option>").val(this['id']).html(this['name']));
+                        }
+                        else {
+                            drpProvider.append($("<option></option>").val(this['id']).html(this['name']));
+                        }
+                    });
+                } else {
+                    alert("fail");
+                }
+            }
+        });
+    </script>
+}
+
+
+
+
+

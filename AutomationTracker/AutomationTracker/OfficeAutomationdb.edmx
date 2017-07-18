@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="OfficeAutomationdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="5" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Computers">
           <Key>
             <PropertyRef Name="AUOTID" />
@@ -27,8 +35,6 @@
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="1" />
           <Property Name="ActualAssignee" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'OfficeAutomationdb.dbo.Market' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Market">
           <Key>
             <PropertyRef Name="MarketID" />
@@ -125,6 +131,8 @@ warning 6002: The table/view 'OfficeAutomationdb.dbo.Market' does not have a pri
           <Property Name="UserStatus" Type="varchar" MaxLength="1" />
           <Property Name="AddedDate" Type="date" />
           <Property Name="AddedBy" Type="varchar" MaxLength="100" />
+          <Property Name="UpdateDate" Type="date" />
+          <Property Name="UpdateBy" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="VOIP">
           <Key>
@@ -142,6 +150,18 @@ warning 6002: The table/view 'OfficeAutomationdb.dbo.Market' does not have a pri
           <Property Name="UpdateDate" Type="date" />
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="1" />
         </EntityType>
+        <Association Name="CompanyIDfk_Users">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_UnitTypeID_Models">
           <End Role="UnitType" Type="Self.UnitType" Multiplicity="0..1" />
           <End Role="ModelType" Type="Self.ModelType" Multiplicity="*" />
@@ -151,6 +171,18 @@ warning 6002: The table/view 'OfficeAutomationdb.dbo.Market' does not have a pri
             </Principal>
             <Dependent Role="ModelType">
               <PropertyRef Name="UnitType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Marketfk_Users">
+          <End Role="Market" Type="Self.Market" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Market">
+              <PropertyRef Name="MarketID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Market" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -263,7 +295,9 @@ warning 6002: The table/view 'OfficeAutomationdb.dbo.Market' does not have a pri
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="OfficeAutomationdbModelStoreContainer">
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Computers" EntityType="Self.Computers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Market" EntityType="Self.Market" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ModelType" EntityType="Self.ModelType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhoneDongles" EntityType="Self.PhoneDongles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
@@ -272,16 +306,17 @@ warning 6002: The table/view 'OfficeAutomationdb.dbo.Market' does not have a pri
           <EntitySet Name="UserAssets" EntityType="Self.UserAssets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VOIP" EntityType="Self.VOIP" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Market" EntityType="Self.Market" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[Market].[MarketID] AS [MarketID], 
-[Market].[MarketName] AS [MarketName], 
-[Market].[CompanyID] AS [CompanyID]
-FROM [dbo].[Market] AS [Market]</DefiningQuery>
-          </EntitySet>
+          <AssociationSet Name="CompanyIDfk_Users" Association="Self.CompanyIDfk_Users">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
           <AssociationSet Name="fk_UnitTypeID_Models" Association="Self.fk_UnitTypeID_Models">
             <End Role="UnitType" EntitySet="UnitType" />
             <End Role="ModelType" EntitySet="ModelType" />
+          </AssociationSet>
+          <AssociationSet Name="Marketfk_Users" Association="Self.Marketfk_Users">
+            <End Role="Market" EntitySet="Market" />
+            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="ModelTypefk_Computers" Association="Self.ModelTypefk_Computers">
             <End Role="ModelType" EntitySet="ModelType" />
@@ -325,7 +360,9 @@ FROM [dbo].[Market] AS [Market]</DefiningQuery>
     <edmx:ConceptualModels>
       <Schema Namespace="OfficeAutomationdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="OfficeAutomationdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Companies" EntityType="OfficeAutomationdbModel.Company" />
           <EntitySet Name="Computers" EntityType="OfficeAutomationdbModel.Computer" />
+          <EntitySet Name="Markets" EntityType="OfficeAutomationdbModel.Market" />
           <EntitySet Name="ModelTypes" EntityType="OfficeAutomationdbModel.ModelType" />
           <EntitySet Name="PhoneDongles" EntityType="OfficeAutomationdbModel.PhoneDongle" />
           <EntitySet Name="Providers" EntityType="OfficeAutomationdbModel.Provider" />
@@ -334,7 +371,10 @@ FROM [dbo].[Market] AS [Market]</DefiningQuery>
           <EntitySet Name="UserAssets" EntityType="OfficeAutomationdbModel.UserAsset" />
           <EntitySet Name="Users" EntityType="OfficeAutomationdbModel.User" />
           <EntitySet Name="VOIPs" EntityType="OfficeAutomationdbModel.VOIP" />
-          <EntitySet Name="Markets" EntityType="OfficeAutomationdbModel.Market" />
+          <AssociationSet Name="CompanyIDfk_Users" Association="OfficeAutomationdbModel.CompanyIDfk_Users">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
           <AssociationSet Name="ModelTypefk_Computers" Association="OfficeAutomationdbModel.ModelTypefk_Computers">
             <End Role="ModelType" EntitySet="ModelTypes" />
             <End Role="Computer" EntitySet="Computers" />
@@ -350,6 +390,10 @@ FROM [dbo].[Market] AS [Market]</DefiningQuery>
           <AssociationSet Name="UnitTypefk_Computers" Association="OfficeAutomationdbModel.UnitTypefk_Computers">
             <End Role="UnitType" EntitySet="UnitTypes" />
             <End Role="Computer" EntitySet="Computers" />
+          </AssociationSet>
+          <AssociationSet Name="Marketfk_Users" Association="OfficeAutomationdbModel.Marketfk_Users">
+            <End Role="Market" EntitySet="Markets" />
+            <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="fk_UnitTypeID_Models" Association="OfficeAutomationdbModel.fk_UnitTypeID_Models">
             <End Role="UnitType" EntitySet="UnitTypes" />
@@ -376,6 +420,15 @@ FROM [dbo].[Market] AS [Market]</DefiningQuery>
             <End Role="VOIP" EntitySet="VOIPs" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="OfficeAutomationdbModel.CompanyIDfk_Users" FromRole="Company" ToRole="User" />
+        </EntityType>
         <EntityType Name="Computer">
           <Key>
             <PropertyRef Name="AUOTID" />
@@ -401,6 +454,15 @@ FROM [dbo].[Market] AS [Market]</DefiningQuery>
           <NavigationProperty Name="Software" Relationship="OfficeAutomationdbModel.OfficeVersionfk_Computers" FromRole="Computer" ToRole="Software" />
           <NavigationProperty Name="Software1" Relationship="OfficeAutomationdbModel.OSfk_Computers" FromRole="Computer" ToRole="Software" />
           <NavigationProperty Name="UnitType1" Relationship="OfficeAutomationdbModel.UnitTypefk_Computers" FromRole="Computer" ToRole="UnitType" />
+        </EntityType>
+        <EntityType Name="Market">
+          <Key>
+            <PropertyRef Name="MarketID" />
+          </Key>
+          <Property Name="MarketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MarketName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyID" Type="Int32" />
+          <NavigationProperty Name="Users" Relationship="OfficeAutomationdbModel.Marketfk_Users" FromRole="Market" ToRole="User" />
         </EntityType>
         <EntityType Name="ModelType">
           <Key>
@@ -504,6 +566,10 @@ FROM [dbo].[Market] AS [Market]</DefiningQuery>
           <Property Name="UserStatus" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="AddedDate" Type="DateTime" Precision="0" />
           <Property Name="AddedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Company1" Relationship="OfficeAutomationdbModel.CompanyIDfk_Users" FromRole="User" ToRole="Company" />
+          <NavigationProperty Name="Market1" Relationship="OfficeAutomationdbModel.Marketfk_Users" FromRole="User" ToRole="Market" />
         </EntityType>
         <EntityType Name="VOIP">
           <Key>
@@ -523,14 +589,18 @@ FROM [dbo].[Market] AS [Market]</DefiningQuery>
           <NavigationProperty Name="ModelType1" Relationship="OfficeAutomationdbModel.ModelTypefk_VOIP" FromRole="VOIP" ToRole="ModelType" />
           <NavigationProperty Name="UnitType1" Relationship="OfficeAutomationdbModel.UnitTypefk_VOIP" FromRole="VOIP" ToRole="UnitType" />
         </EntityType>
-        <EntityType Name="Market">
-          <Key>
-            <PropertyRef Name="MarketID" />
-          </Key>
-          <Property Name="MarketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MarketName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CompanyID" Type="Int32" />
-        </EntityType>
+        <Association Name="CompanyIDfk_Users">
+          <End Type="OfficeAutomationdbModel.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="OfficeAutomationdbModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="ModelTypefk_Computers">
           <End Type="OfficeAutomationdbModel.ModelType" Role="ModelType" Multiplicity="0..1" />
           <End Type="OfficeAutomationdbModel.Computer" Role="Computer" Multiplicity="*" />
@@ -576,6 +646,18 @@ FROM [dbo].[Market] AS [Market]</DefiningQuery>
             </Principal>
             <Dependent Role="Computer">
               <PropertyRef Name="UnitType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Marketfk_Users">
+          <End Type="OfficeAutomationdbModel.Market" Role="Market" Multiplicity="0..1" />
+          <End Type="OfficeAutomationdbModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Market">
+              <PropertyRef Name="MarketID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Market" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -657,6 +739,15 @@ FROM [dbo].[Market] AS [Market]</DefiningQuery>
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="OfficeAutomationdbModelStoreContainer" CdmEntityContainer="OfficeAutomationdbEntities">
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="OfficeAutomationdbModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Computers">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.Computer">
               <MappingFragment StoreEntitySet="Computers">
@@ -677,6 +768,15 @@ FROM [dbo].[Market] AS [Market]</DefiningQuery>
                 <ScalarProperty Name="ModelType" ColumnName="ModelType" />
                 <ScalarProperty Name="UnitType" ColumnName="UnitType" />
                 <ScalarProperty Name="AUOTID" ColumnName="AUOTID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Markets">
+            <EntityTypeMapping TypeName="OfficeAutomationdbModel.Market">
+              <MappingFragment StoreEntitySet="Market">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="MarketName" ColumnName="MarketName" />
+                <ScalarProperty Name="MarketID" ColumnName="MarketID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -760,6 +860,8 @@ FROM [dbo].[Market] AS [Market]</DefiningQuery>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
                 <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
                 <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
@@ -789,15 +891,6 @@ FROM [dbo].[Market] AS [Market]</DefiningQuery>
                 <ScalarProperty Name="ModelType" ColumnName="ModelType" />
                 <ScalarProperty Name="UnitType" ColumnName="UnitType" />
                 <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Markets">
-            <EntityTypeMapping TypeName="OfficeAutomationdbModel.Market">
-              <MappingFragment StoreEntitySet="Market">
-                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-                <ScalarProperty Name="MarketName" ColumnName="MarketName" />
-                <ScalarProperty Name="MarketID" ColumnName="MarketID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
