@@ -30,8 +30,10 @@ namespace AutomationTracker
         public string AddedBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string UpdateBy { get; set; }
+        public Nullable<int> Company { get; set; }
         public Nullable<int> ActualAssignee { get; set; }
     
+        public virtual Company Company1 { get; set; }
         public virtual ModelType ModelType1 { get; set; }
         public virtual Software Software { get; set; }
         public virtual Software Software1 { get; set; }

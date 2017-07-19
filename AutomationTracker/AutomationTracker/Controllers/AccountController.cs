@@ -65,7 +65,6 @@ namespace AutomationTracker.Controllers
                     objModel.user = users;
                     return View(objModel);
                 }
-
             }
             return null;
         }
@@ -78,8 +77,8 @@ namespace AutomationTracker.Controllers
                 User _user = new User();
                 _user.Title = objModel.user.Title;
                 _user.FullName = objModel.user.FullName;
-                _user.Company1 = objModel.user.Company1;
-                _user.Market1 = objModel.user.Market1;
+                _user.Company = objModel.user.Company;
+                _user.Market = objModel.user.Market;
                 _user.PANo = objModel.user.PANo;
                 _user.SAPNo = objModel.user.SAPNo;
                 _user.NIC = objModel.user.NIC;

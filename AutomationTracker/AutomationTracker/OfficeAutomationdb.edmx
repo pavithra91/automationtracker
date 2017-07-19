@@ -33,6 +33,7 @@
           <Property Name="AddedBy" Type="nvarchar" MaxLength="1" />
           <Property Name="UpdateDate" Type="date" />
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="1" />
+          <Property Name="Company" Type="int" />
           <Property Name="ActualAssignee" Type="int" />
         </EntityType>
         <EntityType Name="Market">
@@ -75,6 +76,7 @@
           <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="UpdateDate" Type="date" />
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Company" Type="int" />
           <Property Name="ActualAssignee" Type="int" />
         </EntityType>
         <EntityType Name="Provider">
@@ -149,7 +151,44 @@
           <Property Name="AddedBy" Type="nvarchar" MaxLength="1" />
           <Property Name="UpdateDate" Type="date" />
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="1" />
+          <Property Name="Company" Type="int" />
         </EntityType>
+        <Association Name="Companyfk_Computers">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="Computers" Type="Self.Computers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Computers">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Companyfk_Phones">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="PhoneDongles" Type="Self.PhoneDongles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="PhoneDongles">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Companyfk_VOIP">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="VOIP" Type="Self.VOIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="VOIP">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="CompanyIDfk_Users">
           <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -306,6 +345,18 @@
           <EntitySet Name="UserAssets" EntityType="Self.UserAssets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VOIP" EntityType="Self.VOIP" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Companyfk_Computers" Association="Self.Companyfk_Computers">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Computers" EntitySet="Computers" />
+          </AssociationSet>
+          <AssociationSet Name="Companyfk_Phones" Association="Self.Companyfk_Phones">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="PhoneDongles" EntitySet="PhoneDongles" />
+          </AssociationSet>
+          <AssociationSet Name="Companyfk_VOIP" Association="Self.Companyfk_VOIP">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="VOIP" EntitySet="VOIP" />
+          </AssociationSet>
           <AssociationSet Name="CompanyIDfk_Users" Association="Self.CompanyIDfk_Users">
             <End Role="Company" EntitySet="Company" />
             <End Role="Users" EntitySet="Users" />
@@ -371,6 +422,18 @@
           <EntitySet Name="UserAssets" EntityType="OfficeAutomationdbModel.UserAsset" />
           <EntitySet Name="Users" EntityType="OfficeAutomationdbModel.User" />
           <EntitySet Name="VOIPs" EntityType="OfficeAutomationdbModel.VOIP" />
+          <AssociationSet Name="Companyfk_Computers" Association="OfficeAutomationdbModel.Companyfk_Computers">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Computer" EntitySet="Computers" />
+          </AssociationSet>
+          <AssociationSet Name="Companyfk_Phones" Association="OfficeAutomationdbModel.Companyfk_Phones">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="PhoneDongle" EntitySet="PhoneDongles" />
+          </AssociationSet>
+          <AssociationSet Name="Companyfk_VOIP" Association="OfficeAutomationdbModel.Companyfk_VOIP">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="VOIP" EntitySet="VOIPs" />
+          </AssociationSet>
           <AssociationSet Name="CompanyIDfk_Users" Association="OfficeAutomationdbModel.CompanyIDfk_Users">
             <End Role="Company" EntitySet="Companies" />
             <End Role="User" EntitySet="Users" />
@@ -427,6 +490,9 @@
           <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CompanyCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Computers" Relationship="OfficeAutomationdbModel.Companyfk_Computers" FromRole="Company" ToRole="Computer" />
+          <NavigationProperty Name="PhoneDongles" Relationship="OfficeAutomationdbModel.Companyfk_Phones" FromRole="Company" ToRole="PhoneDongle" />
+          <NavigationProperty Name="VOIPs" Relationship="OfficeAutomationdbModel.Companyfk_VOIP" FromRole="Company" ToRole="VOIP" />
           <NavigationProperty Name="Users" Relationship="OfficeAutomationdbModel.CompanyIDfk_Users" FromRole="Company" ToRole="User" />
         </EntityType>
         <EntityType Name="Computer">
@@ -449,7 +515,9 @@
           <Property Name="AddedBy" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="UpdateDate" Type="DateTime" Precision="0" />
           <Property Name="UpdateBy" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="Int32" />
           <Property Name="ActualAssignee" Type="Int32" />
+          <NavigationProperty Name="Company1" Relationship="OfficeAutomationdbModel.Companyfk_Computers" FromRole="Computer" ToRole="Company" />
           <NavigationProperty Name="ModelType1" Relationship="OfficeAutomationdbModel.ModelTypefk_Computers" FromRole="Computer" ToRole="ModelType" />
           <NavigationProperty Name="Software" Relationship="OfficeAutomationdbModel.OfficeVersionfk_Computers" FromRole="Computer" ToRole="Software" />
           <NavigationProperty Name="Software1" Relationship="OfficeAutomationdbModel.OSfk_Computers" FromRole="Computer" ToRole="Software" />
@@ -500,7 +568,9 @@
           <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdateDate" Type="DateTime" Precision="0" />
           <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="Int32" />
           <Property Name="ActualAssignee" Type="Int32" />
+          <NavigationProperty Name="Company1" Relationship="OfficeAutomationdbModel.Companyfk_Phones" FromRole="PhoneDongle" ToRole="Company" />
           <NavigationProperty Name="ModelType1" Relationship="OfficeAutomationdbModel.ModelTypefk_Phone" FromRole="PhoneDongle" ToRole="ModelType" />
           <NavigationProperty Name="Provider1" Relationship="OfficeAutomationdbModel.Providerfk_Phones" FromRole="PhoneDongle" ToRole="Provider" />
           <NavigationProperty Name="UnitType1" Relationship="OfficeAutomationdbModel.UnitTypefk_Phone" FromRole="PhoneDongle" ToRole="UnitType" />
@@ -586,9 +656,47 @@
           <Property Name="AddedBy" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="UpdateDate" Type="DateTime" Precision="0" />
           <Property Name="UpdateBy" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="Int32" />
+          <NavigationProperty Name="Company1" Relationship="OfficeAutomationdbModel.Companyfk_VOIP" FromRole="VOIP" ToRole="Company" />
           <NavigationProperty Name="ModelType1" Relationship="OfficeAutomationdbModel.ModelTypefk_VOIP" FromRole="VOIP" ToRole="ModelType" />
           <NavigationProperty Name="UnitType1" Relationship="OfficeAutomationdbModel.UnitTypefk_VOIP" FromRole="VOIP" ToRole="UnitType" />
         </EntityType>
+        <Association Name="Companyfk_Computers">
+          <End Type="OfficeAutomationdbModel.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="OfficeAutomationdbModel.Computer" Role="Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Companyfk_Phones">
+          <End Type="OfficeAutomationdbModel.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="OfficeAutomationdbModel.PhoneDongle" Role="PhoneDongle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="PhoneDongle">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Companyfk_VOIP">
+          <End Type="OfficeAutomationdbModel.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="OfficeAutomationdbModel.VOIP" Role="VOIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="VOIP">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="CompanyIDfk_Users">
           <End Type="OfficeAutomationdbModel.Company" Role="Company" Multiplicity="0..1" />
           <End Type="OfficeAutomationdbModel.User" Role="User" Multiplicity="*" />
@@ -752,6 +860,7 @@
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.Computer">
               <MappingFragment StoreEntitySet="Computers">
                 <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
                 <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
@@ -798,6 +907,7 @@
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.PhoneDongle">
               <MappingFragment StoreEntitySet="PhoneDongles">
                 <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
                 <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
@@ -880,6 +990,7 @@
           <EntitySetMapping Name="VOIPs">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.VOIP">
               <MappingFragment StoreEntitySet="VOIP">
+                <ScalarProperty Name="Company" ColumnName="Company" />
                 <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />

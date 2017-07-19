@@ -12,6 +12,7 @@ namespace AutomationTracker.Models
         public Computer computers { get; set; }
         public PhoneDongle phonesanddongles { get; set; }
         public VOIP voip { get; set; }
+        public Company company { get; set; }
    
         public AssetList assetList { get; set; }
     }
@@ -25,5 +26,6 @@ namespace AutomationTracker.Models
         public List<VOIP> voipList { get; set; }
         public List<Software> softwareList { get; set; }
         public List<Provider> providerList { get; set; }
+        public List<Company> companyList { get; set; }
     }
 }

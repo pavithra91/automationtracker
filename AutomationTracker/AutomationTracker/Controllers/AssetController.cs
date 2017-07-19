@@ -37,6 +37,7 @@ namespace AutomationTracker.Controllers
                 objList.unittypeList = _context.UnitTypes.ToList();
                 objList.softwareList = new List<Software>();
                 objList.modelList = new List<ModelType>();
+                objList.companyList = _context.Companies.ToList();
 
                 objModel.assetList = objList;
 
@@ -82,6 +83,7 @@ namespace AutomationTracker.Controllers
                 pc.OfficeVersion = objModel.computers.OfficeVersion;
                 pc.HDDCapacity = objModel.computers.HDDCapacity;
                 pc.Remarks = objModel.computers.Remarks;
+                pc.Company = objModel.company.CompanyID;
 
                 pc.AddedBy = "";
                 pc.AddedDate = DateTime.Now;
@@ -96,6 +98,7 @@ namespace AutomationTracker.Controllers
                 pc.OfficeVersion = objModel.computers.OfficeVersion;
                 pc.HDDCapacity = objModel.computers.HDDCapacity;
                 pc.Remarks = objModel.computers.Remarks;
+                pc.Company = objModel.company.CompanyID;
 
                 pc.UpdateBy = "";
                 pc.UpdateDate = DateTime.Now;
@@ -106,7 +109,6 @@ namespace AutomationTracker.Controllers
             }
             return RedirectToAction("ViewComputers");
         }
-
 
         public ActionResult ViewMobilePhones()
         {
@@ -128,6 +130,7 @@ namespace AutomationTracker.Controllers
                 objList.unittypeList = _context.UnitTypes.ToList();
                 objList.modelList = new List<ModelType>();
                 objList.providerList = _context.Providers.ToList();
+                objList.companyList = _context.Companies.ToList();
 
                 objModel.assetList = objList;
 
@@ -173,6 +176,7 @@ namespace AutomationTracker.Controllers
                 mobile.EMEINo1 = objModel.phonesanddongles.EMEINo1;
                 mobile.EMEINo2 = objModel.phonesanddongles.EMEINo2;
                 mobile.Remarks = objModel.computers.Remarks;
+                mobile.Company = objModel.company.CompanyID;
 
                 mobile.AddedBy = "";
                 mobile.AddedDate = DateTime.Now;
@@ -188,6 +192,7 @@ namespace AutomationTracker.Controllers
                 mobile.EMEINo2 = objModel.phonesanddongles.EMEINo2;
                 mobile.SimNo = objModel.phonesanddongles.SimNo;
                 mobile.Remarks = objModel.phonesanddongles.Remarks;
+                mobile.Company = objModel.company.CompanyID;
 
                 mobile.UpdateBy = "";
                 mobile.UpdateDate = DateTime.Now;

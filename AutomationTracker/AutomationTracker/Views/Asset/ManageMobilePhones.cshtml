@@ -82,8 +82,20 @@
                 @Html.TextBoxFor(m => Model.phonesanddongles.Remarks, new { @name = "txtRemarks", @placeholder = "Remarks", @class = "form-control", @id = "txtRemarks" })
             </div>
 
+            <div class='input-container'>
+                <label for="dropCompany" class="labelcls">Company: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.DropDownListFor(m => Model.company.CompanyID, new SelectList(Model.assetList.companyList, "CompanyID", "CompanyName"), "- Please Select Company -", new
+           {
+               @name = "dropCompany", @*@disabled = hiddenstyle,*@ @class = "form-control",
+               @id = "dropCompany"
+           })
+            </div>
+
 
             <button type="submit" class="btn btn-primary">Submit</button>
+
+            <input type="button" style="margin-left:10px" class="btn btn-primary" value="Back" onclick="location.href='@Url.Action("ViewMobilePhones", "Asset")'" />
 
         </div>
     </section>
