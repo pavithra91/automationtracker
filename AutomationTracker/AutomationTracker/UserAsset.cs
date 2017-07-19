@@ -19,5 +19,6 @@ namespace AutomationTracker
         public Nullable<int> ItemID { get; set; }
         public string Category { get; set; }
         public Nullable<int> ActualAssignee { get; set; }
+        public string PANo { get; set; }
     }
 }

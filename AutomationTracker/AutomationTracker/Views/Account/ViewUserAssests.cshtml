@@ -1,0 +1,115 @@
+﻿@model AutomationTracker.Models.UserModel
+@{
+    ViewBag.Title = "ViewUserAssests";
+    Layout = "~/Views/Shared/_SystemLayout.cshtml";
+}
+
+<section class="common_section">
+    <div class="container">
+
+        <div class="container" style="padding-bottom:20px;">
+            <input type="button" style="float:right;" class="btn btn-primary" value="Add Computer" onclick="location.href='@Url.Action("ManageComputers", "Asset", new { id = 0 })'" />
+        </div>
+
+        <table id="example" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Item ID</th>
+                    <th>Category</th>
+                    <th>User ID</th>
+                    <th>PA Number</th>
+                    <th>Current User</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.userAssestList.ComputerList.Count > 0)
+                {
+                    foreach (var items in Model.userAssestList.ComputerList)
+                    {
+                        <tr>
+                            <td>
+                                @items.AUOTID
+                            </td>
+                            <td>
+                                @items.UnitType1.UnitTypeName
+                            </td>
+                            <td>
+                                @Model.user.UserID
+                            </td>
+                            <td>
+                                @Model.user.PANo
+                            </td>
+                            <td>
+                                @Model.userAssestList.ActualAssignee.UserID
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "ManageUserAssest", new { id = items.AUOTID, cat = "Com" })
+                            </td>
+                        </tr>
+                    }
+                }
+
+                @if (Model.userAssestList.PhoneDongleList.Count > 0)
+                {
+                    foreach (var items in Model.userAssestList.PhoneDongleList)
+                    {
+                        <tr>
+                            <td>
+                                @items.AUOTID
+                            </td>
+                            <td>
+                                @items.UnitType1.UnitTypeName
+                            </td>
+                            <td>
+                                @Model.user.UserID
+                            </td>
+                            <td>
+                                @Model.user.PANo
+                            </td>
+                            <td>
+                                @Model.userAssestList.ActualAssignee.UserID
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "ManageUserAssest", new { id = items.AUOTID, cat = "Phone" })
+                            </td>
+                        </tr>
+                    }
+                }
+
+                @if (Model.userAssestList.VOIPList.Count > 0)
+                {
+                    foreach (var items in Model.userAssestList.VOIPList)
+                    {
+                        <tr>
+                            <td>
+                                @items.AUTOID
+                            </td>
+                            <td>
+                                @items.UnitType1.UnitTypeName
+                            </td>
+                            <td>
+                                @Model.user.UserID
+                            </td>
+                            <td>
+                                @Model.user.PANo
+                            </td>
+                            <td>
+                                @Model.userAssestList.ActualAssignee.UserID
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "ManageUserAssest", new { id = items.AUTOID, cat = "VOIP" })
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</section>
+
+@section scriptLocation{
+
+}
+

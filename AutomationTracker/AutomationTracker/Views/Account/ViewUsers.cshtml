@@ -59,6 +59,8 @@
                         </td>
                         <td>
                             @Html.ActionLink("Edit", "ManageUsers", new { id = items.UserID })
+
+                            @Html.ActionLink("Assign", "ViewUserAssests", new { id = items.UserID })
                         </td>
                     </tr>
                 }

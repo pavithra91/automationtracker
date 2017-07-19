@@ -10,6 +10,8 @@ namespace AutomationTracker.Models
         public User user { get; set; }
         public bool IsUserActive { get; set; }
         public UserList userList { get; set; }
+
+        public UserAssest userAssestList { get; set; }
     }
     public class UserList
     {
@@ -17,6 +19,7 @@ namespace AutomationTracker.Models
         public List<Market> marketList { get; set; }
         public List<User> usrList { get; set; }
         public List<UserTitle> titlelist { get; set; }
+        public List<UserAsset> userAssesrList { get; set; }
     }
     public class UserTitle
     {
@@ -53,5 +56,15 @@ namespace AutomationTracker.Models
             });
             return titlelist;
         }
+    }
+
+    public class UserAssest
+    {
+        public User User { get; set; }
+        public string Category { get; set; }
+        public User ActualAssignee { get; set; }
+        public List<Computer> ComputerList { get; set; }
+        public List<PhoneDongle> PhoneDongleList { get; set; }
+        public List<VOIP> VOIPList { get; set; }
     }
 }

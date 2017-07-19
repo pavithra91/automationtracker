@@ -140,5 +140,45 @@ namespace AutomationTracker.Controllers
             }
             return RedirectToAction("ViewUsers");
         }
+
+        public ActionResult ViewUserAssests(int id)
+        {
+            UserModel objModel = new UserModel();
+
+            objModel.userAssestList = new UserAssest();
+
+            var assetList = _context.UserAssets.Where(w => w.UserID == id).ToList();
+
+            List<Computer> PCList = _context.Computers.ToList();
+            List<PhoneDongle> PhoneList = _context.PhoneDongles.ToList();
+            List<VOIP> VOIPList = _context.VOIPs.ToList();
+
+            objModel.userAssestList.User = _context.Users.Where(w => w.UserID == id).FirstOrDefault();
+            objModel.userAssestList.ActualAssignee = _context.Users.Where(w => w.UserID == id).FirstOrDefault();
+
+            foreach (var item in assetList)
+            {
+                if(item.Category == "Computers")
+                {
+                    objModel.userAssestList.ComputerList = new List<Computer>();
+                    objModel.userAssestList.ComputerList.Add(PCList.Find(w=>w.AUOTID == item.ItemID));
+                    continue;
+                }
+                else if(item.Category == "Phones")
+                {
+                    objModel.userAssestList.PhoneDongleList = new List<PhoneDongle>();
+                    objModel.userAssestList.PhoneDongleList.Add(PhoneList.Find(w => w.AUOTID == item.ItemID));
+                    continue;
+                }
+                else if(item.Category == "Phones")
+                {
+                    objModel.userAssestList.VOIPList = new List<VOIP>();
+                    objModel.userAssestList.VOIPList.Add(VOIPList.Find(w => w.AUTOID == item.ItemID));
+                    continue;
+                }
+            }
+
+            return View(objModel);
+        }
     }
 }

@@ -237,6 +237,7 @@
     <Content Include="Views\Asset\ManageMobilePhones.cshtml" />
     <Content Include="Views\Account\ViewUsers.cshtml" />
     <Content Include="Views\Account\ManageUsers.cshtml" />
+    <Content Include="Views\Account\ViewUserAssests.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

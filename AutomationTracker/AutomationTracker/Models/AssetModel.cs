@@ -27,5 +27,6 @@ namespace AutomationTracker.Models
         public List<Software> softwareList { get; set; }
         public List<Provider> providerList { get; set; }
         public List<Company> companyList { get; set; }
+        public List<User> userList { get; set; }
     }
 }
