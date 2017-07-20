@@ -162,17 +162,17 @@ namespace AutomationTracker.Controllers
 
             foreach (var item in assetList)
             {
-                if(item.Category == "Computers")
+                if(item.Category == 1)
                 {
                     objModel.userAssestList.ComputerList.Add(PCList.Find(w=>w.AUOTID == item.ItemID));
                     continue;
                 }
-                else if(item.Category == "Phones")
+                else if(item.Category == 2)
                 {
                     objModel.userAssestList.PhoneDongleList.Add(PhoneList.Find(w => w.AUOTID == item.ItemID));
                     continue;
                 }
-                else if(item.Category == "Phones")
+                else if(item.Category == 3)
                 {
                     objModel.userAssestList.VOIPList.Add(VOIPList.Find(w => w.AUTOID == item.ItemID));
                     continue;
@@ -182,9 +182,30 @@ namespace AutomationTracker.Controllers
             return View(objModel);
         }
 
-        public ActionResult TransferAsset(int? id)
+        public ActionResult TransferAsset(int? id, int category)
         {
+            UserModel objModel = new UserModel();
+            UserList objList = new UserList();
 
+            objModel.userAssestList.ComputerList = new List<Computer>();
+            objModel.userAssestList.PhoneDongleList = new List<PhoneDongle>();
+            objModel.userAssestList.VOIPList = new List<VOIP>();
+
+            objModel.userList = new UserList();
+            
+
+            if(category == 1)
+            {
+                var _computers = _context.Computers.Where(w => w.AUOTID == id);                
+            }
+            else if(category == 2)
+            {
+
+            }
+            else if(category == 3)
+            {
+
+            }
             return View();
         }
     }

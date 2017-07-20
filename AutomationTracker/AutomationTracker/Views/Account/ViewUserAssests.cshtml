@@ -7,9 +7,9 @@
 <section class="common_section">
     <div class="container">
 
-        <div class="container" style="padding-bottom:20px;">
+        @*<div class="container" style="padding-bottom:20px;">
             <input type="button" style="float:right;" class="btn btn-primary" value="Transfer Asset" onclick="location.href='@Url.Action("ManageComputers", "Asset", new { id = 0 })'" />
-        </div>
+        </div>*@
 
         <table id="example" class="display" cellspacing="0" width="100%">
             <thead>
@@ -52,7 +52,7 @@
                                 @Model.userAssestList.ActualAssignee.UserID
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "ManageUserAssest", new { id = items.AUOTID, cat = "Com" })
+                                @Html.ActionLink("Edit", "TransferAsset", new { id = items.AUOTID, category = 1 })
                             </td>
                         </tr>
                     }
@@ -85,7 +85,7 @@
                                 @Model.userAssestList.ActualAssignee.UserID
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "ManageUserAssest", new { id = items.AUOTID, cat = "Phone" })
+                                @Html.ActionLink("Edit", "TransferAsset", new { id = items.AUOTID, category = 2 })
                             </td>
                         </tr>
                     }
@@ -118,7 +118,7 @@
                                 @Model.userAssestList.ActualAssignee.UserID
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "ManageUserAssest", new { id = items.AUTOID, cat = "VOIP" })
+                                @Html.ActionLink("Edit", "TransferAsset", new { id = items.AUTOID, category = 3 })
                             </td>
                         </tr>
                     }

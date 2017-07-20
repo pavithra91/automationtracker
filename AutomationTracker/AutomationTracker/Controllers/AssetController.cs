@@ -27,22 +27,7 @@ namespace AutomationTracker.Controllers
 
         public ActionResult ManageComputers(int? id)
         {
-            if (id == 0)
-            {
-                AssetModel objModel = new AssetModel();
-                AssetList objList = new AssetList();
-                objModel.computers = new Computer();
-
-                objList.unittypeList = _context.UnitTypes.ToList();
-                objList.softwareList = new List<Software>();
-                objList.modelList = new List<ModelType>();
-                objList.companyList = _context.Companies.ToList();
-
-                objModel.assetList = objList;
-
-                return View(objModel);
-            }
-            else
+            if (id > 0)
             {
                 Computer computers = _context.Computers.Where(m => m.AUOTID == id).FirstOrDefault();
                 if (computers != null)
@@ -59,11 +44,28 @@ namespace AutomationTracker.Controllers
                     objList.softwareList.Add(computers.Software);
                     objList.softwareList.Add(computers.Software1);
 
+                    objList.companyList = new List<Company>();
+                    objList.companyList.Add(computers.Company1);
+
                     objModel.assetList = objList;
                     objModel.computers = computers;
                     return View(objModel);
-                }
+                }                
+            }
+            else
+            {
+                AssetModel objModel = new AssetModel();
+                AssetList objList = new AssetList();
+                objModel.computers = new Computer();
 
+                objList.unittypeList = _context.UnitTypes.ToList();
+                objList.softwareList = new List<Software>();
+                objList.modelList = new List<ModelType>();
+                objList.companyList = _context.Companies.ToList();
+
+                objModel.assetList = objList;
+
+                return View(objModel);
             }
             return null;
         }
@@ -92,9 +94,10 @@ namespace AutomationTracker.Controllers
                     _context.SaveChanges();
 
                     User _user = _context.Users.Where(w => w.FullName == "IT Pool" && w.Company == objModel.company.CompanyID).FirstOrDefault();
+                    UnitType _unitType = _context.UnitTypes.Where(w => w.UnitTypeID == pc.UnitType).FirstOrDefault();
 
                     UserAsset _userAssest = new UserAsset();
-                    _userAssest.Category = "Computers";
+                    _userAssest.Category = _unitType.Category;
                     _userAssest.ItemID = pc.AUOTID;
                     _userAssest.PANo = _user.PANo;
                     _userAssest.UserID = _user.UserID;
@@ -197,8 +200,10 @@ namespace AutomationTracker.Controllers
 
                 User _user = _context.Users.Where(w => w.FullName == "IT Pool" && w.Company == objModel.company.CompanyID).FirstOrDefault();
 
+                UnitType _unitType = _context.UnitTypes.Where(w => w.UnitTypeID == mobile.UnitType).FirstOrDefault();
+
                 UserAsset _userAssest = new UserAsset();
-                _userAssest.Category = "Computers";
+                _userAssest.Category = _unitType.Category;
                 _userAssest.ItemID = mobile.AUOTID;
                 _userAssest.PANo = _user.PANo;
                 _userAssest.UserID = _user.UserID;
@@ -288,6 +293,24 @@ namespace AutomationTracker.Controllers
                     {
                         id = x.AUTOID,
                         name = x.ProviderName
+                    }), JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        [HttpGet]
+        public virtual JsonResult GetCompany()
+        {
+            try
+            {
+                return Json(
+                    _context.Companies.Select(x => new
+                    {
+                        id = x.CompanyID,
+                        name = x.CompanyName
                     }), JsonRequestBehavior.AllowGet);
             }
             catch

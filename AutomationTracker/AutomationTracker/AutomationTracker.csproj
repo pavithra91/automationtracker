@@ -152,6 +152,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Category.cs">
+      <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Company.cs">
       <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
     </Compile>

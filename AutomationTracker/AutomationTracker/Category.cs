@@ -12,15 +12,18 @@ namespace AutomationTracker
     using System;
     using System.Collections.Generic;
     
-    public partial class UserAsset
+    public partial class Category
     {
-        public int AUTOID { get; set; }
-        public Nullable<int> UserID { get; set; }
-        public Nullable<int> ItemID { get; set; }
-        public Nullable<int> ActualAssignee { get; set; }
-        public string PANo { get; set; }
-        public Nullable<int> Category { get; set; }
+        public Category()
+        {
+            this.UnitTypes = new HashSet<UnitType>();
+            this.UserAssets = new HashSet<UserAsset>();
+        }
     
-        public virtual Category Category1 { get; set; }
+        public int CategoryID { get; set; }
+        public string CategoryName { get; set; }
+    
+        public virtual ICollection<UnitType> UnitTypes { get; set; }
+        public virtual ICollection<UserAsset> UserAssets { get; set; }
     }
 }

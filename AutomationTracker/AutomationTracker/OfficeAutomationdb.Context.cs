@@ -25,6 +25,7 @@ namespace AutomationTracker
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<Category> Categories { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Computer> Computers { get; set; }
         public DbSet<Market> Markets { get; set; }

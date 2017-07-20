@@ -28,7 +28,9 @@ namespace AutomationTracker
         public Nullable<System.DateTime> AddedDate { get; set; }
         public string UpdateBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
+        public Nullable<int> Category { get; set; }
     
+        public virtual Category Category1 { get; set; }
         public virtual ICollection<Computer> Computers { get; set; }
         public virtual ICollection<ModelType> ModelTypes { get; set; }
         public virtual ICollection<PhoneDongle> PhoneDongles { get; set; }

@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="OfficeAutomationdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="Company">
           <Key>
             <PropertyRef Name="CompanyID" />
@@ -105,6 +112,7 @@
           <Property Name="AddedDate" Type="date" />
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="100" />
           <Property Name="UpdateDate" Type="date" />
+          <Property Name="Category" Type="int" />
         </EntityType>
         <EntityType Name="UserAssets">
           <Key>
@@ -113,9 +121,9 @@
           <Property Name="AUTOID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="int" />
           <Property Name="ItemID" Type="int" />
-          <Property Name="Category" Type="nvarchar" MaxLength="50" />
           <Property Name="ActualAssignee" Type="int" />
           <Property Name="PANo" Type="varchar" MaxLength="20" />
+          <Property Name="Category" Type="int" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -154,6 +162,30 @@
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="1" />
           <Property Name="Company" Type="int" />
         </EntityType>
+        <Association Name="CategoryIDfk_UnitType">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="UnitType" Type="Self.UnitType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="UnitType">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CategoryIDfk_UserAssest">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="UserAssets" Type="Self.UserAssets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="UserAssets">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Companyfk_Computers">
           <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
           <End Role="Computers" Type="Self.Computers" Multiplicity="*" />
@@ -341,6 +373,7 @@ warning 6035: The relationship 'PANofk_userAssest' has columns that are not part
 warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="UserIDfk_UserAssest" />-->
         <EntityContainer Name="OfficeAutomationdbModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Computers" EntityType="Self.Computers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Market" EntityType="Self.Market" Schema="dbo" store:Type="Tables" />
@@ -352,6 +385,14 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <EntitySet Name="UserAssets" EntityType="Self.UserAssets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VOIP" EntityType="Self.VOIP" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="CategoryIDfk_UnitType" Association="Self.CategoryIDfk_UnitType">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="UnitType" EntitySet="UnitType" />
+          </AssociationSet>
+          <AssociationSet Name="CategoryIDfk_UserAssest" Association="Self.CategoryIDfk_UserAssest">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="UserAssets" EntitySet="UserAssets" />
+          </AssociationSet>
           <AssociationSet Name="Companyfk_Computers" Association="Self.Companyfk_Computers">
             <End Role="Company" EntitySet="Company" />
             <End Role="Computers" EntitySet="Computers" />
@@ -418,6 +459,7 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
     <edmx:ConceptualModels>
       <Schema Namespace="OfficeAutomationdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="OfficeAutomationdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="OfficeAutomationdbModel.Category" />
           <EntitySet Name="Companies" EntityType="OfficeAutomationdbModel.Company" />
           <EntitySet Name="Computers" EntityType="OfficeAutomationdbModel.Computer" />
           <EntitySet Name="Markets" EntityType="OfficeAutomationdbModel.Market" />
@@ -429,6 +471,14 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <EntitySet Name="UserAssets" EntityType="OfficeAutomationdbModel.UserAsset" />
           <EntitySet Name="Users" EntityType="OfficeAutomationdbModel.User" />
           <EntitySet Name="VOIPs" EntityType="OfficeAutomationdbModel.VOIP" />
+          <AssociationSet Name="CategoryIDfk_UnitType" Association="OfficeAutomationdbModel.CategoryIDfk_UnitType">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="UnitType" EntitySet="UnitTypes" />
+          </AssociationSet>
+          <AssociationSet Name="CategoryIDfk_UserAssest" Association="OfficeAutomationdbModel.CategoryIDfk_UserAssest">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="UserAsset" EntitySet="UserAssets" />
+          </AssociationSet>
           <AssociationSet Name="Companyfk_Computers" Association="OfficeAutomationdbModel.Companyfk_Computers">
             <End Role="Company" EntitySet="Companies" />
             <End Role="Computer" EntitySet="Computers" />
@@ -490,6 +540,15 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
             <End Role="VOIP" EntitySet="VOIPs" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UnitTypes" Relationship="OfficeAutomationdbModel.CategoryIDfk_UnitType" FromRole="Category" ToRole="UnitType" />
+          <NavigationProperty Name="UserAssets" Relationship="OfficeAutomationdbModel.CategoryIDfk_UserAssest" FromRole="Category" ToRole="UserAsset" />
+        </EntityType>
         <EntityType Name="Company">
           <Key>
             <PropertyRef Name="CompanyID" />
@@ -611,6 +670,8 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="AddedDate" Type="DateTime" Precision="0" />
           <Property Name="UpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="Category" Type="Int32" />
+          <NavigationProperty Name="Category1" Relationship="OfficeAutomationdbModel.CategoryIDfk_UnitType" FromRole="UnitType" ToRole="Category" />
           <NavigationProperty Name="Computers" Relationship="OfficeAutomationdbModel.UnitTypefk_Computers" FromRole="UnitType" ToRole="Computer" />
           <NavigationProperty Name="ModelTypes" Relationship="OfficeAutomationdbModel.fk_UnitTypeID_Models" FromRole="UnitType" ToRole="ModelType" />
           <NavigationProperty Name="PhoneDongles" Relationship="OfficeAutomationdbModel.UnitTypefk_Phone" FromRole="UnitType" ToRole="PhoneDongle" />
@@ -623,9 +684,10 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="AUTOID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserID" Type="Int32" />
           <Property Name="ItemID" Type="Int32" />
-          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ActualAssignee" Type="Int32" />
           <Property Name="PANo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="Int32" />
+          <NavigationProperty Name="Category1" Relationship="OfficeAutomationdbModel.CategoryIDfk_UserAssest" FromRole="UserAsset" ToRole="Category" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -669,6 +731,30 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <NavigationProperty Name="ModelType1" Relationship="OfficeAutomationdbModel.ModelTypefk_VOIP" FromRole="VOIP" ToRole="ModelType" />
           <NavigationProperty Name="UnitType1" Relationship="OfficeAutomationdbModel.UnitTypefk_VOIP" FromRole="VOIP" ToRole="UnitType" />
         </EntityType>
+        <Association Name="CategoryIDfk_UnitType">
+          <End Type="OfficeAutomationdbModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="OfficeAutomationdbModel.UnitType" Role="UnitType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="UnitType">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CategoryIDfk_UserAssest">
+          <End Type="OfficeAutomationdbModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="OfficeAutomationdbModel.UserAsset" Role="UserAsset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="UserAsset">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Companyfk_Computers">
           <End Type="OfficeAutomationdbModel.Company" Role="Company" Multiplicity="0..1" />
           <End Type="OfficeAutomationdbModel.Computer" Role="Computer" Multiplicity="*" />
@@ -855,6 +941,14 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="OfficeAutomationdbModelStoreContainer" CdmEntityContainer="OfficeAutomationdbEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="OfficeAutomationdbModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Companies">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.Company">
               <MappingFragment StoreEntitySet="Company">
@@ -955,6 +1049,7 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <EntitySetMapping Name="UnitTypes">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.UnitType">
               <MappingFragment StoreEntitySet="UnitType">
+                <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
                 <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
@@ -967,9 +1062,9 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <EntitySetMapping Name="UserAssets">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.UserAsset">
               <MappingFragment StoreEntitySet="UserAssets">
+                <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="PANo" ColumnName="PANo" />
                 <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="ItemID" ColumnName="ItemID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
