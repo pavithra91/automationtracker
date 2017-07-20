@@ -8,7 +8,7 @@
     <div class="container">
 
         <div class="container" style="padding-bottom:20px;">
-            <input type="button" style="float:right;" class="btn btn-primary" value="Add Computer" onclick="location.href='@Url.Action("ManageComputers", "Asset", new { id = 0 })'" />
+            <input type="button" style="float:right;" class="btn btn-primary" value="Transfer Asset" onclick="location.href='@Url.Action("ManageComputers", "Asset", new { id = 0 })'" />
         </div>
 
         <table id="example" class="display" cellspacing="0" width="100%">
@@ -16,7 +16,9 @@
                 <tr>
                     <th>Item ID</th>
                     <th>Category</th>
-                    <th>User ID</th>
+                    <th>Assest No</th>
+                    <th>Serial No</th>
+                    <th>User Name</th>
                     <th>PA Number</th>
                     <th>Current User</th>
                     <th>Action</th>
@@ -35,10 +37,16 @@
                                 @items.UnitType1.UnitTypeName
                             </td>
                             <td>
-                                @Model.user.UserID
+                                @items.AssestNo
                             </td>
                             <td>
-                                @Model.user.PANo
+                                @items.SerialNo
+                            </td>
+                            <td>
+                                @Model.userAssestList.User.FullName
+                            </td>
+                            <td>
+                                @Model.userAssestList.User.PANo
                             </td>
                             <td>
                                 @Model.userAssestList.ActualAssignee.UserID
@@ -62,10 +70,16 @@
                                 @items.UnitType1.UnitTypeName
                             </td>
                             <td>
-                                @Model.user.UserID
+                                @items.AssestNo
                             </td>
                             <td>
-                                @Model.user.PANo
+                                @items.SerialNo
+                            </td>
+                            <td>
+                                @Model.userAssestList.User.FullName
+                            </td>
+                            <td>
+                                @Model.userAssestList.User.PANo
                             </td>
                             <td>
                                 @Model.userAssestList.ActualAssignee.UserID
@@ -89,10 +103,16 @@
                                 @items.UnitType1.UnitTypeName
                             </td>
                             <td>
-                                @Model.user.UserID
+                                @items.AssetNo
                             </td>
                             <td>
-                                @Model.user.PANo
+                                @items.SerialNo
+                            </td>
+                            <td>
+                                @Model.userAssestList.User.FullName
+                            </td>
+                            <td>
+                                @Model.userAssestList.User.PANo
                             </td>
                             <td>
                                 @Model.userAssestList.ActualAssignee.UserID

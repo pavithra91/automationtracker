@@ -21,25 +21,25 @@
                         hiddenstyle = "disabled";
                     }
                 }
-                @Html.DropDownListFor(m => Model.computers.UnitType, new SelectList(Model.assetList.unittypeList, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -", new { @name = "dropUnitType", @disabled = hiddenstyle, @class = "form-control", @id = "dropUnitType" })
+                @Html.DropDownListFor(m => Model.computers.UnitType, new SelectList(Model.assetList.unittypeList, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -", new { @name = "dropUnitType", @*@disabled = hiddenstyle,*@ @class = "form-control", @id = "dropUnitType" })
             </div>
 
             <div class='input-container'>
                 <label for="dropModelType" class="labelcls">Model Type: </label>
                 <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.DropDownListFor(m => Model.computers.ModelType, new SelectList(Model.assetList.modelList, "ModelID", "ModelName"), "- Please Select Model type -", new { @name = "dropModel", @disabled = hiddenstyle, @class = "form-control", @id = "dropModel" })
+                @Html.DropDownListFor(m => Model.computers.ModelType, new SelectList(Model.assetList.modelList, "ModelID", "ModelName"), "- Please Select Model type -", new { @name = "dropModel", @*@disabled = hiddenstyle,*@ @class = "form-control", @id = "dropModel" })
             </div>
 
             <div class='input-container'>
                 <label for="txtAssestNo" class="labelcls">Assest No: </label>
                 <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.computers.AssestNo, new { @name = "txtAssestNo", @placeholder = "Assest No", @disabled = hiddenstyle, @class = "form-control", @id = "txtAssestNo" })
+                @Html.TextBoxFor(m => Model.computers.AssestNo, new { @name = "txtAssestNo", @placeholder = "Assest No", @*@disabled = hiddenstyle,*@ @class = "form-control", @id = "txtAssestNo" })
             </div>
 
             <div class='input-container'>
                 <label for="txtSerialNo" class="labelcls">Serial No: </label>
                 <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.computers.SerialNo, new { @name = "txtSerialNo", @placeholder = "Serial No", @disabled = hiddenstyle, @class = "form-control", @id = "txtSerialNo" })
+                @Html.TextBoxFor(m => Model.computers.SerialNo, new { @name = "txtSerialNo", @placeholder = "Serial No", @*@disabled = hiddenstyle,*@ @class = "form-control", @id = "txtSerialNo" })
             </div>
 
             <div class='input-container'>
@@ -75,7 +75,7 @@
             <div class='input-container'>
                 <label for="dropCompany" class="labelcls">Company: </label>
                 <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.DropDownListFor(m => Model.company, new SelectList(Model.assetList.companyList, "CompanyID", "CompanyName"), "- Please Select Company -", new
+                @Html.DropDownListFor(m => Model.company.CompanyID, new SelectList(Model.assetList.companyList, "CompanyID", "CompanyName"), "- Please Select Company -", new
            {
                @name = "dropCompany", @*@disabled = hiddenstyle,*@ @class = "form-control",
                @id = "dropCompany"

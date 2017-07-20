@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace AutomationTracker.Controllers
@@ -72,41 +71,53 @@ namespace AutomationTracker.Controllers
         [HttpPost]
         public ActionResult SaveComputers(AssetModel objModel)
         {
-            if(objModel.computers.AUOTID == 0)
-            {
-                Computer pc = new Computer();
-                pc.ModelType = objModel.computers.ModelType;
-                pc.UnitType = objModel.computers.UnitType;
-                pc.AssestNo = objModel.computers.AssestNo;
-                pc.SerialNo = objModel.computers.SerialNo;
-                pc.OS = objModel.computers.OS;
-                pc.OfficeVersion = objModel.computers.OfficeVersion;
-                pc.HDDCapacity = objModel.computers.HDDCapacity;
-                pc.Remarks = objModel.computers.Remarks;
-                pc.Company = objModel.company.CompanyID;
+                if (objModel.computers.AUOTID == 0)
+                {
+                    Computer pc = new Computer();
+                    pc.ModelType = objModel.computers.ModelType;
+                    pc.UnitType = objModel.computers.UnitType;
+                    pc.AssestNo = objModel.computers.AssestNo;
+                    pc.SerialNo = objModel.computers.SerialNo;
+                    pc.OS = objModel.computers.OS;
+                    pc.OfficeVersion = objModel.computers.OfficeVersion;
+                    pc.RAM = objModel.computers.RAM;
+                    pc.HDDCapacity = objModel.computers.HDDCapacity;
+                    pc.Remarks = objModel.computers.Remarks;
+                    pc.Company = objModel.company.CompanyID;
 
-                pc.AddedBy = "";
-                pc.AddedDate = DateTime.Now;
+                    pc.AddedBy = "";
+                    pc.AddedDate = DateTime.Now;
 
-                _context.Computers.Add(pc);
-                _context.SaveChanges();
-            }
-            else
-            {
-                Computer pc = _context.Computers.Where(m => m.AUOTID == objModel.computers.AUOTID).FirstOrDefault();
-                pc.OS = objModel.computers.OS;
-                pc.OfficeVersion = objModel.computers.OfficeVersion;
-                pc.HDDCapacity = objModel.computers.HDDCapacity;
-                pc.Remarks = objModel.computers.Remarks;
-                pc.Company = objModel.company.CompanyID;
+                    _context.Computers.Add(pc);
+                    _context.SaveChanges();
 
-                pc.UpdateBy = "";
-                pc.UpdateDate = DateTime.Now;
-                
-                _context.Computers.Attach(pc);
-                _context.Entry(pc).State = EntityState.Modified;
-                _context.SaveChanges();
-            }
+                    User _user = _context.Users.Where(w => w.FullName == "IT Pool" && w.Company == objModel.company.CompanyID).FirstOrDefault();
+
+                    UserAsset _userAssest = new UserAsset();
+                    _userAssest.Category = "Computers";
+                    _userAssest.ItemID = pc.AUOTID;
+                    _userAssest.PANo = _user.PANo;
+                    _userAssest.UserID = _user.UserID;
+
+                    _context.UserAssets.Add(_userAssest);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    Computer pc = _context.Computers.Where(m => m.AUOTID == objModel.computers.AUOTID).FirstOrDefault();
+                    pc.OS = objModel.computers.OS;
+                    pc.OfficeVersion = objModel.computers.OfficeVersion;
+                    pc.HDDCapacity = objModel.computers.HDDCapacity;
+                    pc.Remarks = objModel.computers.Remarks;
+                    pc.Company = objModel.company.CompanyID;
+
+                    pc.UpdateBy = "";
+                    pc.UpdateDate = DateTime.Now;
+
+                    _context.Computers.Attach(pc);
+                    _context.Entry(pc).State = EntityState.Modified;
+                    _context.SaveChanges();
+                }
             return RedirectToAction("ViewComputers");
         }
 
@@ -182,6 +193,17 @@ namespace AutomationTracker.Controllers
                 mobile.AddedDate = DateTime.Now;
 
                 _context.PhoneDongles.Add(mobile);
+                _context.SaveChanges();
+
+                User _user = _context.Users.Where(w => w.FullName == "IT Pool" && w.Company == objModel.company.CompanyID).FirstOrDefault();
+
+                UserAsset _userAssest = new UserAsset();
+                _userAssest.Category = "Computers";
+                _userAssest.ItemID = mobile.AUOTID;
+                _userAssest.PANo = _user.PANo;
+                _userAssest.UserID = _user.UserID;
+
+                _context.UserAssets.Add(_userAssest);
                 _context.SaveChanges();
             }
             else

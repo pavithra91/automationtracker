@@ -156,29 +156,36 @@ namespace AutomationTracker.Controllers
             objModel.userAssestList.User = _context.Users.Where(w => w.UserID == id).FirstOrDefault();
             objModel.userAssestList.ActualAssignee = _context.Users.Where(w => w.UserID == id).FirstOrDefault();
 
+            objModel.userAssestList.ComputerList = new List<Computer>();
+            objModel.userAssestList.PhoneDongleList = new List<PhoneDongle>();
+            objModel.userAssestList.VOIPList = new List<VOIP>();
+
             foreach (var item in assetList)
             {
                 if(item.Category == "Computers")
                 {
-                    objModel.userAssestList.ComputerList = new List<Computer>();
                     objModel.userAssestList.ComputerList.Add(PCList.Find(w=>w.AUOTID == item.ItemID));
                     continue;
                 }
                 else if(item.Category == "Phones")
                 {
-                    objModel.userAssestList.PhoneDongleList = new List<PhoneDongle>();
                     objModel.userAssestList.PhoneDongleList.Add(PhoneList.Find(w => w.AUOTID == item.ItemID));
                     continue;
                 }
                 else if(item.Category == "Phones")
                 {
-                    objModel.userAssestList.VOIPList = new List<VOIP>();
                     objModel.userAssestList.VOIPList.Add(VOIPList.Find(w => w.AUTOID == item.ItemID));
                     continue;
                 }
             }
 
             return View(objModel);
+        }
+
+        public ActionResult TransferAsset(int? id)
+        {
+
+            return View();
         }
     }
 }
