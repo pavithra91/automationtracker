@@ -11,6 +11,8 @@
 
             @Html.HiddenFor(m=> Model.computers.AUOTID)
 
+            @Html.HiddenFor(m => Model.computers.Company)
+
             <div class='input-container'>
                 <label for="dropUnitType" class="labelcls">Unit Type: </label>
                 <div class="icon-ph"><i class="icon-envelope"></i></div>
@@ -95,7 +97,6 @@
 <script>
     $(function () {
         $("#dropUnitType").change(function () {
-            debugger;
             var unitID = $('#dropUnitType').val();
             if (unitID == 1 || unitID == 2)
             {
@@ -158,7 +159,6 @@
     </script>
 
     <script>
-        debugger;
         var drpOSval = $('#drpOS').val();
         var drpOfficeval = $('#drpOffice').val();
 
@@ -203,8 +203,7 @@
 
 <script>
         debugger;
-        var hiddenID = $('#computers_AUOTID').val();
-        var dropCompanyVal = $('#dropCompany').val();
+        var dropCompanyVal = $('#computers_Company').val();
                 $.ajax({
                     type: 'GET',
                     url: "http://localhost:15707/Asset/GetCompany",
@@ -215,22 +214,15 @@
                         var r = result;
                         if (result != null) {
                             var dropCompany = $("[id*=dropCompany]");
-                            
-                            //if (hiddenID == 0)
-                            //{
-                                dropCompany.empty().append('<option selected="selected" value="0">Please select Company</option>');
-                            //}                            
+                           dropCompany.empty().append('<option selected="selected" value="0">Please select Company</option>');                          
 
                             $.each(result, function () {
-                                if (this['softwaretype'] == "OS") {
-                                    debugger;
                                     if (dropCompanyVal == this['id']) {
                                         dropCompany.append($("<option selected></option>").val(this['id']).html(this['name']));
                                     }
                                     else {
                                         dropCompany.append($("<option></option>").val(this['id']).html(this['name']));
                                     }
-                                }
                             });
                         } else {
                             alert("fail");

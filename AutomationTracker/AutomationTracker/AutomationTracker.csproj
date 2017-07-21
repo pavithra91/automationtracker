@@ -241,6 +241,7 @@
     <Content Include="Views\Account\ViewUsers.cshtml" />
     <Content Include="Views\Account\ManageUsers.cshtml" />
     <Content Include="Views\Account\ViewUserAssests.cshtml" />
+    <Content Include="Views\Account\TransferAsset.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -10,6 +10,7 @@
         <div class="container">
 
             @Html.HiddenFor(m => Model.phonesanddongles.AUOTID)
+            @Html.HiddenFor(m => Model.phonesanddongles.Company)
 
             <div class='input-container'>
                 <label for="dropUnitType" class="labelcls">Unit Type: </label>
@@ -61,7 +62,7 @@
             <div class='input-container'>
                 <label for="txtSimNo" class="labelcls">Sim No: </label>
                 <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.phonesanddongles.SimNo, new { @name = "txtSimNo", @placeholder = "Hard Disk Capacity", @class = "form-control", @id = "txtSimNo" })
+                @Html.TextBoxFor(m => Model.phonesanddongles.SimNo, new { @name = "txtSimNo", @placeholder = "Sim Number", @class = "form-control", @id = "txtSimNo" })
             </div>
 
             <div class='input-container'>
@@ -166,5 +167,35 @@
                     }
                 });
     </script>
+
+<script>
+        debugger;
+        var dropCompanyVal = $('#phonesanddongles_Company').val();
+                $.ajax({
+                    type: 'GET',
+                    url: "http://localhost:15707/Asset/GetCompany",
+                    data: JSON.stringify({ "UnitTypeID": 1 }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        var r = result;
+                        if (result != null) {
+                            var dropCompany = $("[id*=dropCompany]");
+                           dropCompany.empty().append('<option selected="selected" value="0">Please select Company</option>');
+
+                            $.each(result, function () {
+                                    if (dropCompanyVal == this['id']) {
+                                        dropCompany.append($("<option selected></option>").val(this['id']).html(this['name']));
+                                    }
+                                    else {
+                                        dropCompany.append($("<option></option>").val(this['id']).html(this['name']));
+                                    }
+                            });
+                        } else {
+                            alert("fail");
+                        }
+                    }
+                });
+</script>
 }
 

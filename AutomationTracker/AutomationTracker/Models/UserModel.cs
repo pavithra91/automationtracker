@@ -61,10 +61,12 @@ namespace AutomationTracker.Models
     public class UserAssest
     {
         public User User { get; set; }
-        public string Category { get; set; }
         public User ActualAssignee { get; set; }
         public List<Computer> ComputerList { get; set; }
         public List<PhoneDongle> PhoneDongleList { get; set; }
         public List<VOIP> VOIPList { get; set; }
+
+        public int ItemID { get; set; }
+        public int Category { get; set; }
     }
 }

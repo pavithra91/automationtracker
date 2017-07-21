@@ -8,7 +8,7 @@
     <div class="container">
 
         @*<div class="container" style="padding-bottom:20px;">
-            <input type="button" style="float:right;" class="btn btn-primary" value="Transfer Asset" onclick="location.href='@Url.Action("ManageComputers", "Asset", new { id = 0 })'" />
+            <input type="button" style="float:right;" class="btn btn-primary" value="Transfer Asset" onclick="location.href='@Url.Action("TransferAsset", "Account", new { id = 0 })'" />
         </div>*@
 
         <table id="example" class="display" cellspacing="0" width="100%">
@@ -126,6 +126,8 @@
 
             </tbody>
         </table>
+
+        <input type="button" style="margin-left:10px" class="btn btn-primary" value="Back" onclick="location.href='@Url.Action("ViewUsers", "Account")'" />
     </div>
 </section>
 

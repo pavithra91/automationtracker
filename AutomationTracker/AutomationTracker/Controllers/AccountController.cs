@@ -187,26 +187,38 @@ namespace AutomationTracker.Controllers
             UserModel objModel = new UserModel();
             UserList objList = new UserList();
 
+            objModel.userAssestList = new UserAssest();
+
             objModel.userAssestList.ComputerList = new List<Computer>();
             objModel.userAssestList.PhoneDongleList = new List<PhoneDongle>();
             objModel.userAssestList.VOIPList = new List<VOIP>();
 
+            objList.companyList = new List<Company>();
             objModel.userList = new UserList();
-            
+            objModel.userList.usrList = new List<AutomationTracker.User>();
+            objModel.user = new AutomationTracker.User();
 
-            if(category == 1)
+            if (category == 1)
             {
-                var _computers = _context.Computers.Where(w => w.AUOTID == id);                
+                var _computers = _context.Computers.Where(w => w.AUOTID == id).FirstOrDefault();
+                objModel.userAssestList.ComputerList.Add(_computers);
+
+                objList.companyList.Add(_computers.Company1);
+                objModel.userList.usrList = _context.Users.Where(w => w.Company == _computers.Company1.CompanyID).ToList();
             }
             else if(category == 2)
             {
-
+                var _phones = _context.PhoneDongles.Where(w => w.AUOTID == id).FirstOrDefault();
+                objList.companyList.Add(_phones.Company1);
+                objModel.userList.usrList = _context.Users.Where(w => w.Company == _phones.Company1.CompanyID).ToList();
             }
             else if(category == 3)
             {
-
+                var _voip = _context.VOIPs.Where(w => w.AUTOID == id).FirstOrDefault();
+                objList.companyList.Add(_voip.Company1);
+                objModel.userList.usrList = _context.Users.Where(w => w.Company == _voip.Company1.CompanyID).ToList();
             }
-            return View();
+            return View(objModel);
         }
     }
 }

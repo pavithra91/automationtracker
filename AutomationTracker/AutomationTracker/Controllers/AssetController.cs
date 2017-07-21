@@ -135,22 +135,7 @@ namespace AutomationTracker.Controllers
 
         public ActionResult ManageMobilePhones(int? id)
         {
-            if (id == 0)
-            {
-                AssetModel objModel = new AssetModel();
-                AssetList objList = new AssetList();
-                objModel.phonesanddongles = new PhoneDongle();
-
-                objList.unittypeList = _context.UnitTypes.ToList();
-                objList.modelList = new List<ModelType>();
-                objList.providerList = _context.Providers.ToList();
-                objList.companyList = _context.Companies.ToList();
-
-                objModel.assetList = objList;
-
-                return View(objModel);
-            }
-            else
+            if (id > 0)
             {
                 PhoneDongle phones = _context.PhoneDongles.Where(m => m.AUOTID == id).FirstOrDefault();
                 if (phones != null)
@@ -165,11 +150,28 @@ namespace AutomationTracker.Controllers
                     objList.providerList = new List<Provider>();
                     objList.providerList.Add(phones.Provider1);
 
+                    objList.companyList = new List<Company>();
+                    objList.companyList.Add(phones.Company1);
+
                     objModel.assetList = objList;
                     objModel.phonesanddongles = phones;
                     return View(objModel);
                 }
+            }
+            else
+            {
+                AssetModel objModel = new AssetModel();
+                AssetList objList = new AssetList();
+                objModel.phonesanddongles = new PhoneDongle();
 
+                objList.unittypeList = _context.UnitTypes.ToList();
+                objList.modelList = new List<ModelType>();
+                objList.providerList = _context.Providers.ToList();
+                objList.companyList = _context.Companies.ToList();
+
+                objModel.assetList = objList;
+
+                return View(objModel);
             }
             return null;
         }
@@ -180,16 +182,16 @@ namespace AutomationTracker.Controllers
             if (objModel.phonesanddongles.AUOTID == 0)
             {
                 PhoneDongle mobile = new PhoneDongle();
-                mobile.ModelType = objModel.computers.ModelType;
-                mobile.UnitType = objModel.computers.UnitType;
-                mobile.AssestNo = objModel.computers.AssestNo;
-                mobile.SerialNo = objModel.computers.SerialNo;
-                mobile.Provider1 = objModel.phonesanddongles.Provider1;
+                mobile.ModelType = objModel.phonesanddongles.ModelType;
+                mobile.UnitType = objModel.phonesanddongles.UnitType;
+                mobile.AssestNo = objModel.phonesanddongles.AssestNo;
+                mobile.SerialNo = objModel.phonesanddongles.SerialNo;
+                mobile.Provider = objModel.phonesanddongles.Provider;
                 mobile.ConnectionNo = objModel.phonesanddongles.ConnectionNo;
                 mobile.SimNo = objModel.phonesanddongles.SimNo;
                 mobile.EMEINo1 = objModel.phonesanddongles.EMEINo1;
                 mobile.EMEINo2 = objModel.phonesanddongles.EMEINo2;
-                mobile.Remarks = objModel.computers.Remarks;
+                mobile.Remarks = objModel.phonesanddongles.Remarks;
                 mobile.Company = objModel.company.CompanyID;
 
                 mobile.AddedBy = "";
@@ -232,6 +234,11 @@ namespace AutomationTracker.Controllers
         }
 
         
+        [HttpPost]
+        public ActionResult AssignUser(UserModel objModel)
+        {
+            return null;
+        }
 
 
 
