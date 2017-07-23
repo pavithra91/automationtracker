@@ -84,6 +84,29 @@
            })
             </div>
 
+            <div class='input-container'>
+                <label for="datetimepicker1" class="labelcls">Purchase Date: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.TextBoxFor(m => Model.computers.PurchaseDate, new
+           {
+               @name = "datetimepicker1",
+               @placeholder = "Purchase Date", @*@disabled = hiddenstyle,*@ @class = "form-control",
+               @id = "datetimepicker1"
+           })
+            </div>
+
+
+            <div class='input-container'>
+                <label for="datetimepicker2" class="labelcls">Dispose Date: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.TextBoxFor(m => Model.computers.DisposeDate, new
+           {
+               @name = "datetimepicker2",
+               @placeholder = "Dispose Date", @*@disabled = hiddenstyle,*@ @class = "form-control",
+               @id = "datetimepicker2"
+           })
+            </div>
+
 
             <button type="submit" class="btn btn-primary">Submit</button>
 
@@ -230,6 +253,11 @@
                     }
                 });
 </script>
+
+
+<script src="~/build/jquery.datetimepicker.full.js"></script>
+<script src="~/js/custom.js"></script>
+
 }
 
 

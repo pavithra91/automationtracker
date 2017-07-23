@@ -82,7 +82,7 @@ namespace AutomationTracker.Controllers
                 _user.PANo = objModel.user.PANo;
                 _user.SAPNo = objModel.user.SAPNo;
                 _user.NIC = objModel.user.NIC;
-                _user.UserStatus = "1";
+                _user.IsActive = true;
                 _user.Remarks = objModel.user.Remarks;
 
                 _user.AddedBy = "";
@@ -104,7 +104,7 @@ namespace AutomationTracker.Controllers
                     _newuser.PANo = objModel.user.PANo;
                     _newuser.SAPNo = objModel.user.SAPNo;
                     _newuser.NIC = objModel.user.NIC;
-                    _newuser.UserStatus = "1";
+                    _newuser.IsActive = true;
                     _newuser.Remarks = objModel.user.Remarks;
 
                     _newuser.AddedBy = "";
@@ -113,7 +113,7 @@ namespace AutomationTracker.Controllers
                     _context.Users.Add(_newuser);
                     _context.SaveChanges();
 
-                    _user.UserStatus = "0";
+                    _user.IsActive = true;
                     _context.Users.Attach(_user);
                     _context.Entry(_user).State = EntityState.Modified;
                     _context.SaveChanges();

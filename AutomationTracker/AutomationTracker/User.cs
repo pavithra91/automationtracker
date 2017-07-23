@@ -23,11 +23,12 @@ namespace AutomationTracker
         public string SAPNo { get; set; }
         public string NIC { get; set; }
         public string Remarks { get; set; }
-        public string UserStatus { get; set; }
+        public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> AddedDate { get; set; }
         public string AddedBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string UpdateBy { get; set; }
+        public Nullable<bool> IsUserOutSource { get; set; }
     
         public virtual Company Company1 { get; set; }
         public virtual Market Market1 { get; set; }

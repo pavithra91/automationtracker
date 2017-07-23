@@ -93,6 +93,28 @@
            })
             </div>
 
+            <div class='input-container'>
+                <label for="datetimepicker1" class="labelcls">Purchase Date: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.TextBoxFor(m => Model.phonesanddongles.PurchaseDate, new
+           {
+               @name = "datetimepicker1",
+               @placeholder = "Purchase Date", @*@disabled = hiddenstyle,*@ @class = "form-control",
+               @id = "datetimepicker1"
+           })
+            </div>
+
+            <div class='input-container'>
+                <label for="datetimepicker2" class="labelcls">Dispose Date: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.TextBoxFor(m => Model.phonesanddongles.DisposeDate, new
+           {
+               @name = "datetimepicker2",
+               @placeholder = "Dispose Date", @*@disabled = hiddenstyle,*@ @class = "form-control",
+               @id = "datetimepicker2"
+           })
+            </div>
+
 
             <button type="submit" class="btn btn-primary">Submit</button>
 

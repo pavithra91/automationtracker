@@ -30,9 +30,11 @@ namespace AutomationTracker
         public DbSet<Computer> Computers { get; set; }
         public DbSet<Market> Markets { get; set; }
         public DbSet<ModelType> ModelTypes { get; set; }
+        public DbSet<OutsourceUser> OutsourceUsers { get; set; }
         public DbSet<PhoneDongle> PhoneDongles { get; set; }
         public DbSet<Provider> Providers { get; set; }
         public DbSet<Software> Softwares { get; set; }
+        public DbSet<TransferAssestHistory> TransferAssestHistories { get; set; }
         public DbSet<UnitType> UnitTypes { get; set; }
         public DbSet<UserAsset> UserAssets { get; set; }
         public DbSet<User> Users { get; set; }

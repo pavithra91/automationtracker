@@ -124,6 +124,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="build\jquery.datetimepicker.full.js" />
     <Content Include="Global.asax" />
     <Content Include="images\amex.png" />
     <Content Include="images\Gem-Banner-1.jpg" />
@@ -137,6 +138,7 @@
     <Content Include="jquery.datetimepicker.js" />
     <Content Include="jquery.datetimepicker.min.js" />
     <Content Include="jquery.js" />
+    <Content Include="js\custom.js" />
     <Content Include="OfficeAutomationdb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OfficeAutomationdb.edmx</DependentUpon>
@@ -191,6 +193,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OfficeAutomationdb.edmx</DependentUpon>
     </Compile>
+    <Compile Include="OutsourceUser.cs">
+      <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
+    </Compile>
     <Compile Include="PhoneDongle.cs">
       <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
     </Compile>
@@ -199,6 +204,9 @@
       <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Software.cs">
+      <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransferAssestHistory.cs">
       <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
     </Compile>
     <Compile Include="UnitType.cs">
@@ -251,9 +259,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="build\" />
     <Folder Include="css\" />
-    <Folder Include="js\" />
     <Folder Include="SpryAssets\" />
   </ItemGroup>
   <ItemGroup>

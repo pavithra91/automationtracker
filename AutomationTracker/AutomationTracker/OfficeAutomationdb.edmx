@@ -64,6 +64,13 @@
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="100" />
           <Property Name="UpdateDate" Type="date" />
         </EntityType>
+        <EntityType Name="OutsourceUsers">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OutSourceID" Type="nvarchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="PhoneDongles">
           <Key>
             <PropertyRef Name="AUOTID" />
@@ -85,6 +92,8 @@
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
           <Property Name="Company" Type="int" />
           <Property Name="ActualAssignee" Type="int" />
+          <Property Name="DisposeDate" Type="date" />
+          <Property Name="PurchaseDate" Type="date" />
         </EntityType>
         <EntityType Name="Provider">
           <Key>
@@ -101,6 +110,17 @@
           <Property Name="SoftwareID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SoftwareName" Type="varchar" MaxLength="100" />
           <Property Name="SoftwareType" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TransferAssestHistory">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PreviousUser" Type="int" />
+          <Property Name="NewUser" Type="int" />
+          <Property Name="ItemID" Type="int" />
+          <Property Name="Category" Type="int" />
+          <Property Name="AddedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="UnitType">
           <Key>
@@ -139,11 +159,12 @@
           <Property Name="SAPNo" Type="varchar" MaxLength="20" />
           <Property Name="NIC" Type="varchar" MaxLength="10" />
           <Property Name="Remarks" Type="varchar" MaxLength="500" />
-          <Property Name="UserStatus" Type="varchar" MaxLength="1" />
+          <Property Name="IsActive" Type="bit" />
           <Property Name="AddedDate" Type="date" />
           <Property Name="AddedBy" Type="varchar" MaxLength="100" />
           <Property Name="UpdateDate" Type="date" />
           <Property Name="UpdateBy" Type="varchar" MaxLength="100" />
+          <Property Name="IsUserOutSource" Type="bit" />
         </EntityType>
         <EntityType Name="VOIP">
           <Key>
@@ -161,6 +182,8 @@
           <Property Name="UpdateDate" Type="date" />
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="1" />
           <Property Name="Company" Type="int" />
+          <Property Name="PurchaseDate" Type="date" />
+          <Property Name="DisposeDate" Type="date" />
         </EntityType>
         <Association Name="CategoryIDfk_UnitType">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
@@ -378,9 +401,11 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <EntitySet Name="Computers" EntityType="Self.Computers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Market" EntityType="Self.Market" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ModelType" EntityType="Self.ModelType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OutsourceUsers" EntityType="Self.OutsourceUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhoneDongles" EntityType="Self.PhoneDongles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Software" EntityType="Self.Software" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransferAssestHistory" EntityType="Self.TransferAssestHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnitType" EntityType="Self.UnitType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAssets" EntityType="Self.UserAssets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -464,9 +489,11 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <EntitySet Name="Computers" EntityType="OfficeAutomationdbModel.Computer" />
           <EntitySet Name="Markets" EntityType="OfficeAutomationdbModel.Market" />
           <EntitySet Name="ModelTypes" EntityType="OfficeAutomationdbModel.ModelType" />
+          <EntitySet Name="OutsourceUsers" EntityType="OfficeAutomationdbModel.OutsourceUser" />
           <EntitySet Name="PhoneDongles" EntityType="OfficeAutomationdbModel.PhoneDongle" />
           <EntitySet Name="Providers" EntityType="OfficeAutomationdbModel.Provider" />
           <EntitySet Name="Softwares" EntityType="OfficeAutomationdbModel.Software" />
+          <EntitySet Name="TransferAssestHistories" EntityType="OfficeAutomationdbModel.TransferAssestHistory" />
           <EntitySet Name="UnitTypes" EntityType="OfficeAutomationdbModel.UnitType" />
           <EntitySet Name="UserAssets" EntityType="OfficeAutomationdbModel.UserAsset" />
           <EntitySet Name="Users" EntityType="OfficeAutomationdbModel.User" />
@@ -615,6 +642,13 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <NavigationProperty Name="PhoneDongles" Relationship="OfficeAutomationdbModel.ModelTypefk_Phone" FromRole="ModelType" ToRole="PhoneDongle" />
           <NavigationProperty Name="VOIPs" Relationship="OfficeAutomationdbModel.ModelTypefk_VOIP" FromRole="ModelType" ToRole="VOIP" />
         </EntityType>
+        <EntityType Name="OutsourceUser">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OutSourceID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="PhoneDongle">
           <Key>
             <PropertyRef Name="AUOTID" />
@@ -636,6 +670,8 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Company" Type="Int32" />
           <Property Name="ActualAssignee" Type="Int32" />
+          <Property Name="DisposeDate" Type="DateTime" Precision="0" />
+          <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Company1" Relationship="OfficeAutomationdbModel.Companyfk_Phones" FromRole="PhoneDongle" ToRole="Company" />
           <NavigationProperty Name="ModelType1" Relationship="OfficeAutomationdbModel.ModelTypefk_Phone" FromRole="PhoneDongle" ToRole="ModelType" />
           <NavigationProperty Name="Provider1" Relationship="OfficeAutomationdbModel.Providerfk_Phones" FromRole="PhoneDongle" ToRole="Provider" />
@@ -659,6 +695,17 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="SoftwareType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Computers" Relationship="OfficeAutomationdbModel.OfficeVersionfk_Computers" FromRole="Software" ToRole="Computer" />
           <NavigationProperty Name="Computers1" Relationship="OfficeAutomationdbModel.OSfk_Computers" FromRole="Software" ToRole="Computer" />
+        </EntityType>
+        <EntityType Name="TransferAssestHistory">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PreviousUser" Type="Int32" />
+          <Property Name="NewUser" Type="Int32" />
+          <Property Name="ItemID" Type="Int32" />
+          <Property Name="Category" Type="Int32" />
+          <Property Name="AddedDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="UnitType">
           <Key>
@@ -703,11 +750,12 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="SAPNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="NIC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="UserStatus" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
           <Property Name="AddedDate" Type="DateTime" Precision="0" />
           <Property Name="AddedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="UpdateDate" Type="DateTime" Precision="0" />
           <Property Name="UpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsUserOutSource" Type="Boolean" />
           <NavigationProperty Name="Company1" Relationship="OfficeAutomationdbModel.CompanyIDfk_Users" FromRole="User" ToRole="Company" />
           <NavigationProperty Name="Market1" Relationship="OfficeAutomationdbModel.Marketfk_Users" FromRole="User" ToRole="Market" />
         </EntityType>
@@ -727,6 +775,8 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="UpdateDate" Type="DateTime" Precision="0" />
           <Property Name="UpdateBy" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="Company" Type="Int32" />
+          <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
+          <Property Name="DisposeDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Company1" Relationship="OfficeAutomationdbModel.Companyfk_VOIP" FromRole="VOIP" ToRole="Company" />
           <NavigationProperty Name="ModelType1" Relationship="OfficeAutomationdbModel.ModelTypefk_VOIP" FromRole="VOIP" ToRole="ModelType" />
           <NavigationProperty Name="UnitType1" Relationship="OfficeAutomationdbModel.UnitTypefk_VOIP" FromRole="VOIP" ToRole="UnitType" />
@@ -1005,9 +1055,19 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="OutsourceUsers">
+            <EntityTypeMapping TypeName="OfficeAutomationdbModel.OutsourceUser">
+              <MappingFragment StoreEntitySet="OutsourceUsers">
+                <ScalarProperty Name="OutSourceID" ColumnName="OutSourceID" />
+                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PhoneDongles">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.PhoneDongle">
               <MappingFragment StoreEntitySet="PhoneDongles">
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="DisposeDate" ColumnName="DisposeDate" />
                 <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
                 <ScalarProperty Name="Company" ColumnName="Company" />
                 <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
@@ -1046,6 +1106,18 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TransferAssestHistories">
+            <EntityTypeMapping TypeName="OfficeAutomationdbModel.TransferAssestHistory">
+              <MappingFragment StoreEntitySet="TransferAssestHistory">
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="NewUser" ColumnName="NewUser" />
+                <ScalarProperty Name="PreviousUser" ColumnName="PreviousUser" />
+                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UnitTypes">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.UnitType">
               <MappingFragment StoreEntitySet="UnitType">
@@ -1074,11 +1146,12 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IsUserOutSource" ColumnName="IsUserOutSource" />
                 <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
                 <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
-                <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="NIC" ColumnName="NIC" />
                 <ScalarProperty Name="SAPNo" ColumnName="SAPNo" />
@@ -1094,6 +1167,8 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <EntitySetMapping Name="VOIPs">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.VOIP">
               <MappingFragment StoreEntitySet="VOIP">
+                <ScalarProperty Name="DisposeDate" ColumnName="DisposeDate" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
                 <ScalarProperty Name="Company" ColumnName="Company" />
                 <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />

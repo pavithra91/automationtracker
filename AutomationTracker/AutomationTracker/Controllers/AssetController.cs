@@ -237,7 +237,15 @@ namespace AutomationTracker.Controllers
         [HttpPost]
         public ActionResult AssignUser(UserModel objModel)
         {
-            return null;
+            var item = _context.UserAssets.Where(w => w.ItemID == objModel.userAssestList.ItemID && w.Category == objModel.userAssestList.Category).FirstOrDefault();
+            item.UserID = objModel.user.UserID;
+            item.ActualAssignee = objModel.user.UserID;
+
+            _context.UserAssets.Attach(item);
+            _context.Entry(item).State = EntityState.Modified;
+            _context.SaveChanges();
+
+            return RedirectToAction("ViewUsers", "Account");
         }
 
 
