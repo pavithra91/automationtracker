@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutomationTracker.App_Code;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,7 @@ namespace AutomationTracker
             // Code that runs on application startup
            AreaRegistration.RegisterAllAreas();
            RouteConfig.RegisterRoutes(RouteTable.Routes);
+           JobScheduler.Start();
         }
     }
 }

@@ -86,6 +86,8 @@ namespace AutomationTracker.Controllers
                     pc.HDDCapacity = objModel.computers.HDDCapacity;
                     pc.Remarks = objModel.computers.Remarks;
                     pc.Company = objModel.company.CompanyID;
+                    pc.PurchaseDate = objModel.computers.PurchaseDate;
+                    pc.DisposeDate = objModel.computers.DisposeDate;
 
                     pc.AddedBy = "";
                     pc.AddedDate = DateTime.Now;
@@ -193,6 +195,8 @@ namespace AutomationTracker.Controllers
                 mobile.EMEINo2 = objModel.phonesanddongles.EMEINo2;
                 mobile.Remarks = objModel.phonesanddongles.Remarks;
                 mobile.Company = objModel.company.CompanyID;
+                mobile.PurchaseDate = objModel.phonesanddongles.PurchaseDate;
+                mobile.DisposeDate = objModel.phonesanddongles.DisposeDate;
 
                 mobile.AddedBy = "";
                 mobile.AddedDate = DateTime.Now;
@@ -233,7 +237,108 @@ namespace AutomationTracker.Controllers
             return RedirectToAction("ViewMobilePhones");
         }
 
-        
+        public ActionResult ViewVOIP()
+        {
+            AssetList objModel = new AssetList();
+
+            objModel.voipList = _context.VOIPs.ToList();
+
+            return View(objModel);
+        }
+
+        public ActionResult ManageVOIP(int? id)
+        {
+            if (id > 0)
+            {
+                VOIP _voip = _context.VOIPs.Where(m => m.AUTOID == id).FirstOrDefault();
+                if (_voip != null)
+                {
+                    AssetModel objModel = new AssetModel();
+                    AssetList objList = new AssetList();
+                    objList.unittypeList = new List<UnitType>();
+                    objList.unittypeList.Add(_voip.UnitType1);
+
+                    objList.modelList = new List<ModelType>();
+                    objList.modelList.Add(_voip.ModelType1);
+
+                    objList.companyList = new List<Company>();
+                    objList.companyList.Add(_voip.Company1);
+
+                    objModel.assetList = objList;
+                    objModel.voip = _voip;
+                    return View(objModel);
+                }
+            }
+            else
+            {
+                AssetModel objModel = new AssetModel();
+                AssetList objList = new AssetList();
+                objModel.voip = new VOIP();
+
+                objList.unittypeList = _context.UnitTypes.ToList();
+                objList.modelList = new List<ModelType>();
+                objList.companyList = _context.Companies.ToList();
+
+                objModel.assetList = objList;
+
+                return View(objModel);
+            }
+            return null;
+        }
+
+        [HttpPost]
+        public ActionResult SaveVOIPDevices(AssetModel objModel)
+        {
+            if (objModel.voip.AUTOID == 0)
+            {
+                VOIP _voip = new VOIP();
+                _voip.ModelType = objModel.voip.ModelType;
+                _voip.UnitType = objModel.voip.UnitType;
+                _voip.AssestNo = objModel.voip.AssestNo;
+                _voip.SerialNo = objModel.voip.SerialNo;
+                _voip.ExtentionNo = objModel.voip.ExtentionNo;
+                _voip.Remarks = objModel.voip.Remarks;
+                _voip.Company = objModel.company.CompanyID;
+                _voip.PurchaseDate = objModel.voip.PurchaseDate;
+                _voip.DisposeDate = objModel.voip.DisposeDate;
+
+                _voip.AddedBy = "";
+                _voip.AddedDate = DateTime.Now;
+
+                _context.VOIPs.Add(_voip);
+                _context.SaveChanges();
+
+                User _user = _context.Users.Where(w => w.FullName == "IT Pool" && w.Company == objModel.company.CompanyID).FirstOrDefault();
+
+                UnitType _unitType = _context.UnitTypes.Where(w => w.UnitTypeID == _voip.UnitType).FirstOrDefault();
+
+                UserAsset _userAssest = new UserAsset();
+                _userAssest.Category = _unitType.Category;
+                _userAssest.ItemID = _voip.AUTOID;
+                _userAssest.PANo = _user.PANo;
+                _userAssest.UserID = _user.UserID;
+
+                _context.UserAssets.Add(_userAssest);
+                _context.SaveChanges();
+            }
+            else
+            {
+                VOIP _voip = _context.VOIPs.Where(m => m.AUTOID == objModel.voip.AUTOID).FirstOrDefault();
+                _voip.ExtentionNo = objModel.phonesanddongles.ConnectionNo;
+                _voip.Remarks = objModel.phonesanddongles.Remarks;
+                _voip.Company = objModel.company.CompanyID;
+
+                _voip.UpdateBy = "";
+                _voip.UpdateDate = DateTime.Now;
+
+                _context.VOIPs.Attach(_voip);
+                _context.Entry(_voip).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+            return RedirectToAction("ViewVOIP");
+        }
+
+
         [HttpPost]
         public ActionResult AssignUser(UserModel objModel)
         {
@@ -247,18 +352,9 @@ namespace AutomationTracker.Controllers
 
             return RedirectToAction("ViewUsers", "Account");
         }
+        
 
-
-
-
-
-
-
-
-
-
-
-
+        #region GET Request
         [HttpGet]
         public virtual JsonResult GetModels(string UnitTypeID)
         {
@@ -333,5 +429,6 @@ namespace AutomationTracker.Controllers
                 return null;
             }
         }
+        #endregion
     }
 }

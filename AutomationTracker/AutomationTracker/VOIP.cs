@@ -17,7 +17,7 @@ namespace AutomationTracker
         public int AUTOID { get; set; }
         public Nullable<int> UnitType { get; set; }
         public Nullable<int> ModelType { get; set; }
-        public string AssetNo { get; set; }
+        public string AssestNo { get; set; }
         public string SerialNo { get; set; }
         public Nullable<int> ExtentionNo { get; set; }
         public string Remarks { get; set; }
@@ -28,6 +28,7 @@ namespace AutomationTracker
         public Nullable<int> Company { get; set; }
         public Nullable<System.DateTime> PurchaseDate { get; set; }
         public Nullable<System.DateTime> DisposeDate { get; set; }
+        public Nullable<int> ActualAssignee { get; set; }
     
         public virtual Company Company1 { get; set; }
         public virtual ModelType ModelType1 { get; set; }

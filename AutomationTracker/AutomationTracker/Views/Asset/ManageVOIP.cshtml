@@ -1,0 +1,185 @@
+﻿@model AutomationTracker.Models.AssetModel
+@{
+    ViewBag.Title = "ManageVOIP";
+    Layout = "~/Views/Shared/_SystemLayout.cshtml";
+}
+
+@using (Html.BeginForm("SaveVOIPDevices", "Asset"))
+{
+    <section class="common_section">
+        <div class="container">
+
+            @Html.HiddenFor(m => Model.voip.AUTOID)
+            @Html.HiddenFor(m => Model.voip.Company)
+
+            <div class='input-container'>
+                <label for="dropUnitType" class="labelcls">Unit Type: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @{
+//var hiddenstyle = "";
+//if (Model.phonesanddongles.AUOTID > 0)
+//{
+//    hiddenstyle = "true";
+//}
+//else
+//{
+//    hiddenstyle = "false";
+//}
+                }
+                @Html.DropDownListFor(m => Model.voip.UnitType, new SelectList(Model.assetList.unittypeList, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -", new
+           {
+               @name = "dropUnitType", @*@disabled = hiddenstyle,*@ @class = "form-control",
+               @id = "dropUnitType"
+           })
+            </div>
+
+            <div class='input-container'>
+                <label for="dropModelType" class="labelcls">Model Type: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.DropDownListFor(m => Model.voip.ModelType, new SelectList(Model.assetList.modelList, "ModelID", "ModelName"), "- Please Select Model type -", new
+           {
+               @name = "dropModel", @*@disabled = hiddenstyle,*@ @class = "form-control",
+               @id = "dropModel"
+           })
+            </div>
+
+            <div class='input-container'>
+                <label for="txtAssestNo" class="labelcls">Assest No: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.TextBoxFor(m => Model.voip.AssestNo, new
+           {
+               @name = "txtAssestNo",
+               @placeholder = "Assest No", @*@disabled = hiddenstyle,*@ @class = "form-control",
+               @id = "txtAssestNo"
+           })
+            </div>
+
+            <div class='input-container'>
+                <label for="txtSerialNo" class="labelcls">Serial No: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.TextBoxFor(m => Model.voip.SerialNo, new
+           {
+               @name = "txtSerialNo",
+               @placeholder = "Serial No", @*@disabled = hiddenstyle,*@ @class = "form-control",
+               @id = "txtSerialNo"
+           })
+            </div>
+
+            <div class='input-container'>
+                <label for="txtExtentionNo" class="labelcls">Extention No: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.TextBoxFor(m => Model.voip.ExtentionNo, new { @name = "txtExtentionNo", @placeholder = "Extention No", @class = "form-control", @id = "txtExtentionNo" })
+            </div>
+
+            <div class='input-container'>
+                <label for="txtRemarks" class="labelcls">Remarks: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.TextBoxFor(m => Model.voip.Remarks, new { @name = "txtRemarks", @placeholder = "Remarks", @class = "form-control", @id = "txtRemarks" })
+            </div>
+
+            <div class='input-container'>
+                <label for="dropCompany" class="labelcls">Company: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.DropDownListFor(m => Model.company.CompanyID, new SelectList(Model.assetList.companyList, "CompanyID", "CompanyName"), "- Please Select Company -", new
+           {
+               @name = "dropCompany", @*@disabled = hiddenstyle,*@ @class = "form-control",
+               @id = "dropCompany"
+           })
+            </div>
+
+            <div class='input-container'>
+                <label for="datetimepicker1" class="labelcls">Purchase Date: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.TextBoxFor(m => Model.voip.PurchaseDate, new
+           {
+               @name = "datetimepicker1",
+               @placeholder = "Purchase Date", @*@disabled = hiddenstyle,*@ @class = "form-control",
+               @id = "datetimepicker1"
+           })
+            </div>
+
+            <div class='input-container'>
+                <label for="datetimepicker2" class="labelcls">Dispose Date: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.TextBoxFor(m => Model.voip.DisposeDate, new
+           {
+               @name = "datetimepicker2",
+               @placeholder = "Dispose Date", @*@disabled = hiddenstyle,*@ @class = "form-control",
+               @id = "datetimepicker2"
+           })
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+            <input type="button" style="margin-left:10px" class="btn btn-primary" value="Back" onclick="location.href='@Url.Action("ViewVOIP", "Asset")'" />
+
+        </div>
+    </section>
+                    }
+
+@section scriptLocation{
+    <script>
+    $(function () {
+        $("#dropUnitType").change(function () {
+            debugger;
+            var unitID = $('#dropUnitType').val();
+            if (unitID == 5)
+            {
+                $.ajax({
+                    type: 'GET',
+                    url: "http://localhost:15707/Asset/GetModels?UnitTypeID=" + unitID,
+                    data: JSON.stringify({ "UnitTypeID": 1 }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        var r = result;
+                        if (result != null) {
+                            var dropModel = $("[id*=dropModel]");
+                            dropModel.empty().append('<option selected="selected" value="0">Please select</option>');
+
+                            $.each(result, function () {
+                                dropModel.append($("<option></option>").val(this['id']).html(this['name']));
+                            });
+
+                        } else {
+                            alert("fail");
+                        }
+                    }
+                });
+            }
+        });
+    });
+    </script>
+
+    <script>
+        debugger;
+        var dropCompanyVal = $('#voips_Company').val();
+                $.ajax({
+                    type: 'GET',
+                    url: "http://localhost:15707/Asset/GetCompany",
+                    data: JSON.stringify({ "UnitTypeID": 1 }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        var r = result;
+                        if (result != null) {
+                            var dropCompany = $("[id*=dropCompany]");
+                           dropCompany.empty().append('<option selected="selected" value="0">Please select Company</option>');
+
+                            $.each(result, function () {
+                                    if (dropCompanyVal == this['id']) {
+                                        dropCompany.append($("<option selected></option>").val(this['id']).html(this['name']));
+                                    }
+                                    else {
+                                        dropCompany.append($("<option></option>").val(this['id']).html(this['name']));
+                                    }
+                            });
+                        } else {
+                            alert("fail");
+                        }
+                    }
+                });
+    </script>
+}
+

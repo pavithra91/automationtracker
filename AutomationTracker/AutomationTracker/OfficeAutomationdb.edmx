@@ -43,6 +43,18 @@
           <Property Name="Company" Type="int" />
           <Property Name="ActualAssignee" Type="int" />
         </EntityType>
+        <EntityType Name="DisposeList">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemID" Type="int" />
+          <Property Name="Category" Type="int" />
+          <Property Name="DisposeDate" Type="date" />
+          <Property Name="IsDisposed" Type="bit" />
+          <Property Name="UpdateDate" Type="date" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="Market">
           <Key>
             <PropertyRef Name="MarketID" />
@@ -94,6 +106,8 @@
           <Property Name="ActualAssignee" Type="int" />
           <Property Name="DisposeDate" Type="date" />
           <Property Name="PurchaseDate" Type="date" />
+          <Property Name="IsEmailSend" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="Provider">
           <Key>
@@ -173,7 +187,7 @@
           <Property Name="AUTOID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UnitType" Type="int" />
           <Property Name="ModelType" Type="int" />
-          <Property Name="AssetNo" Type="nvarchar" MaxLength="1" />
+          <Property Name="AssestNo" Type="nvarchar" MaxLength="1" />
           <Property Name="SerialNo" Type="nvarchar" MaxLength="1" />
           <Property Name="ExtentionNo" Type="int" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="1" />
@@ -184,6 +198,7 @@
           <Property Name="Company" Type="int" />
           <Property Name="PurchaseDate" Type="date" />
           <Property Name="DisposeDate" Type="date" />
+          <Property Name="ActualAssignee" Type="int" />
         </EntityType>
         <Association Name="CategoryIDfk_UnitType">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
@@ -399,6 +414,7 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Computers" EntityType="Self.Computers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DisposeList" EntityType="Self.DisposeList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Market" EntityType="Self.Market" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ModelType" EntityType="Self.ModelType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OutsourceUsers" EntityType="Self.OutsourceUsers" Schema="dbo" store:Type="Tables" />
@@ -487,6 +503,7 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <EntitySet Name="Categories" EntityType="OfficeAutomationdbModel.Category" />
           <EntitySet Name="Companies" EntityType="OfficeAutomationdbModel.Company" />
           <EntitySet Name="Computers" EntityType="OfficeAutomationdbModel.Computer" />
+          <EntitySet Name="DisposeLists" EntityType="OfficeAutomationdbModel.DisposeList" />
           <EntitySet Name="Markets" EntityType="OfficeAutomationdbModel.Market" />
           <EntitySet Name="ModelTypes" EntityType="OfficeAutomationdbModel.ModelType" />
           <EntitySet Name="OutsourceUsers" EntityType="OfficeAutomationdbModel.OutsourceUser" />
@@ -616,6 +633,18 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <NavigationProperty Name="Software1" Relationship="OfficeAutomationdbModel.OSfk_Computers" FromRole="Computer" ToRole="Software" />
           <NavigationProperty Name="UnitType1" Relationship="OfficeAutomationdbModel.UnitTypefk_Computers" FromRole="Computer" ToRole="UnitType" />
         </EntityType>
+        <EntityType Name="DisposeList">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemID" Type="Int32" />
+          <Property Name="Category" Type="Int32" />
+          <Property Name="DisposeDate" Type="DateTime" Precision="0" />
+          <Property Name="IsDisposed" Type="Boolean" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateBy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Market">
           <Key>
             <PropertyRef Name="MarketID" />
@@ -672,6 +701,8 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="ActualAssignee" Type="Int32" />
           <Property Name="DisposeDate" Type="DateTime" Precision="0" />
           <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
+          <Property Name="IsEmailSend" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="Company1" Relationship="OfficeAutomationdbModel.Companyfk_Phones" FromRole="PhoneDongle" ToRole="Company" />
           <NavigationProperty Name="ModelType1" Relationship="OfficeAutomationdbModel.ModelTypefk_Phone" FromRole="PhoneDongle" ToRole="ModelType" />
           <NavigationProperty Name="Provider1" Relationship="OfficeAutomationdbModel.Providerfk_Phones" FromRole="PhoneDongle" ToRole="Provider" />
@@ -766,7 +797,7 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="AUTOID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UnitType" Type="Int32" />
           <Property Name="ModelType" Type="Int32" />
-          <Property Name="AssetNo" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="AssestNo" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="SerialNo" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="ExtentionNo" Type="Int32" />
           <Property Name="Remarks" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
@@ -777,6 +808,7 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="Company" Type="Int32" />
           <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
           <Property Name="DisposeDate" Type="DateTime" Precision="0" />
+          <Property Name="ActualAssignee" Type="Int32" />
           <NavigationProperty Name="Company1" Relationship="OfficeAutomationdbModel.Companyfk_VOIP" FromRole="VOIP" ToRole="Company" />
           <NavigationProperty Name="ModelType1" Relationship="OfficeAutomationdbModel.ModelTypefk_VOIP" FromRole="VOIP" ToRole="ModelType" />
           <NavigationProperty Name="UnitType1" Relationship="OfficeAutomationdbModel.UnitTypefk_VOIP" FromRole="VOIP" ToRole="UnitType" />
@@ -1032,6 +1064,19 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DisposeLists">
+            <EntityTypeMapping TypeName="OfficeAutomationdbModel.DisposeList">
+              <MappingFragment StoreEntitySet="DisposeList">
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="IsDisposed" ColumnName="IsDisposed" />
+                <ScalarProperty Name="DisposeDate" ColumnName="DisposeDate" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Markets">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.Market">
               <MappingFragment StoreEntitySet="Market">
@@ -1066,6 +1111,8 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <EntitySetMapping Name="PhoneDongles">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.PhoneDongle">
               <MappingFragment StoreEntitySet="PhoneDongles">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsEmailSend" ColumnName="IsEmailSend" />
                 <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
                 <ScalarProperty Name="DisposeDate" ColumnName="DisposeDate" />
                 <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
@@ -1167,6 +1214,7 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <EntitySetMapping Name="VOIPs">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.VOIP">
               <MappingFragment StoreEntitySet="VOIP">
+                <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
                 <ScalarProperty Name="DisposeDate" ColumnName="DisposeDate" />
                 <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
                 <ScalarProperty Name="Company" ColumnName="Company" />
@@ -1177,7 +1225,7 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="ExtentionNo" ColumnName="ExtentionNo" />
                 <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
-                <ScalarProperty Name="AssetNo" ColumnName="AssetNo" />
+                <ScalarProperty Name="AssestNo" ColumnName="AssestNo" />
                 <ScalarProperty Name="ModelType" ColumnName="ModelType" />
                 <ScalarProperty Name="UnitType" ColumnName="UnitType" />
                 <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
