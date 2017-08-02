@@ -17,6 +17,11 @@ namespace AutomationTracker.Controllers
             return View();
         }
 
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
+
         public ActionResult ViewUsers()
         {
             UserModel objModel = new UserModel();
@@ -220,7 +225,7 @@ namespace AutomationTracker.Controllers
             }
             return View(objModel);
         }
-
+        
         [HttpPost]
         public ActionResult Login(LoginModel objModel)
         {
@@ -231,7 +236,8 @@ namespace AutomationTracker.Controllers
                     {
                         Session["UserID"] = obj.AUTOID.ToString();
                         Session["UserName"] = obj.UserName.ToString();
-                        return RedirectToAction("UserDashBoard");
+
+                        return RedirectToAction("Dashboard");
                     }
                     else
                 {

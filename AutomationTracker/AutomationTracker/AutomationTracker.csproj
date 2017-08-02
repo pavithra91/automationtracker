@@ -282,6 +282,7 @@
     <Content Include="Views\Asset\ViewVOIP.cshtml" />
     <Content Include="Views\Asset\ManageVOIP.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Dashboard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
