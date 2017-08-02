@@ -19,11 +19,23 @@ namespace AutomationTracker.Controllers
 
         public ActionResult Dashboard()
         {
-            return View();
+            if(Session["UserID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         public ActionResult ViewUsers()
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             UserModel objModel = new UserModel();
             UserList objList = new UserList();
             objList.usrList = _context.Users.ToList();
@@ -35,6 +47,11 @@ namespace AutomationTracker.Controllers
 
         public ActionResult ManageUsers(int? id)
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             if (id == 0)
             {
                 UserModel objModel = new UserModel();
@@ -77,6 +94,11 @@ namespace AutomationTracker.Controllers
         [HttpPost]
         public ActionResult SaveUser(UserModel objModel)
         {
+            if(Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             if (objModel.user.UserID == 0)
             {
                 User _user = new User();
@@ -148,6 +170,11 @@ namespace AutomationTracker.Controllers
 
         public ActionResult ViewUserAssests(int id)
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             UserModel objModel = new UserModel();
 
             objModel.userAssestList = new UserAssest();
@@ -189,6 +216,11 @@ namespace AutomationTracker.Controllers
 
         public ActionResult TransferAsset(int? id, int category)
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             UserModel objModel = new UserModel();
             UserList objList = new UserList();
 
@@ -236,8 +268,9 @@ namespace AutomationTracker.Controllers
                     {
                         Session["UserID"] = obj.AUTOID.ToString();
                         Session["UserName"] = obj.UserName.ToString();
+                        Session["FullName"] = obj.FullName.ToString();
 
-                        return RedirectToAction("Dashboard");
+                    return RedirectToAction("Dashboard");
                     }
                     else
                 {
@@ -249,6 +282,13 @@ namespace AutomationTracker.Controllers
                 //Invalid User
             }
             return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -18,6 +18,11 @@ namespace AutomationTracker.Controllers
 
         public ActionResult ViewComputers()
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             AssetList objModel = new AssetList();
 
             objModel.computerList = _context.Computers.ToList();
@@ -27,6 +32,11 @@ namespace AutomationTracker.Controllers
 
         public ActionResult ManageComputers(int? id)
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             if (id > 0)
             {
                 Computer computers = _context.Computers.Where(m => m.AUOTID == id).FirstOrDefault();
@@ -73,7 +83,12 @@ namespace AutomationTracker.Controllers
         [HttpPost]
         public ActionResult SaveComputers(AssetModel objModel)
         {
-                if (objModel.computers.AUOTID == 0)
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
+            if (objModel.computers.AUOTID == 0)
                 {
                     Computer pc = new Computer();
                     pc.ModelType = objModel.computers.ModelType;
@@ -128,6 +143,11 @@ namespace AutomationTracker.Controllers
 
         public ActionResult ViewMobilePhones()
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             AssetList objModel = new AssetList();
 
             objModel.phonesanddongleList = _context.PhoneDongles.ToList();
@@ -137,6 +157,11 @@ namespace AutomationTracker.Controllers
 
         public ActionResult ManageMobilePhones(int? id)
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             if (id > 0)
             {
                 PhoneDongle phones = _context.PhoneDongles.Where(m => m.AUOTID == id).FirstOrDefault();
@@ -181,6 +206,11 @@ namespace AutomationTracker.Controllers
         [HttpPost]
         public ActionResult SavePhoneDevices(AssetModel objModel)
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             if (objModel.phonesanddongles.AUOTID == 0)
             {
                 PhoneDongle mobile = new PhoneDongle();
@@ -239,6 +269,11 @@ namespace AutomationTracker.Controllers
 
         public ActionResult ViewVOIP()
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             AssetList objModel = new AssetList();
 
             objModel.voipList = _context.VOIPs.ToList();
@@ -248,6 +283,11 @@ namespace AutomationTracker.Controllers
 
         public ActionResult ManageVOIP(int? id)
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             if (id > 0)
             {
                 VOIP _voip = _context.VOIPs.Where(m => m.AUTOID == id).FirstOrDefault();
@@ -289,6 +329,11 @@ namespace AutomationTracker.Controllers
         [HttpPost]
         public ActionResult SaveVOIPDevices(AssetModel objModel)
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             if (objModel.voip.AUTOID == 0)
             {
                 VOIP _voip = new VOIP();
@@ -342,6 +387,11 @@ namespace AutomationTracker.Controllers
         [HttpPost]
         public ActionResult AssignUser(UserModel objModel)
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             var item = _context.UserAssets.Where(w => w.ItemID == objModel.userAssestList.ItemID && w.Category == objModel.userAssestList.Category).FirstOrDefault();
             item.UserID = objModel.user.UserID;
             item.ActualAssignee = objModel.user.UserID;
