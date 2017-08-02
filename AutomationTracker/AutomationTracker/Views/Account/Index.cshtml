@@ -1,0 +1,22 @@
+﻿@model AutomationTracker.Models.LoginModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SystemLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    <div class='input-container'>
+        <label for="txtUsername" class="labelcls">User Name: </label>
+        <div class="icon-ph"><i class="icon-envelope"></i></div>
+        @Html.TextBoxFor(m => Model.Username, new { @name = "txtUsername", @placeholder = "User Name", @class = "form-control", @id = "txtUsername" })
+    </div>
+
+    <div class='input-container'>
+        <label for="txtPassword" class="labelcls">Password: </label>
+        <div class="icon-ph"><i class="icon-envelope"></i></div>
+        @Html.TextBoxFor(m => Model.Password, new { @name = "txtPassword", @placeholder = "Password", @class = "form-control", @id = "txtPassword" })
+    </div>
+}
+

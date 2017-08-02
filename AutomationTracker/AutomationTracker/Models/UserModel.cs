@@ -57,7 +57,6 @@ namespace AutomationTracker.Models
             return titlelist;
         }
     }
-
     public class UserAssest
     {
         public User User { get; set; }

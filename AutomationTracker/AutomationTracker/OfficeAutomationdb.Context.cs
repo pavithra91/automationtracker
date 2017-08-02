@@ -35,6 +35,7 @@ namespace AutomationTracker
         public DbSet<PhoneDongle> PhoneDongles { get; set; }
         public DbSet<Provider> Providers { get; set; }
         public DbSet<Software> Softwares { get; set; }
+        public DbSet<SystemUser> SystemUsers { get; set; }
         public DbSet<TransferAssestHistory> TransferAssestHistories { get; set; }
         public DbSet<UnitType> UnitTypes { get; set; }
         public DbSet<UserAsset> UserAssets { get; set; }

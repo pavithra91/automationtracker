@@ -196,6 +196,7 @@
       <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AssetModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="ModelType.cs">
       <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
@@ -226,6 +227,9 @@
       <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Software.cs">
+      <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemUser.cs">
       <DependentUpon>OfficeAutomationdb.tt</DependentUpon>
     </Compile>
     <Compile Include="TransferAssestHistory.cs">
@@ -277,6 +281,7 @@
     </None>
     <Content Include="Views\Asset\ViewVOIP.cshtml" />
     <Content Include="Views\Asset\ManageVOIP.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

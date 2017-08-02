@@ -220,5 +220,29 @@ namespace AutomationTracker.Controllers
             }
             return View(objModel);
         }
+
+        [HttpPost]
+        public ActionResult Login(LoginModel objModel)
+        {
+            if (ModelState.IsValid)
+            {
+                    var obj = _context.SystemUsers.Where(a => a.UserName.Equals(objModel.Username) && a.Password.Equals(objModel.Password)).FirstOrDefault();
+                    if (obj != null)
+                    {
+                        Session["UserID"] = obj.AUTOID.ToString();
+                        Session["UserName"] = obj.UserName.ToString();
+                        return RedirectToAction("UserDashBoard");
+                    }
+                    else
+                {
+                    //Invalid User
+                }
+            }
+            else
+            {
+                //Invalid User
+            }
+            return View();
+        }
     }
 }

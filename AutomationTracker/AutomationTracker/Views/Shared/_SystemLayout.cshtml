@@ -58,36 +58,106 @@
                 </a>
             </div>
             <ul class="nav">
-                <li class="active">
-                    <a href="dashboard.html">
-                        <i class="fa fa-tachometer"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="user.html">
-                        <i class="fa fa-users"></i>
-                        <p>User Profile</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="table.html">
-                        <i class="fa fa-laptop"></i>
-                        <p>Computers</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="typography.html">
-                        <i class="fa fa-mobile"></i>
-                        <p>Mobile Phones and Dongles</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons.html">
-                        <i class="fa fa-volume-control-phone"></i>
-                        <p>VOIP</p>
-                    </a>
-                </li>
+                @if (ViewBag.Menu == null)
+                {
+                    <li class="active">
+                        <a href="#">
+                            <i class="fa fa-tachometer"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fa fa-tachometer"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                }
+                @if (ViewBag.Menu != null && ViewBag.Menu == "ViewUsers")
+                {
+                    <li class="active">
+                        <a href="@Url.Action("ViewUsers","Account")">
+                            <i class="fa fa-users"></i>
+                            <p>User Profile</p>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="@Url.Action("ViewUsers","Account")">
+                            <i class="fa fa-users"></i>
+                            <p>User Profile</p>
+                        </a>
+                    </li>
+                }
+
+
+                @if (ViewBag.Menu != null && ViewBag.Menu == "ViewComputers")
+                {
+                    <li class="active">
+                        <a href="@Url.Action("ViewComputers","Asset")">
+                            <i class="fa fa-laptop"></i>
+                            <p>Computers</p>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="@Url.Action("ViewComputers","Asset")">
+                            <i class="fa fa-laptop"></i>
+                            <p>Computers</p>
+                        </a>
+                    </li>
+                }
+
+
+                @if (ViewBag.Menu != null && ViewBag.Menu == "ViewMobilePhones")
+                {
+                    <li class="active">
+                        <a href="@Url.Action("ViewMobilePhones","Asset")">
+                            <i class="fa fa-mobile"></i>
+                            <p>Mobile Phones and Dongles</p>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="@Url.Action("ViewMobilePhones","Asset")">
+                            <i class="fa fa-mobile"></i>
+                            <p>Mobile Phones and Dongles</p>
+                        </a>
+                    </li>
+                }
+
+
+                @if (ViewBag.Menu != null && ViewBag.Menu == "ViewVOIP")
+                {
+                    <li class="active">
+                        <a href="@Url.Action("ViewVOIP","Asset")">
+                            <i class="fa fa-volume-control-phone"></i>
+                            <p>VOIP</p>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="@Url.Action("ViewVOIP","Asset")">
+                            <i class="fa fa-volume-control-phone"></i>
+                            <p>VOIP</p>
+                        </a>
+                    </li>
+                }
+
+
+
+
                 <li>
                     <a href="maps.html">
                         <i class="fa fa-print"></i>
