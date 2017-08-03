@@ -13,10 +13,13 @@
             @Html.HiddenFor(m => Model.phonesanddongles.AUOTID)
             @Html.HiddenFor(m => Model.phonesanddongles.Company)
 
-            <div class='input-container'>
-                <label for="dropUnitType" class="labelcls">Unit Type: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @{
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class='input-container'>
+                        <label for="dropUnitType" class="labelcls">Unit Type: </label>
+                        <div class="icon-ph"><i class="icon-envelope"></i></div>
+                        @{
 //var hiddenstyle = "";
 //if (Model.phonesanddongles.AUOTID > 0)
 //{
@@ -26,199 +29,278 @@
 //{
 //    hiddenstyle = "false";
 //}
-                }
-                @Html.DropDownListFor(m => Model.phonesanddongles.UnitType, new SelectList(Model.assetList.unittypeList, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -", new { @name = "dropUnitType", @*@disabled = hiddenstyle,*@ @class = "form-control", @id = "dropUnitType" })
+                        }
+                        @Html.DropDownListFor(m => Model.phonesanddongles.UnitType, new SelectList(Model.assetList.unittypeList, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -", new
+                   {
+                       @name = "dropUnitType", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                       @id = "dropUnitType"
+                   })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class='input-container'>
+                        <label for="dropModelType" class="labelcls">Model Type: </label>
+                        <div class="icon-ph"><i class="icon-envelope"></i></div>
+                        @Html.DropDownListFor(m => Model.phonesanddongles.ModelType, new SelectList(Model.assetList.modelList, "ModelID", "ModelName"), "- Please Select Model type -", new
+                   {
+                       @name = "dropModel", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                       @id = "dropModel"
+                   })
+                    </div>
+                </div>
             </div>
 
-            <div class='input-container'>
-                <label for="dropModelType" class="labelcls">Model Type: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.DropDownListFor(m => Model.phonesanddongles.ModelType, new SelectList(Model.assetList.modelList, "ModelID", "ModelName"), "- Please Select Model type -", new { @name = "dropModel", @*@disabled = hiddenstyle,*@ @class = "form-control", @id = "dropModel" })
+            <div class="row">
+                <div class="col-md-6">
+                    <div class='input-container'>
+                        <label for="txtAssestNo" class="labelcls">Assest No: </label>
+                        <div class="icon-ph"><i class="icon-envelope"></i></div>
+                        @Html.TextBoxFor(m => Model.phonesanddongles.AssestNo, new
+                   {
+                       @name = "txtAssestNo",
+                       @placeholder = "Assest No", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                       @id = "txtAssestNo"
+                   })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class='input-container'>
+                        <label for="txtSerialNo" class="labelcls">Serial No: </label>
+                        <div class="icon-ph"><i class="icon-envelope"></i></div>
+                        @Html.TextBoxFor(m => Model.phonesanddongles.SerialNo, new
+                   {
+                       @name = "txtSerialNo",
+                       @placeholder = "Serial No", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                       @id = "txtSerialNo"
+                   })
+                    </div>
+                </div>
             </div>
 
-            <div class='input-container'>
-                <label for="txtAssestNo" class="labelcls">Assest No: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.phonesanddongles.AssestNo, new { @name = "txtAssestNo", @placeholder = "Assest No", @*@disabled = hiddenstyle,*@ @class = "form-control", @id = "txtAssestNo" })
+            <div class="row">
+                <div class="col-md-6">
+                    <div class='input-container'>
+                        <label for="drpProvider" class="labelcls">Provider: </label>
+                        <div class="icon-ph"><i class="icon-envelope"></i></div>
+                        @Html.DropDownListFor(m => Model.phonesanddongles.Provider, new SelectList(Model.assetList.providerList, "AUTOID", "ProviderName"), "- Please Select Provider -", new { @name = "drpProvider", @class = "form-control", @id = "drpProvider" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class='input-container'>
+                        <label for="txtConnectionNo" class="labelcls">Connection No: </label>
+                        <div class="icon-ph"><i class="icon-envelope"></i></div>
+                        @Html.TextBoxFor(m => Model.phonesanddongles.ConnectionNo, new { @name = "txtConnectionNo", @placeholder = "Connection No", @class = "form-control", @id = "txtConnectionNo" })
+                    </div>
+                </div>
             </div>
 
-            <div class='input-container'>
-                <label for="txtSerialNo" class="labelcls">Serial No: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.phonesanddongles.SerialNo, new { @name = "txtSerialNo", @placeholder = "Serial No", @*@disabled = hiddenstyle,*@ @class = "form-control", @id = "txtSerialNo" })
+            <div class="row">
+                <div class="col-md-6">
+                    <div class='input-container'>
+                        <label for="dropCompany" class="labelcls">Company: </label>
+                        <div class="icon-ph"><i class="icon-envelope"></i></div>
+                        @Html.DropDownListFor(m => Model.company.CompanyID, new SelectList(Model.assetList.companyList, "CompanyID", "CompanyName"), "- Please Select Company -", new
+                   {
+                       @name = "dropCompany", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                       @id = "dropCompany"
+                   })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class='input-container'>
+                        <label for="txtSimNo" class="labelcls">Sim No: </label>
+                        <div class="icon-ph"><i class="icon-envelope"></i></div>
+                        @Html.TextBoxFor(m => Model.phonesanddongles.SimNo, new { @name = "txtSimNo", @placeholder = "Sim Number", @class = "form-control", @id = "txtSimNo" })
+                    </div>
+                </div>
             </div>
 
-            <div class='input-container'>
-                <label for="drpProvider" class="labelcls">Provider: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.DropDownListFor(m => Model.phonesanddongles.Provider, new SelectList(Model.assetList.providerList, "AUTOID", "ProviderName"), "- Please Select Provider -", new { @name = "drpProvider", @class = "form-control", @id = "drpProvider" })
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class='input-container'>
+                        <label for="txtEMEINo1" class="labelcls">EMEI No 1: </label>
+                        <div class="icon-ph"><i class="icon-envelope"></i></div>
+                        @Html.TextBoxFor(m => Model.phonesanddongles.EMEINo1, new { @name = "txtEMEINo1", @placeholder = "EMEI No 1", @class = "form-control", @id = "txtEMEINo1" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class='input-container'>
+                        <label for="txtEMEINo2" class="labelcls">EMEI No 2: </label>
+                        <div class="icon-ph"><i class="icon-envelope"></i></div>
+                        @Html.TextBoxFor(m => Model.phonesanddongles.EMEINo2, new { @name = "txtEMEINo2", @placeholder = "EMEI No 2", @class = "form-control", @id = "txtEMEINo2" })
+                    </div>
+                </div>
             </div>
 
-            <div class='input-container'>
-                <label for="txtConnectionNo" class="labelcls">Connection No: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.phonesanddongles.ConnectionNo, new { @name = "txtConnectionNo", @placeholder = "Connection No", @class = "form-control", @id = "txtConnectionNo" })
-            </div>
-
-            <div class='input-container'>
-                <label for="txtSimNo" class="labelcls">Sim No: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.phonesanddongles.SimNo, new { @name = "txtSimNo", @placeholder = "Sim Number", @class = "form-control", @id = "txtSimNo" })
-            </div>
-
-            <div class='input-container'>
-                <label for="txtEMEINo1" class="labelcls">EMEI No 1: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.phonesanddongles.EMEINo1, new { @name = "txtEMEINo1", @placeholder = "EMEI No 1", @class = "form-control", @id = "txtEMEINo1" })
-            </div>
-
-            <div class='input-container'>
-                <label for="txtEMEINo2" class="labelcls">EMEI No 2: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.phonesanddongles.EMEINo2, new { @name = "txtEMEINo2", @placeholder = "EMEI No 2", @class = "form-control", @id = "txtEMEINo2" })
+            <div class="row">
+                <div class="col-md-6">
+                    <div class='input-container'>
+                        <label for="datetimepicker1" class="labelcls">Purchase Date: </label>
+                        <div class="icon-ph"><i class="icon-envelope"></i></div>
+                        @Html.TextBoxFor(m => Model.phonesanddongles.PurchaseDate, new
+                   {
+                       @name = "datetimepicker1",
+                       @placeholder = "Purchase Date", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                       @id = "datetimepicker1"
+                   })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class='input-container'>
+                        <label for="datetimepicker2" class="labelcls">Dispose Date: </label>
+                        <div class="icon-ph"><i class="icon-envelope"></i></div>
+                        @Html.TextBoxFor(m => Model.phonesanddongles.DisposeDate, new
+                   {
+                       @name = "datetimepicker2",
+                       @placeholder = "Dispose Date", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                       @id = "datetimepicker2"
+                   })
+                    </div>
+                </div>
             </div>
 
             <div class='input-container'>
                 <label for="txtRemarks" class="labelcls">Remarks: </label>
                 <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.phonesanddongles.Remarks, new { @name = "txtRemarks", @placeholder = "Remarks", @class = "form-control", @id = "txtRemarks" })
+                @Html.TextAreaFor(m => Model.phonesanddongles.Remarks, new { @name = "txtRemarks", @placeholder = "Remarks", @class = "form-control", @id = "txtRemarks" })
             </div>
 
             <div class='input-container'>
-                <label for="dropCompany" class="labelcls">Company: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.DropDownListFor(m => Model.company.CompanyID, new SelectList(Model.assetList.companyList, "CompanyID", "CompanyName"), "- Please Select Company -", new
-           {
-               @name = "dropCompany", @*@disabled = hiddenstyle,*@ @class = "form-control",
-               @id = "dropCompany"
-           })
+                <label for="chactive" class="labelcls">Active: </label>
+                <div class="funkyradio">
+                    <div class="funkyradio-success">
+                        @if (Model.phonesanddongles.AUOTID == 0)
+                        {
+                            @Html.CheckBoxFor(m => Model.phonesanddongles.IsActive, new { @name = "checkbox", @disabled = "disabled", @checked = "checked", @id = "checkbox3" })
+                        }
+                        else
+                        {
+                            @Html.CheckBoxFor(m => Model.phonesanddongles.IsActive, new { @name = "checkbox", @checked = "checked", @id = "checkbox3" })
+                        }
+                        <label for="checkbox3">Active</label>
+                    </div>
+                </div>
             </div>
 
-            <div class='input-container'>
-                <label for="datetimepicker1" class="labelcls">Purchase Date: </label>
+            <div class='input-container' id="divDisposeRemark" style="display: none">
+                <label for="txtDisposeRemarks" class="labelcls">Dispose Remarks: </label>
                 <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.phonesanddongles.PurchaseDate, new
-           {
-               @name = "datetimepicker1",
-               @placeholder = "Purchase Date", @*@disabled = hiddenstyle,*@ @class = "form-control",
-               @id = "datetimepicker1"
-           })
-            </div>
-
-            <div class='input-container'>
-                <label for="datetimepicker2" class="labelcls">Dispose Date: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.phonesanddongles.DisposeDate, new
-           {
-               @name = "datetimepicker2",
-               @placeholder = "Dispose Date", @*@disabled = hiddenstyle,*@ @class = "form-control",
-               @id = "datetimepicker2"
-           })
+                @Html.TextAreaFor(m => Model.phonesanddongles.DisposeRemark, new { @name = "txtDisposeRemarks", @placeholder = "Dispose Remarks", @class = "form-control", @id = "txtDisposeRemarks" })
             </div>
 
 
-            <button type="submit" class="btn btn-primary">Submit</button>
 
-            <input type="button" style="margin-left:10px" class="btn btn-primary" value="Back" onclick="location.href='@Url.Action("ViewMobilePhones", "Asset")'" />
+            <div style="margin-top:10px;">
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+                <input type="button" style="margin-left:10px" class="btn btn-primary" value="Back" onclick="location.href='@Url.Action("ViewMobilePhones", "Asset")'" />
+            </div>
 
         </div>
     </section>
-                    }
+                            }
 
 @section scriptLocation{
     <script>
-    $(function () {
-        $("#dropUnitType").change(function () {
-            debugger;
-            var unitID = $('#dropUnitType').val();
-            if (unitID == 3 || unitID == 4)
-            {
-                $.ajax({
-                    type: 'GET',
-                    url: "http://localhost:15707/Asset/GetModels?UnitTypeID=" + unitID,
-                    data: JSON.stringify({ "UnitTypeID": 1 }),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (result) {
-                        var r = result;
-                        if (result != null) {
-                            var dropModel = $("[id*=dropModel]");
-                            dropModel.empty().append('<option selected="selected" value="0">Please select</option>');
+        function ShowHideDiv(checkbox) {
+            var dvDisposeRemark = document.getElementById("divDisposeRemark");
+            dvDisposeRemark.style.display = checkbox.checked ? "none" : "block";
+        }
+    </script>
 
-                            $.each(result, function () {
-                                dropModel.append($("<option></option>").val(this['id']).html(this['name']));
-                            });
+    <script>
+        $(function () {
+            $("#dropUnitType").change(function () {
+                debugger;
+                var unitID = $('#dropUnitType').val();
+                if (unitID == 3 || unitID == 4) {
+                    $.ajax({
+                        type: 'GET',
+                        url: "http://localhost:15707/Asset/GetModels?UnitTypeID=" + unitID,
+                        data: JSON.stringify({ "UnitTypeID": 1 }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (result) {
+                            var r = result;
+                            if (result != null) {
+                                var dropModel = $("[id*=dropModel]");
+                                dropModel.empty().append('<option selected="selected" value="0">Please select</option>');
 
-                        } else {
-                            alert("fail");
+                                $.each(result, function () {
+                                    dropModel.append($("<option></option>").val(this['id']).html(this['name']));
+                                });
+
+                            } else {
+                                alert("fail");
+                            }
                         }
-                    }
-                });
-            }
+                    });
+                }
+            });
         });
-    });
     </script>
 
     <script>
         debugger;
         var drpProviderval = $('#drpProvider').val();
 
-                $.ajax({
-                    type: 'GET',
-                    url: "http://localhost:15707/Asset/GetProviders",
-                    data: JSON.stringify({ "UnitTypeID": 1 }),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (result) {
-                        var r = result;
-                        if (result != null) {
-                            var drpProvider = $("[id*=drpProvider]");
+        $.ajax({
+            type: 'GET',
+            url: "http://localhost:15707/Asset/GetProviders",
+            data: JSON.stringify({ "UnitTypeID": 1 }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var r = result;
+                if (result != null) {
+                    var drpProvider = $("[id*=drpProvider]");
 
-                            drpProvider.empty().append('<option selected="selected" value="0">Please select Provider</option>');
+                    drpProvider.empty().append('<option selected="selected" value="0">Please select Provider</option>');
 
-                            $.each(result, function () {
-                                    if (drpProviderval == this['id']) {
-                                        drpProvider.append($("<option selected></option>").val(this['id']).html(this['name']));
-                                    }
-                                    else {
-                                        drpProvider.append($("<option></option>").val(this['id']).html(this['name']));
-                                    }
-                            });
-                        } else {
-                            alert("fail");
+                    $.each(result, function () {
+                        if (drpProviderval == this['id']) {
+                            drpProvider.append($("<option selected></option>").val(this['id']).html(this['name']));
                         }
-                    }
-                });
+                        else {
+                            drpProvider.append($("<option></option>").val(this['id']).html(this['name']));
+                        }
+                    });
+                } else {
+                    alert("fail");
+                }
+            }
+        });
     </script>
 
-<script>
+    <script>
         debugger;
         var dropCompanyVal = $('#phonesanddongles_Company').val();
-                $.ajax({
-                    type: 'GET',
-                    url: "http://localhost:15707/Asset/GetCompany",
-                    data: JSON.stringify({ "UnitTypeID": 1 }),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (result) {
-                        var r = result;
-                        if (result != null) {
-                            var dropCompany = $("[id*=dropCompany]");
-                           dropCompany.empty().append('<option selected="selected" value="0">Please select Company</option>');
+        $.ajax({
+            type: 'GET',
+            url: "http://localhost:15707/Asset/GetCompany",
+            data: JSON.stringify({ "UnitTypeID": 1 }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var r = result;
+                if (result != null) {
+                    var dropCompany = $("[id*=dropCompany]");
+                    dropCompany.empty().append('<option selected="selected" value="0">Please select Company</option>');
 
-                            $.each(result, function () {
-                                    if (dropCompanyVal == this['id']) {
-                                        dropCompany.append($("<option selected></option>").val(this['id']).html(this['name']));
-                                    }
-                                    else {
-                                        dropCompany.append($("<option></option>").val(this['id']).html(this['name']));
-                                    }
-                            });
-                        } else {
-                            alert("fail");
+                    $.each(result, function () {
+                        if (dropCompanyVal == this['id']) {
+                            dropCompany.append($("<option selected></option>").val(this['id']).html(this['name']));
                         }
-                    }
-                });
-</script>
+                        else {
+                            dropCompany.append($("<option></option>").val(this['id']).html(this['name']));
+                        }
+                    });
+                } else {
+                    alert("fail");
+                }
+            }
+        });
+    </script>
 }
 

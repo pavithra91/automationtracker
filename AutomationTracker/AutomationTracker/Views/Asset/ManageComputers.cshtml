@@ -178,25 +178,50 @@
 
 
                 <div class='input-container'>
-                    <label for="txtRemarks" class="labelcls">Remarks: </label>
+                    <label for="chactive" class="labelcls">Active: </label>
+                    <div class="funkyradio">
+                        <div class="funkyradio-success">
+                            @if (Model.computers.AUOTID == 0)
+                            {
+                                @Html.CheckBoxFor(m => Model.computers.IsActive, new { @name = "checkbox", @disabled = "disabled", @onclick = "ShowHideDiv(this)", @checked = "checked", @id = "checkbox3" })
+                            }
+                            else
+                            {
+                                @Html.CheckBoxFor(m => Model.computers.IsActive, new { @name = "checkbox", @onclick = "ShowHideDiv(this)", @checked = "checked", @id = "checkbox3" })
+                            }                            
+                            <label for="checkbox3">Active</label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class='input-container' id="divDisposeRemark" style="display: none">
+                    <label for="txtDisposeRemarks" class="labelcls">Dispose Remarks: </label>
                     <div class="icon-ph"><i class="icon-envelope"></i></div>
-                    @Html.CheckBoxFor(m => Model.computers.IsActive, new { @name = "txtRemarks", @placeholder = "Remarks", @class = "form-control", @id = "txtRemarks" })
+                    @Html.TextAreaFor(m => Model.computers.DisposeRemark, new { @name = "txtDisposeRemarks", @placeholder = "Dispose Remarks", @class = "form-control", @id = "txtDisposeRemarks" })
                 </div>
 
 
 
-                <div style="margin-top:10px;">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div style="margin-top:10px;">
+                        <button type="submit" class="btn btn-primary">Submit</button>
 
-                    <input type="button" style="margin-left:10px" class="btn btn-primary" value="Back" onclick="location.href='@Url.Action("ViewComputers", "Asset")'" />
+                        <input type="button" style="margin-left:10px" class="btn btn-primary" value="Back" onclick="location.href='@Url.Action("ViewComputers", "Asset")'" />
+                    </div>
+
                 </div>
-
-            </div>
         </section>
     </div>
                         }
 
 @section scriptLocation{
+    <script>
+        function ShowHideDiv(checkbox) {
+            var dvDisposeRemark = document.getElementById("divDisposeRemark");
+            dvDisposeRemark.style.display = checkbox.checked ? "none" : "block";
+        }
+    </script>
+
 <script>
     $(function () {
         $("#dropUnitType").change(function () {

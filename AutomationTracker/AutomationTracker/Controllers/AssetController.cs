@@ -67,6 +67,7 @@ namespace AutomationTracker.Controllers
                 AssetModel objModel = new AssetModel();
                 AssetList objList = new AssetList();
                 objModel.computers = new Computer();
+                objModel.computers.IsActive = true;
 
                 objList.unittypeList = _context.UnitTypes.ToList();
                 objList.softwareList = new List<Software>();
@@ -133,6 +134,23 @@ namespace AutomationTracker.Controllers
                     pc.Remarks = objModel.computers.Remarks;
                     pc.Company = objModel.company.CompanyID;
 
+                if(!objModel.computers.IsActive)
+                {
+                    pc.IsActive = objModel.computers.IsActive;
+                    pc.DisposeRemark = objModel.computers.DisposeRemark;
+
+                    DisposeList _disposePC = new DisposeList();
+                    _disposePC.Category = 1;
+                    _disposePC.DisposeDate = pc.DisposeDate;
+                    _disposePC.IsDisposed = true;
+                    _disposePC.ItemID = pc.AUOTID;
+                    _disposePC.UpdateBy = _userName;
+                    _disposePC.UpdateDate = DateTime.Now;
+
+                    _context.DisposeLists.Add(_disposePC);
+                    _context.SaveChanges();
+                }
+
                     pc.UpdateBy = _userName;
                     pc.UpdateDate = DateTime.Now;
 
@@ -192,6 +210,7 @@ namespace AutomationTracker.Controllers
                 AssetModel objModel = new AssetModel();
                 AssetList objList = new AssetList();
                 objModel.phonesanddongles = new PhoneDongle();
+                objModel.phonesanddongles.IsActive = true;
 
                 objList.unittypeList = _context.UnitTypes.ToList();
                 objList.modelList = new List<ModelType>();
@@ -261,6 +280,23 @@ namespace AutomationTracker.Controllers
                 mobile.Remarks = objModel.phonesanddongles.Remarks;
                 mobile.Company = objModel.company.CompanyID;
 
+                if (!objModel.phonesanddongles.IsActive)
+                {
+                    mobile.IsActive = objModel.computers.IsActive;
+                    mobile.DisposeRemark = objModel.computers.DisposeRemark;
+
+                    DisposeList _disposePC = new DisposeList();
+                    _disposePC.Category = 2;
+                    _disposePC.DisposeDate = mobile.DisposeDate;
+                    _disposePC.IsDisposed = true;
+                    _disposePC.ItemID = mobile.AUOTID;
+                    _disposePC.UpdateBy = _userName;
+                    _disposePC.UpdateDate = DateTime.Now;
+
+                    _context.DisposeLists.Add(_disposePC);
+                    _context.SaveChanges();
+                }
+
                 mobile.UpdateBy = _userName;
                 mobile.UpdateDate = DateTime.Now;
 
@@ -318,6 +354,7 @@ namespace AutomationTracker.Controllers
                 AssetModel objModel = new AssetModel();
                 AssetList objList = new AssetList();
                 objModel.voip = new VOIP();
+                objModel.voip.IsActive = true;
 
                 objList.unittypeList = _context.UnitTypes.ToList();
                 objList.modelList = new List<ModelType>();
@@ -378,6 +415,23 @@ namespace AutomationTracker.Controllers
                 _voip.ExtentionNo = objModel.phonesanddongles.ConnectionNo;
                 _voip.Remarks = objModel.phonesanddongles.Remarks;
                 _voip.Company = objModel.company.CompanyID;
+
+                if (!objModel.voip.IsActive)
+                {
+                    _voip.IsActive = objModel.computers.IsActive;
+                    _voip.DisposeRemark = objModel.computers.DisposeRemark;
+
+                    DisposeList _disposePC = new DisposeList();
+                    _disposePC.Category = 3;
+                    _disposePC.DisposeDate = _voip.DisposeDate;
+                    _disposePC.IsDisposed = true;
+                    _disposePC.ItemID = _voip.AUTOID;
+                    _disposePC.UpdateBy = _userName;
+                    _disposePC.UpdateDate = DateTime.Now;
+
+                    _context.DisposeLists.Add(_disposePC);
+                    _context.SaveChanges();
+                }
 
                 _voip.UpdateBy = _userName;
                 _voip.UpdateDate = DateTime.Now;

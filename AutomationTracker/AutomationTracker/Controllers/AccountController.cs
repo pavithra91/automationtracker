@@ -58,6 +58,7 @@ namespace AutomationTracker.Controllers
                 UserList objList = new UserList();
                 UserTitle titles = new UserTitle();
                 objModel.userList = new UserList();
+                objModel.user.IsActive = true;
 
                 objList.companyList = _context.Companies.ToList();
                 objList.marketList = _context.Markets.ToList();

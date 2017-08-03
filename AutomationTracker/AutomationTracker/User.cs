@@ -23,7 +23,7 @@ namespace AutomationTracker
         public string SAPNo { get; set; }
         public string NIC { get; set; }
         public string Remarks { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public bool IsActive { get; set; }
         public Nullable<System.DateTime> AddedDate { get; set; }
         public string AddedBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }

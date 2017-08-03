@@ -12,88 +12,126 @@
 
             @Html.HiddenFor(m => Model.user.UserID)
 
-            
-            <div class='input-container'>
-                <label for="dropTitle" class="labelcls">Title: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.DropDownListFor(m => Model.user.Title, new SelectList(Model.userList.titlelist, "ID", "Title"), "- Please Select Title Type -", new { @name = "dropTitle", @*@disabled = hiddenstyle,*@ @class = "form-control", @id = "dropTitle"
-           })
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class='input-container'>
+                        <label for="dropTitle" class="labelcls">Title: </label>
+                        <div class="icon-ph"><i class="icon-envelope"></i></div>
+                        @Html.DropDownListFor(m => Model.user.Title, new SelectList(Model.userList.titlelist, "ID", "Title"), "- Please Select Title Type -", new
+                   {
+                       @name = "dropTitle", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                       @id = "dropTitle"
+                   })
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class='input-container'>
+                        <label for="txtFullName" class="labelcls">Full Name: </label>
+                        <div class="icon-ph"><i class="icon-envelope"></i></div>
+                        @Html.TextBoxFor(m => Model.user.FullName, new { @name = "txtFullName", @placeholder = "Full Name", @class = "form-control", @id = "txtFullName" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class='input-container'>
+                        <label for="dropCompany" class="labelcls">Company: </label>
+                        <div class="icon-ph"><i class="icon-envelope"></i></div>
+                        @Html.DropDownListFor(m => Model.user.Company, new SelectList(Model.userList.companyList, "CompanyID", "CompanyName"), "- Please Select Company -", new
+{
+    @name = "dropCompany", @*@disabled = hiddenstyle,*@ @class = "form-control",
+    @id = "dropCompany"
+})
+                    </div>
+                </div>
             </div>
 
-            <div class='input-container'>
-                <label for="txtFullName" class="labelcls">Full Name: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.user.FullName, new { @name = "txtFullName", @placeholder = "Full Name", @class = "form-control", @id = "txtFullName" })
+            <div class="row">
+                <div class="col-md-6">
+                    <div class='input-container'>
+                        <label for="dropMarket" class="labelcls">Market: </label>
+                        <div class="icon-ph"><i class="icon-envelope"></i></div>
+                        @Html.DropDownListFor(m => Model.user.Market, new SelectList(Model.userList.marketList, "MarketID", "MarketName"), "- Please Select Market -", new
+                   {
+                       @name = "dropMarket", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                       @id = "dropMarket"
+                   })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class='input-container'>
+                        <label for="txtNIC" class="labelcls">NIC No: </label>
+                        <div class="icon-ph"><i class="icon-envelope"></i></div>
+                        @Html.TextBoxFor(m => Model.user.NIC, new
+                   {
+                       @name = "txtNIC",
+                       @placeholder = "NIC No", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                       @id = "txtNIC"
+                   })
+                    </div>
+                </div>
             </div>
 
-            <div class='input-container'>
-                <label for="dropCompany" class="labelcls">Company: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.DropDownListFor(m => Model.user.Company, new SelectList(Model.userList.companyList, "CompanyID", "CompanyName"), "- Please Select Company -", new
-           {
-               @name = "dropCompany", @*@disabled = hiddenstyle,*@ @class = "form-control",
-               @id = "dropCompany"
-           })
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class='input-container'>
+                        <label for="txtPANo" class="labelcls">PA No: </label>
+                        <div class="icon-ph"><i class="icon-envelope"></i></div>
+                        @Html.TextBoxFor(m => Model.user.PANo, new
+                   {
+                       @name = "txtPANo",
+                       @placeholder = "PA No", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                       @id = "txtPANo"
+                   })
+                        <button type="button" class="btn btn-primary">Create Outsource PA</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class='input-container'>
+                        <label for="txtSAPNo" class="labelcls">SAP No: </label>
+                        <div class="icon-ph"><i class="icon-envelope"></i></div>
+                        @Html.TextBoxFor(m => Model.user.SAPNo, new
+                   {
+                       @name = "txtSAPNo",
+                       @placeholder = "SAP No", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                       @id = "txtSAPNo"
+                   })
+                    </div>
+                </div>
             </div>
 
-            <div class='input-container'>
-                <label for="dropMarket" class="labelcls">Market: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.DropDownListFor(m => Model.user.Market, new SelectList(Model.userList.marketList, "MarketID", "MarketName"), "- Please Select Market -", new
-           {
-               @name = "dropMarket", @*@disabled = hiddenstyle,*@ @class = "form-control",
-               @id = "dropMarket"
-           })
-            </div>
-            
-            <div class='input-container'>
-                <label for="txtPANo" class="labelcls">PA No: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.user.PANo, new
-           {
-               @name = "txtPANo",
-               @placeholder = "PA No", @*@disabled = hiddenstyle,*@ @class = "form-control",
-               @id = "txtPANo"
-           })
-                <button type="button" class="btn btn-primary">Create Outsource PA</button>
-            </div>
-
-            <div class='input-container'>
-                <label for="txtSAPNo" class="labelcls">SAP No: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.user.SAPNo, new
-           {
-               @name = "txtSAPNo",
-               @placeholder = "SAP No", @*@disabled = hiddenstyle,*@ @class = "form-control",
-               @id = "txtSAPNo"
-           })
-            </div>
-
-            <div class='input-container'>
-                <label for="txtNIC" class="labelcls">NIC No: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.user.NIC, new
-           {
-               @name = "txtNIC",
-               @placeholder = "NIC No", @*@disabled = hiddenstyle,*@ @class = "form-control",
-               @id = "txtNIC"
-           })
-            </div>
 
             <div class='input-container'>
                 <label for="txtRemarks" class="labelcls">Remarks: </label>
                 <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.user.Remarks, new { @name = "txtRemarks", @placeholder = "Remarks", @class = "form-control", @id = "txtRemarks" })
+                @Html.TextAreaFor(m => Model.user.Remarks, new { @name = "txtRemarks", @placeholder = "Remarks", @class = "form-control", @id = "txtRemarks" })
             </div>
 
+            <div class='input-container'>
+                <label for="chactive" class="labelcls">Active: </label>
+                <div class="funkyradio">
+                    <div class="funkyradio-success">
+                        @if (Model.user.UserID == 0)
+                        {
+                            @Html.CheckBoxFor(m => Model.user.IsActive, new { @name = "checkbox", @disabled = "disabled", @checked = "checked", @id = "checkbox3" })
+                        }
+                        else
+                        {
+                            @Html.CheckBoxFor(m => Model.user.IsActive, new { @name = "checkbox", @checked = "checked", @id = "checkbox3" })
+                        }
+                        <label for="checkbox3">Active</label>
+                    </div>
+                </div>
+            </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-
-            <input type="button" style="margin-left:10px" class="btn btn-primary" value="Back" onclick="location.href='@Url.Action("ViewUsers", "Account")'" />
+            <div style="margin-top:10px;">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <input type="button" style="margin-left:10px" class="btn btn-primary" value="Back" onclick="location.href='@Url.Action("ViewUsers", "Account")'" />
+            </div>
 
         </div>
     </section>
-                    }
+}
 
 @section scriptLocation{
     <script>

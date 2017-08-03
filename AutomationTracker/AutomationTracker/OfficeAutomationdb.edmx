@@ -43,7 +43,8 @@
           <Property Name="Company" Type="int" />
           <Property Name="ActualAssignee" Type="int" />
           <Property Name="WarrantyExpireDate" Type="date" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="DisposeRemark" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="DisposeList">
           <Key>
@@ -109,7 +110,8 @@
           <Property Name="DisposeDate" Type="date" />
           <Property Name="PurchaseDate" Type="date" />
           <Property Name="IsEmailSend" Type="bit" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="DisposeRemark" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Provider">
           <Key>
@@ -188,7 +190,7 @@
           <Property Name="SAPNo" Type="varchar" MaxLength="20" />
           <Property Name="NIC" Type="varchar" MaxLength="10" />
           <Property Name="Remarks" Type="varchar" MaxLength="500" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="AddedDate" Type="date" />
           <Property Name="AddedBy" Type="varchar" MaxLength="100" />
           <Property Name="UpdateDate" Type="date" />
@@ -214,7 +216,8 @@
           <Property Name="PurchaseDate" Type="date" />
           <Property Name="DisposeDate" Type="date" />
           <Property Name="ActualAssignee" Type="int" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="DisposeRemark" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <Association Name="CategoryIDfk_UnitType">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
@@ -646,12 +649,13 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="Company" Type="Int32" />
           <Property Name="ActualAssignee" Type="Int32" />
           <Property Name="WarrantyExpireDate" Type="DateTime" Precision="0" />
-          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Company1" Relationship="OfficeAutomationdbModel.Companyfk_Computers" FromRole="Computer" ToRole="Company" />
           <NavigationProperty Name="ModelType1" Relationship="OfficeAutomationdbModel.ModelTypefk_Computers" FromRole="Computer" ToRole="ModelType" />
           <NavigationProperty Name="Software" Relationship="OfficeAutomationdbModel.OfficeVersionfk_Computers" FromRole="Computer" ToRole="Software" />
           <NavigationProperty Name="Software1" Relationship="OfficeAutomationdbModel.OSfk_Computers" FromRole="Computer" ToRole="Software" />
           <NavigationProperty Name="UnitType1" Relationship="OfficeAutomationdbModel.UnitTypefk_Computers" FromRole="Computer" ToRole="UnitType" />
+          <Property Name="DisposeRemark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DisposeList">
           <Key>
@@ -722,11 +726,12 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="DisposeDate" Type="DateTime" Precision="0" />
           <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
           <Property Name="IsEmailSend" Type="Boolean" />
-          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Company1" Relationship="OfficeAutomationdbModel.Companyfk_Phones" FromRole="PhoneDongle" ToRole="Company" />
           <NavigationProperty Name="ModelType1" Relationship="OfficeAutomationdbModel.ModelTypefk_Phone" FromRole="PhoneDongle" ToRole="ModelType" />
           <NavigationProperty Name="Provider1" Relationship="OfficeAutomationdbModel.Providerfk_Phones" FromRole="PhoneDongle" ToRole="Provider" />
           <NavigationProperty Name="UnitType1" Relationship="OfficeAutomationdbModel.UnitTypefk_Phone" FromRole="PhoneDongle" ToRole="UnitType" />
+          <Property Name="DisposeRemark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Provider">
           <Key>
@@ -814,7 +819,7 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="SAPNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="NIC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="AddedDate" Type="DateTime" Precision="0" />
           <Property Name="AddedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="UpdateDate" Type="DateTime" Precision="0" />
@@ -842,10 +847,11 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
           <Property Name="DisposeDate" Type="DateTime" Precision="0" />
           <Property Name="ActualAssignee" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Company1" Relationship="OfficeAutomationdbModel.Companyfk_VOIP" FromRole="VOIP" ToRole="Company" />
           <NavigationProperty Name="ModelType1" Relationship="OfficeAutomationdbModel.ModelTypefk_VOIP" FromRole="VOIP" ToRole="ModelType" />
           <NavigationProperty Name="UnitType1" Relationship="OfficeAutomationdbModel.UnitTypefk_VOIP" FromRole="VOIP" ToRole="UnitType" />
+          <Property Name="DisposeRemark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="CategoryIDfk_UnitType">
           <End Type="OfficeAutomationdbModel.Category" Role="Category" Multiplicity="0..1" />
@@ -1077,6 +1083,7 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <EntitySetMapping Name="Computers">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.Computer">
               <MappingFragment StoreEntitySet="Computers">
+                <ScalarProperty Name="DisposeRemark" ColumnName="DisposeRemark" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="WarrantyExpireDate" ColumnName="WarrantyExpireDate" />
                 <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
@@ -1147,6 +1154,7 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <EntitySetMapping Name="PhoneDongles">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.PhoneDongle">
               <MappingFragment StoreEntitySet="PhoneDongles">
+                <ScalarProperty Name="DisposeRemark" ColumnName="DisposeRemark" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="IsEmailSend" ColumnName="IsEmailSend" />
                 <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
@@ -1264,6 +1272,7 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <EntitySetMapping Name="VOIPs">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.VOIP">
               <MappingFragment StoreEntitySet="VOIP">
+                <ScalarProperty Name="DisposeRemark" ColumnName="DisposeRemark" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
                 <ScalarProperty Name="DisposeDate" ColumnName="DisposeDate" />
