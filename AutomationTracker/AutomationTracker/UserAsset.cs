@@ -20,6 +20,8 @@ namespace AutomationTracker
         public Nullable<int> ActualAssignee { get; set; }
         public string PANo { get; set; }
         public Nullable<int> Category { get; set; }
+        public string UpdateBy { get; set; }
+        public Nullable<System.DateTime> UpdateDate { get; set; }
     
         public virtual Category Category1 { get; set; }
     }

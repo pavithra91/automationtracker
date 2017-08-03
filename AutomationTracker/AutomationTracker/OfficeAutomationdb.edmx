@@ -42,6 +42,8 @@
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="1" />
           <Property Name="Company" Type="int" />
           <Property Name="ActualAssignee" Type="int" />
+          <Property Name="WarrantyExpireDate" Type="date" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="DisposeList">
           <Key>
@@ -169,6 +171,8 @@
           <Property Name="ActualAssignee" Type="int" />
           <Property Name="PANo" Type="varchar" MaxLength="20" />
           <Property Name="Category" Type="int" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -210,6 +214,7 @@
           <Property Name="PurchaseDate" Type="date" />
           <Property Name="DisposeDate" Type="date" />
           <Property Name="ActualAssignee" Type="int" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <Association Name="CategoryIDfk_UnitType">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
@@ -640,6 +645,8 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="UpdateBy" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="Company" Type="Int32" />
           <Property Name="ActualAssignee" Type="Int32" />
+          <Property Name="WarrantyExpireDate" Type="DateTime" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="Company1" Relationship="OfficeAutomationdbModel.Companyfk_Computers" FromRole="Computer" ToRole="Company" />
           <NavigationProperty Name="ModelType1" Relationship="OfficeAutomationdbModel.ModelTypefk_Computers" FromRole="Computer" ToRole="ModelType" />
           <NavigationProperty Name="Software" Relationship="OfficeAutomationdbModel.OfficeVersionfk_Computers" FromRole="Computer" ToRole="Software" />
@@ -789,6 +796,8 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="ActualAssignee" Type="Int32" />
           <Property Name="PANo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Category" Type="Int32" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Category1" Relationship="OfficeAutomationdbModel.CategoryIDfk_UserAssest" FromRole="UserAsset" ToRole="Category" />
         </EntityType>
         <EntityType Name="User">
@@ -833,6 +842,7 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
           <Property Name="DisposeDate" Type="DateTime" Precision="0" />
           <Property Name="ActualAssignee" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="Company1" Relationship="OfficeAutomationdbModel.Companyfk_VOIP" FromRole="VOIP" ToRole="Company" />
           <NavigationProperty Name="ModelType1" Relationship="OfficeAutomationdbModel.ModelTypefk_VOIP" FromRole="VOIP" ToRole="ModelType" />
           <NavigationProperty Name="UnitType1" Relationship="OfficeAutomationdbModel.UnitTypefk_VOIP" FromRole="VOIP" ToRole="UnitType" />
@@ -1067,6 +1077,8 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <EntitySetMapping Name="Computers">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.Computer">
               <MappingFragment StoreEntitySet="Computers">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="WarrantyExpireDate" ColumnName="WarrantyExpireDate" />
                 <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
                 <ScalarProperty Name="Company" ColumnName="Company" />
                 <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
@@ -1217,6 +1229,8 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <EntitySetMapping Name="UserAssets">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.UserAsset">
               <MappingFragment StoreEntitySet="UserAssets">
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="PANo" ColumnName="PANo" />
                 <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
@@ -1250,6 +1264,7 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <EntitySetMapping Name="VOIPs">
             <EntityTypeMapping TypeName="OfficeAutomationdbModel.VOIP">
               <MappingFragment StoreEntitySet="VOIP">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
                 <ScalarProperty Name="DisposeDate" ColumnName="DisposeDate" />
                 <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />

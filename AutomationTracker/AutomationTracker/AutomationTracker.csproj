@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="build\jquery.datetimepicker.full.js" />
+    <Content Include="css\login\login.css" />
     <Content Include="Global.asax" />
     <Content Include="images\amex.png" />
     <Content Include="images\Gem-Banner-1.jpg" />
@@ -292,7 +293,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="css\" />
     <Folder Include="SpryAssets\" />
   </ItemGroup>
   <ItemGroup>

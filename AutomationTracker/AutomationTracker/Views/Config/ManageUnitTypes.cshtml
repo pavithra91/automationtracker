@@ -15,6 +15,12 @@
                 @Html.TextBoxFor(m => Model.Unittype.UnitTypeName, new { @name = "txtUnitTypeName", @placeholder = "Unit Type Name", @class = "form-control", @id = "txtUnitTypeName" })
             </div>
 
+            <div class='input-container'>
+                <label for="dropCategory" class="labelcls">Category: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.DropDownListFor(m => Model.Unittype.Category, new SelectList(Model.assetList.categoryList, "CategoryID", "CategoryName"), "- Please Select Unit type -", new { @name = "dropCategory", @class = "form-control", @id = "dropCategory" })
+            </div>
+
             <button type="submit" class="btn btn-primary">Submit</button>
 
         </div>

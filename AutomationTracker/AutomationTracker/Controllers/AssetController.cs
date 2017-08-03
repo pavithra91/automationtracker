@@ -88,6 +88,8 @@ namespace AutomationTracker.Controllers
                 return RedirectToAction("Index", "Account");
             }
 
+            string _userName = Session["UserName"].ToString();
+
             if (objModel.computers.AUOTID == 0)
                 {
                     Computer pc = new Computer();
@@ -104,7 +106,7 @@ namespace AutomationTracker.Controllers
                     pc.PurchaseDate = objModel.computers.PurchaseDate;
                     pc.DisposeDate = objModel.computers.DisposeDate;
 
-                    pc.AddedBy = "";
+                    pc.AddedBy = _userName;
                     pc.AddedDate = DateTime.Now;
 
                     _context.Computers.Add(pc);
@@ -131,7 +133,7 @@ namespace AutomationTracker.Controllers
                     pc.Remarks = objModel.computers.Remarks;
                     pc.Company = objModel.company.CompanyID;
 
-                    pc.UpdateBy = "";
+                    pc.UpdateBy = _userName;
                     pc.UpdateDate = DateTime.Now;
 
                     _context.Computers.Attach(pc);
@@ -211,6 +213,8 @@ namespace AutomationTracker.Controllers
                 return RedirectToAction("Index", "Account");
             }
 
+            string _userName = Session["UserName"].ToString();
+
             if (objModel.phonesanddongles.AUOTID == 0)
             {
                 PhoneDongle mobile = new PhoneDongle();
@@ -228,7 +232,7 @@ namespace AutomationTracker.Controllers
                 mobile.PurchaseDate = objModel.phonesanddongles.PurchaseDate;
                 mobile.DisposeDate = objModel.phonesanddongles.DisposeDate;
 
-                mobile.AddedBy = "";
+                mobile.AddedBy = _userName;
                 mobile.AddedDate = DateTime.Now;
 
                 _context.PhoneDongles.Add(mobile);
@@ -257,7 +261,7 @@ namespace AutomationTracker.Controllers
                 mobile.Remarks = objModel.phonesanddongles.Remarks;
                 mobile.Company = objModel.company.CompanyID;
 
-                mobile.UpdateBy = "";
+                mobile.UpdateBy = _userName;
                 mobile.UpdateDate = DateTime.Now;
 
                 _context.PhoneDongles.Attach(mobile);
@@ -334,6 +338,8 @@ namespace AutomationTracker.Controllers
                 return RedirectToAction("Index", "Account");
             }
 
+            string _userName = Session["UserName"].ToString();
+
             if (objModel.voip.AUTOID == 0)
             {
                 VOIP _voip = new VOIP();
@@ -347,7 +353,7 @@ namespace AutomationTracker.Controllers
                 _voip.PurchaseDate = objModel.voip.PurchaseDate;
                 _voip.DisposeDate = objModel.voip.DisposeDate;
 
-                _voip.AddedBy = "";
+                _voip.AddedBy = _userName;
                 _voip.AddedDate = DateTime.Now;
 
                 _context.VOIPs.Add(_voip);
@@ -373,7 +379,7 @@ namespace AutomationTracker.Controllers
                 _voip.Remarks = objModel.phonesanddongles.Remarks;
                 _voip.Company = objModel.company.CompanyID;
 
-                _voip.UpdateBy = "";
+                _voip.UpdateBy = _userName;
                 _voip.UpdateDate = DateTime.Now;
 
                 _context.VOIPs.Attach(_voip);

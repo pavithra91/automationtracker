@@ -99,6 +99,8 @@ namespace AutomationTracker.Controllers
                 return RedirectToAction("Index", "Account");
             }
 
+            string _userName = Session["UserName"].ToString();
+
             if (objModel.user.UserID == 0)
             {
                 User _user = new User();
@@ -112,7 +114,7 @@ namespace AutomationTracker.Controllers
                 _user.IsActive = true;
                 _user.Remarks = objModel.user.Remarks;
 
-                _user.AddedBy = "";
+                _user.AddedBy = _userName;
                 _user.AddedDate = DateTime.Now;
 
                 _context.Users.Add(_user);
@@ -134,7 +136,7 @@ namespace AutomationTracker.Controllers
                     _newuser.IsActive = true;
                     _newuser.Remarks = objModel.user.Remarks;
 
-                    _newuser.AddedBy = "";
+                    _newuser.AddedBy = _userName;
                     _newuser.AddedDate = DateTime.Now;
 
                     _context.Users.Add(_newuser);
@@ -157,7 +159,7 @@ namespace AutomationTracker.Controllers
                     //_user.UserStatus = objModel.user.UserStatus;
                     _user.Remarks = objModel.user.Remarks;
 
-                    _user.UpdateBy = "";
+                    _user.UpdateBy = _userName;
                     _user.UpdateDate = DateTime.Now;
 
                     _context.Users.Attach(_user);

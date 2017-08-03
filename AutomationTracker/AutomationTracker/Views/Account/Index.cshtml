@@ -1,26 +1,38 @@
 ﻿@model AutomationTracker.Models.LoginModel
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_SystemLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 @using (Html.BeginForm("Login", "Account", FormMethod.Post))
 {
-    <div class='input-container'>
-        <label for="txtUsername" class="labelcls">User Name: </label>
-        <div class="icon-ph"><i class="icon-envelope"></i></div>
-        @Html.TextBoxFor(m => Model.Username, new { @name = "txtUsername", @placeholder = "User Name", @class = "form-control", @id = "txtUsername" })
+<div class="container">
+    <div class="row">
+        <div class="pen-title">
+            <h1>Office Automation Tracker</h1>
+        </div>
+        <div class="container">
+            <div class="card"></div>
+            <div class="card">
+                <h1 class="title">Login</h1>
+                <form>
+                    <div class="input-container">
+                        @Html.TextBoxFor(m => Model.Username, new { @name = "Username", @required = "required", @id = "Username" })
+                        <label for="Username">Username</label>
+                        <div class="bar"></div>
+                    </div>
+                    <div class="input-container">
+                        @Html.TextBoxFor(m => Model.Password, new { @name = "Password", @type = "password", @required = "required", @id = "Password" })                      
+                        <label for="Password">Password</label>
+                        <div class="bar"></div>
+                    </div>
+                    <div class="button-container">
+                        <button><span>Login</span></button>
+                    </div>
+                    <div class="footer"><a href="#">Forgot your password?</a></div>
+                </form>
+            </div>
+        </div>
     </div>
-
-    <div class='input-container'>
-        <label for="txtPassword" class="labelcls">Password: </label>
-        <div class="icon-ph"><i class="icon-envelope"></i></div>
-        @Html.TextBoxFor(m => Model.Password, new { @name = "txtPassword", @placeholder = "Password", @class = "form-control", @id = "txtPassword" })
-    </div>
-
-    <div style="margin-left:400px">
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
+</div>
 }
-

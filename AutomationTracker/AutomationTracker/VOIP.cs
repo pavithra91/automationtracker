@@ -29,6 +29,7 @@ namespace AutomationTracker
         public Nullable<System.DateTime> PurchaseDate { get; set; }
         public Nullable<System.DateTime> DisposeDate { get; set; }
         public Nullable<int> ActualAssignee { get; set; }
+        public Nullable<bool> IsActive { get; set; }
     
         public virtual Company Company1 { get; set; }
         public virtual ModelType ModelType1 { get; set; }

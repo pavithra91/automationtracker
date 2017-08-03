@@ -53,7 +53,9 @@ $('#datetimepicker2').datetimepicker({
     formatDate:'Y/m/d',
 });
 $('#datetimepicker3').datetimepicker({
-    inline:true
+    timepicker: false,
+    format: 'd/m/Y',
+    formatDate: 'Y/m/d',
 });
 $('#datetimepicker4').datetimepicker();
 $('#open').click(function(){
