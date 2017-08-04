@@ -1,0 +1,224 @@
+﻿@model AutomationTracker.Models.AssetList
+@{
+    ViewBag.Title = "DisposeList";
+    ViewBag.Menu = "DisposeList";
+    Layout = "~/Views/Shared/_SystemLayout.cshtml";
+}
+
+<section class="common_section">
+    <div class="container">
+
+        @*<div class="container" style="padding-bottom:20px;">
+                <input type="button" style="float:right;" class="btn btn-primary" value="Add Computer" onclick="location.href='@Url.Action("ManageComputers", "Asset", new { id = 0 })'" />
+            </div>*@
+
+        <h3 style="margin-bottom:20px;">
+            <label class="labelcls">Dispose List </label>
+        </h3>
+
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">Computers & Laptops</a></li>
+            <li><a data-toggle="tab" href="#menu1">Mobile Phones & Dongles</a></li>
+            <li><a data-toggle="tab" href="#menu2">VOIP</a></li>
+            <li><a data-toggle="tab" href="#menu3">Other</a></li>
+        </ul>
+
+
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <div style="margin-top:10px;">
+                    <table id="computersTable" class="display nowrap" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Item ID</th>
+                                <th>Unit Type Name</th>
+                                <th>Model Name</th>
+                                <th>Asset Number</th>
+                                <th>Serial number</th>
+                                <th>Dispose Date</th>
+                                <th>Dispose Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.computerList.Count > 0)
+                            {
+                                foreach (var items in Model.computerList)
+                                {
+                                    <tr>
+                                        <td>
+                                            @items.AUOTID
+                                        </td>
+                                        <td>
+                                            @items.UnitType1.UnitTypeName
+                                        </td>
+                                        <td>
+                                            @items.ModelType1.ModelName
+                                        </td>
+                                        <td>
+                                            @items.AssestNo
+                                        </td>
+                                        <td>
+                                            @items.SerialNo
+                                        </td>
+                                        <td>
+                                            @items.DisposeDate
+                                        </td>
+                                        <td>
+                                            @items.DisposeRemark
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div id="menu1" class="tab-pane fade">
+                <h3>Mobile Phones & Dongles</h3>
+                <div style="margin-top:5px;">
+                    <table id="mobilePhoneTable" class="display nowrap" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Item ID</th>
+                                <th>Unit Type Name</th>
+                                <th>Model Name</th>
+                                <th>Asset Number</th>
+                                <th>Serial number</th>
+                                <th>Dispose Date</th>
+                                <th>Dispose Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.phonesanddongleList.Count > 0)
+                            {
+                                foreach (var items in Model.phonesanddongleList)
+                                {
+                                    <tr>
+                                        <td>
+                                            @items.AUOTID
+                                        </td>
+                                        <td>
+                                            @items.UnitType1.UnitTypeName
+                                        </td>
+                                        <td>
+                                            @items.ModelType1.ModelName
+                                        </td>
+                                        <td>
+                                            @items.AssestNo
+                                        </td>
+                                        <td>
+                                            @items.SerialNo
+                                        </td>
+                                        <td>
+                                            @items.DisposeDate
+                                        </td>
+                                        <td>
+                                            @items.DisposeRemark
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <h3>VOIP</h3>
+                <div style="margin-top:10px;">
+                    <table id="voipTable" class="display nowrap" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Item ID</th>
+                                <th>Unit Type Name</th>
+                                <th>Model Name</th>
+                                <th>Asset Number</th>
+                                <th>Serial number</th>
+                                <th>Dispose Date</th>
+                                <th>Dispose Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.voipList.Count > 0)
+                            {
+                                foreach (var items in Model.voipList)
+                                {
+                                    <tr>
+                                        <td>
+                                            @items.AUTOID
+                                        </td>
+                                        <td>
+                                            @items.UnitType1.UnitTypeName
+                                        </td>
+                                        <td>
+                                            @items.ModelType1.ModelName
+                                        </td>
+                                        <td>
+                                            @items.AssestNo
+                                        </td>
+                                        <td>
+                                            @items.SerialNo
+                                        </td>
+                                        <td>
+                                            @items.DisposeDate
+                                        </td>
+                                        <td>
+                                            @items.DisposeRemark
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="menu3" class="tab-pane fade">
+                <h3>Other</h3>
+                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            </div>
+        </div>
+
+        </div>
+</section>
+
+@section scriptLocation{
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#computersTable').DataTable({
+                dom: 'Bfrtip',
+                "pagingType": "full_numbers",
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+
+        $(document).ready(function () {
+            $('#mobilePhoneTable').DataTable({
+                dom: 'Bfrtip',
+                "pagingType": "full_numbers",
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+
+        $(document).ready(function () {
+            $('#voipTable').DataTable({
+                dom: 'Bfrtip',
+                "pagingType": "full_numbers",
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+    </script>
+}
+
+

@@ -28,7 +28,7 @@ namespace AutomationTracker
         public string AddedBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string UpdateBy { get; set; }
-        public Nullable<bool> IsUserOutSource { get; set; }
+        public bool IsUserOutSource { get; set; }
     
         public virtual Company Company1 { get; set; }
         public virtual Market Market1 { get; set; }

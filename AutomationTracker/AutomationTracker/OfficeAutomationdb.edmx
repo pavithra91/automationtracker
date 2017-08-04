@@ -195,7 +195,7 @@
           <Property Name="AddedBy" Type="varchar" MaxLength="100" />
           <Property Name="UpdateDate" Type="date" />
           <Property Name="UpdateBy" Type="varchar" MaxLength="100" />
-          <Property Name="IsUserOutSource" Type="bit" />
+          <Property Name="IsUserOutSource" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="VOIP">
           <Key>
@@ -824,7 +824,7 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="AddedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="UpdateDate" Type="DateTime" Precision="0" />
           <Property Name="UpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="IsUserOutSource" Type="Boolean" />
+          <Property Name="IsUserOutSource" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Company1" Relationship="OfficeAutomationdbModel.CompanyIDfk_Users" FromRole="User" ToRole="Company" />
           <NavigationProperty Name="Market1" Relationship="OfficeAutomationdbModel.Marketfk_Users" FromRole="User" ToRole="Market" />
         </EntityType>

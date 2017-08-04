@@ -83,21 +83,36 @@
                        @placeholder = "PA No", @*@disabled = hiddenstyle,*@ @class = "form-control",
                        @id = "txtPANo"
                    })
-                        <button type="button" class="btn btn-primary">Create Outsource PA</button>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class='input-container'>
-                        <label for="txtSAPNo" class="labelcls">SAP No: </label>
-                        <div class="icon-ph"><i class="icon-envelope"></i></div>
-                        @Html.TextBoxFor(m => Model.user.SAPNo, new
+                        <div class="funkyradio" style="margin-top:35px;">
+                            <div class="funkyradio-success">
+                                @if (Model.user.UserID == 0)
+                                {
+                                    @Html.CheckBoxFor(m => Model.user.IsUserOutSource, new { @name = "IsUserOutSource", @id = "IsUserOutSource" })
+                                }
+                                else
+                                {
+                                    @Html.CheckBoxFor(m => Model.user.IsUserOutSource, new { @name = "IsUserOutSource", @disabled = "disabled", @checked = "checked", @id = "IsUserOutSource" })
+                                }
+                                <label for="IsUserOutSource">Create Outsource PA</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='input-container'>
+                <label for="txtSAPNo" class="labelcls">SAP No: </label>
+                <div class="icon-ph"><i class="icon-envelope"></i></div>
+                @Html.TextBoxFor(m => Model.user.SAPNo, new
                    {
                        @name = "txtSAPNo",
                        @placeholder = "SAP No", @*@disabled = hiddenstyle,*@ @class = "form-control",
                        @id = "txtSAPNo"
                    })
-                    </div>
-                </div>
             </div>
 
 
@@ -134,6 +149,22 @@
 }
 
 @section scriptLocation{
+<script>
+    function ShowHideDiv(checkbox) {
+        if (checkbox.checked)
+        {
+            document.getElementById("txtPANo").disabled = true;
+        }
+        else
+        {
+            document.getElementById("txtPANo").disabled = true;
+        }
+            //var dvDisposeRemark = document.getElementById("txtPANo");
+            ////document.getElementById("txtPANo").disabled = true;
+            //dvDisposeRemark.disabled = checkbox.checked ? true : false;
+        }
+</script>
+
     <script>
         $(function () {
             $("#dropUnitType").change(function () {

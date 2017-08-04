@@ -462,7 +462,31 @@ namespace AutomationTracker.Controllers
 
             return RedirectToAction("ViewUsers", "Account");
         }
+
+        public ActionResult DisposeList()
+        {
+            AssetList objList = new AssetList();
+
+            objList.computerList = _context.Computers.Where(w=>w.IsActive == false).ToList();
+            objList.phonesanddongleList = _context.PhoneDongles.Where(w => w.IsActive == false).ToList();
+            objList.voipList = _context.VOIPs.Where(w => w.IsActive == false).ToList();
+            //var _other = _context.othe.Where(w => w.Category == 4);
+
+            return View(objList);
+        }
         
+        public ActionResult AssetTransferHistory()
+        {
+            AssetList objList = new AssetList();
+
+            var computerList = _context.TransferAssestHistories.Where(w => w.Category == 1).ToList();
+
+            objList.phonesanddongleList = _context.PhoneDongles.Where(w => w.IsActive == false).ToList();
+            objList.voipList = _context.VOIPs.Where(w => w.IsActive == false).ToList();
+            //var _other = _context.othe.Where(w => w.Category == 4);
+
+            return View(objList);
+        }
 
         #region GET Request
         [HttpGet]

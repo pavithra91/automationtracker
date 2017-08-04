@@ -58,7 +58,9 @@ namespace AutomationTracker.Controllers
                 UserList objList = new UserList();
                 UserTitle titles = new UserTitle();
                 objModel.userList = new UserList();
+                objModel.user = new AutomationTracker.User();
                 objModel.user.IsActive = true;
+                objModel.user.IsUserOutSource = false;
 
                 objList.companyList = _context.Companies.ToList();
                 objList.marketList = _context.Markets.ToList();
@@ -109,11 +111,26 @@ namespace AutomationTracker.Controllers
                 _user.FullName = objModel.user.FullName;
                 _user.Company = objModel.user.Company;
                 _user.Market = objModel.user.Market;
-                _user.PANo = objModel.user.PANo;
                 _user.SAPNo = objModel.user.SAPNo;
                 _user.NIC = objModel.user.NIC;
                 _user.IsActive = true;
+                _user.IsUserOutSource = objModel.user.IsUserOutSource;
                 _user.Remarks = objModel.user.Remarks;
+
+                if(objModel.user.IsUserOutSource)
+                {
+                    int OutSourcePA = _context.OutsourceUsers.Max(w => w.AUTOID);
+                    string NewPA = "O" + (OutSourcePA + 1);
+                    _user.PANo = NewPA;
+
+                    OutsourceUser _outsourceUsers = new OutsourceUser();
+                    _outsourceUsers.OutSourceID = NewPA;
+                    _context.OutsourceUsers.Add(_outsourceUsers);
+                }
+                else
+                {
+                    _user.PANo = objModel.user.PANo;
+                }
 
                 _user.AddedBy = _userName;
                 _user.AddedDate = DateTime.Now;
@@ -159,6 +176,7 @@ namespace AutomationTracker.Controllers
                     _user.NIC = objModel.user.NIC;
                     //_user.UserStatus = objModel.user.UserStatus;
                     _user.Remarks = objModel.user.Remarks;
+                    _user.IsActive = objModel.user.IsActive;
 
                     _user.UpdateBy = _userName;
                     _user.UpdateDate = DateTime.Now;

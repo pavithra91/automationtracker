@@ -36,6 +36,7 @@
 margin-top:25px;
 bottom:0;
 width:100%;
+position:fixed;
 }
 
 /*footer.container-fluid.text-center.foot {
@@ -73,6 +74,8 @@ width: 5rem;
         $(document).ready(function () {
             $('#example').DataTable({
                 dom: 'Bfrtip',
+                "pagingType": "full_numbers",
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ]
@@ -189,12 +192,9 @@ width: 5rem;
                                 </a>
                             </li>
                         }
-
-
-
-
+                        
                         <li>
-                            <a href="maps.html">
+                            <a href="#">
                                 <i class="fa fa-print"></i>
                                 <p>Others</p>
                             </a>
@@ -206,15 +206,29 @@ width: 5rem;
                             </a>
                         </li>
 
+                        <li>
+                            <a href="@Url.Action("DisposeList","Asset")">
+                                <i class="fa fa-trash-o"></i>
+                                <p>Dispose List</p>
+                            </a>
+                        </li>
 
-                        <li class="active-pro" style="margin-bottom:50px;">
+                        <li>
+                            <a href="notifications.html">
+                                <i class="fa fa-history"></i>
+                                <p>History</p>
+                            </a>
+                        </li>
+
+
+                        <li class="active-pro">
                             <a href="@Url.Action("ViewUnitTypes", "Config")">
                                 <i class="pe-7s-rocket"></i>
                                 <p>Manage Unit Type</p>
                             </a>
                         </li>
-                        <li class="active-pro2" style="margin-bottom:50px;">
-                            <hr style="margin-bottom:50px;" />
+                        <li class="active-pro2">
+                            <hr />
                             <a href="@Url.Action("ViewModels","Config")">
                                 <i class="pe-7s-rocket"></i>
                                 <p>Manage Models</p>
@@ -233,12 +247,6 @@ width: 5rem;
             <nav class="navbar navbar-default navbar-fixed">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
                         <a class="navbar-brand" href="#">Dashboard</a>
                     </div>
                     <div class="collapse navbar-collapse">
@@ -246,25 +254,6 @@ width: 5rem;
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-dashboard"></i>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-globe"></i>
-                                    <b class="caret"></b>
-                                    <span class="notification">5</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Notification 1</a></li>
-                                    <li><a href="#">Notification 2</a></li>
-                                    <li><a href="#">Notification 3</a></li>
-                                    <li><a href="#">Notification 4</a></li>
-                                    <li><a href="#">Another notification</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <i class="fa fa-search"></i>
                                 </a>
                             </li>
                         </ul>
@@ -301,7 +290,7 @@ width: 5rem;
             <footer class="container-fluid text-center foot">
                 <div class="copyrights">
                     <p class="white-txt">
-                        Your Site Name © 2017
+                        Office Automation Tracker © 2017
                     </p>
                     <hr class="dark-line">
                     <a class="link" href="#">Contact Us</a>&nbsp
@@ -309,7 +298,7 @@ width: 5rem;
                     <a class="link" href="#">Terms & Conditions</a>
                     <br><br>
                     <p class="white-txt small">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ornare elit odio, eu imperdiet ligula ullamcorper sed.
+                        Proud Product of Walkerstours IT.
                     </p>
                 </div>
             </footer>
