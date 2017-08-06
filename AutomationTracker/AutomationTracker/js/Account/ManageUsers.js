@@ -11,7 +11,7 @@ $("#dropCompany").change(function () {
     var CompanyID = $('#dropCompany').val();
         $.ajax({
             type: 'GET',
-            url: "http://localhost:15707/Account/GetMarkets?CompanyID=" + CompanyID,
+            url: "http://automationtracker.azurewebsites.net/Account/GetMarkets?CompanyID=" + CompanyID,
             data: JSON.stringify({ "UnitTypeID": 1 }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -42,13 +42,13 @@ $(document).ready(function () {
         } else {
             $.ajax({
                 type: 'GET',
-                url: "http://localhost:15707/Account/CheckUserAssest?UserID=" + UserID,
+                url: "http://automationtracker.azurewebsites.net/Account/CheckUserAssest?UserID=" + UserID,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (result) {
                     var r = result;
                     if (result == 1) {
-                        alertify.set('notifier', 'delay', 60);
+                        alertify.set('notifier', 'delay', 15);
                         alertify.set('notifier', 'position', 'top-center');
                         alertify.error('Assest are already Assign to This User. Please Trasnfer all Assest To IT Pool before Inactive User');
                         $('#btnSubmit').prop("disabled", true);

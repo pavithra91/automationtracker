@@ -22,7 +22,7 @@ $(function () {
         if (unitID == 1 || unitID == 2) {
             $.ajax({
                 type: 'GET',
-                url: "http://localhost:15707/Asset/GetModels?UnitTypeID=" + unitID,
+                url: "http://automationtracker.azurewebsites.net/Asset/GetModels?UnitTypeID=" + unitID,
                 data: JSON.stringify({ "UnitTypeID": 1 }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -44,7 +44,7 @@ $(function () {
 
             $.ajax({
                 type: 'GET',
-                url: "http://localhost:15707/Asset/GetSoftwares",
+                url: "http://automationtracker.azurewebsites.net/Asset/GetSoftwares",
                 data: JSON.stringify({ "UnitTypeID": 1 }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -82,7 +82,7 @@ var drpOfficeval = $('#drpOffice').val();
 
 $.ajax({
     type: 'GET',
-    url: "http://localhost:15707/Asset/GetSoftwares",
+    url: "http://automationtracker.azurewebsites.net/Asset/GetSoftwares",
     data: JSON.stringify({ "UnitTypeID": 1 }),
     contentType: "application/json; charset=utf-8",
     dataType: "json",
@@ -121,7 +121,7 @@ $.ajax({
 var dropCompanyVal = $('#computers_Company').val();
 $.ajax({
     type: 'GET',
-    url: "http://localhost:15707/Asset/GetCompany",
+    url: "http://automationtracker.azurewebsites.net/Asset/GetCompany",
     data: JSON.stringify({ "UnitTypeID": 1 }),
     contentType: "application/json; charset=utf-8",
     dataType: "json",

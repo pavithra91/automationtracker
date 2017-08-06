@@ -108,7 +108,7 @@ width: 5rem;
                         @if (ViewBag.Menu == null)
                         {
                             <li class="active">
-                                <a href="#">
+                                <a href="@Url.Action("Dashboard","Account")">
                                     <i class="fa fa-tachometer"></i>
                                     <p>Dashboard</p>
                                 </a>
@@ -117,7 +117,7 @@ width: 5rem;
                         else
                         {
                             <li>
-                                <a href="dashboard.html">
+                                <a href="@Url.Action("Dashboard","Account")">
                                     <i class="fa fa-tachometer"></i>
                                     <p>Dashboard</p>
                                 </a>

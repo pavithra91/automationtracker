@@ -23,7 +23,7 @@ $(function () {
         if (unitID == 5) {
             $.ajax({
                 type: 'GET',
-                url: "http://localhost:15707/Asset/GetModels?UnitTypeID=" + unitID,
+                url: "http://automationtracker.azurewebsites.net/Asset/GetModels?UnitTypeID=" + unitID,
                 data: JSON.stringify({ "UnitTypeID": 1 }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -49,7 +49,7 @@ $(function () {
 var dropCompanyVal = $('#voips_Company').val();
 $.ajax({
     type: 'GET',
-    url: "http://localhost:15707/Asset/GetCompany",
+    url: "http://automationtracker.azurewebsites.net/Asset/GetCompany",
     data: JSON.stringify({ "UnitTypeID": 1 }),
     contentType: "application/json; charset=utf-8",
     dataType: "json",

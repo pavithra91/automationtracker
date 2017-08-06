@@ -22,9 +22,12 @@
                 @Html.DropDownListFor(m => Model.Unittype.Category, new SelectList(Model.assetList.categoryList, "CategoryID", "CategoryName"), "- Please Select Unit type -", new { @name = "dropCategory", @class = "form-control", @id = "dropCategory" })
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div style="margin-top:10px;">
+                <button type="submit" class="btn btn-primary">Submit</button>
 
-        </div>
+                <input type="button" style="margin-left:10px" class="btn btn-primary" value="Back" onclick="location.href='@Url.Action("ViewUnitTypes", "Config")'" />
+                </div>
+            </div>
     </section>
 }
 

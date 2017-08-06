@@ -295,14 +295,13 @@ namespace AutomationTracker.Controllers
                     }
                     else
                 {
-                    //Invalid User
+                    return RedirectToAction("Index");
                 }
             }
             else
             {
-                //Invalid User
+                return RedirectToAction("Index");
             }
-            return View();
         }
 
         public ActionResult Logout()

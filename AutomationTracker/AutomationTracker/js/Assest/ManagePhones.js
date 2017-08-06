@@ -23,7 +23,7 @@ $(function () {
         if (unitID == 3 || unitID == 4) {
             $.ajax({
                 type: 'GET',
-                url: "http://localhost:15707/Asset/GetModels?UnitTypeID=" + unitID,
+                url: "http://automationtracker.azurewebsites.net/Asset/GetModels?UnitTypeID=" + unitID,
                 data: JSON.stringify({ "UnitTypeID": 1 }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -50,7 +50,7 @@ var drpProviderval = $('#drpProvider').val();
 
 $.ajax({
     type: 'GET',
-    url: "http://localhost:15707/Asset/GetProviders",
+    url: "http://automationtracker.azurewebsites.net/Asset/GetProviders",
     data: JSON.stringify({ "UnitTypeID": 1 }),
     contentType: "application/json; charset=utf-8",
     dataType: "json",
@@ -78,7 +78,7 @@ $.ajax({
 var dropCompanyVal = $('#phonesanddongles_Company').val();
 $.ajax({
     type: 'GET',
-    url: "http://localhost:15707/Asset/GetCompany",
+    url: "http://automationtracker.azurewebsites.net/Asset/GetCompany",
     data: JSON.stringify({ "UnitTypeID": 1 }),
     contentType: "application/json; charset=utf-8",
     dataType: "json",

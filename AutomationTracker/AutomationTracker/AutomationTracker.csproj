@@ -301,6 +301,8 @@
     <Content Include="Views\Asset\DisposeList.cshtml" />
     <Content Include="Views\Asset\TransferHistory.cshtml" />
     <Content Include="Views\Asset\ViewTransferHistory.cshtml" />
+    <None Include="Properties\PublishProfiles\automationtracker - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\automationtracker - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
