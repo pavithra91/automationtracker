@@ -7,10 +7,6 @@
 <section class="common_section">
     <div class="container">
 
-        @*<div class="container" style="padding-bottom:20px;">
-            <input type="button" style="float:right;" class="btn btn-primary" value="Transfer Asset" onclick="location.href='@Url.Action("TransferAsset", "Account", new { id = 0 })'" />
-        </div>*@
-
         <table id="example" class="display" cellspacing="0" width="100%">
             <thead>
                 <tr>
@@ -52,7 +48,12 @@
                                 @Model.userAssestList.ActualAssignee.UserID
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "TransferAsset", new { id = items.AUOTID, category = 1 })
+                                <a href="@Url.Action("TransferAsset","Account", new { id = items.AUOTID, category = 1 })" style="margin-left:10px;">
+                                    <i class="fa fa-exchange"></i>
+                                    Transfer
+                                </a>
+
+                                @*@Html.ActionLink("Edit", "TransferAsset", new { id = items.AUOTID, category = 1 })*@
                             </td>
                         </tr>
                     }

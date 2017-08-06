@@ -19,6 +19,7 @@ namespace AutomationTracker
         public Nullable<int> NewUser { get; set; }
         public Nullable<int> ItemID { get; set; }
         public Nullable<int> Category { get; set; }
-        public Nullable<System.DateTime> AddedDate { get; set; }
+        public System.DateTime AddedDate { get; set; }
+        public string AddedBy { get; set; }
     }
 }

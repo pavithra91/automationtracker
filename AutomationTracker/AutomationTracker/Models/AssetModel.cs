@@ -29,5 +29,17 @@ namespace AutomationTracker.Models
         public List<Company> companyList { get; set; }
         public List<User> userList { get; set; }
         public List<Category> categoryList { get; set; }
+        public List<History> history { get; set; }
+    }
+
+    public class History
+    {
+        public Computer _computer { get; set; }
+        public PhoneDongle _mobile { get; set; }
+        public VOIP _voip { get; set; }
+        public User PreviousUser { get; set; }
+        public User NewUser { get; set; }
+        public string AddedBy { get; set; }
+        public DateTime AddedDate { get; set; }
     }
 }

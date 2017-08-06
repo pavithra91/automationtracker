@@ -156,6 +156,14 @@
     <Content Include="jquery.datetimepicker.js" />
     <Content Include="jquery.datetimepicker.min.js" />
     <Content Include="jquery.js" />
+    <Content Include="js\Alertify\alertify.min.css" />
+    <Content Include="js\Alertify\alertify.min.js" />
+    <Content Include="js\Common\DataTable_Custom.js" />
+    <Content Include="js\Account\ManageUsers.js" />
+    <Content Include="js\Assest\DisposeList.js" />
+    <Content Include="js\Assest\ManageComputers.js" />
+    <Content Include="js\Assest\ManagePhones.js" />
+    <Content Include="js\Assest\ManageVOIP.js" />
     <Content Include="js\custom.js" />
     <Content Include="OfficeAutomationdb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -167,6 +175,12 @@
       <DependentUpon>OfficeAutomationdb.edmx</DependentUpon>
       <LastGenOutput>OfficeAutomationdb.cs</LastGenOutput>
     </Content>
+    <Content Include="js\Validation\SpryAssets\SpryValidationSelect.css" />
+    <Content Include="js\Validation\SpryAssets\SpryValidationSelect.js" />
+    <Content Include="js\Validation\SpryAssets\SpryValidationTextarea.css" />
+    <Content Include="js\Validation\SpryAssets\SpryValidationTextarea.js" />
+    <Content Include="js\Validation\SpryAssets\SpryValidationTextField.css" />
+    <Content Include="js\Validation\SpryAssets\SpryValidationTextField.js" />
     <Content Include="style.css" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -285,6 +299,8 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Dashboard.cshtml" />
     <Content Include="Views\Asset\DisposeList.cshtml" />
+    <Content Include="Views\Asset\TransferHistory.cshtml" />
+    <Content Include="Views\Asset\ViewTransferHistory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -294,7 +310,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="SpryAssets\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

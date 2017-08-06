@@ -1,0 +1,103 @@
+﻿@model AutomationTracker.Models.AssetList
+@{
+    ViewBag.Title = "TransferHistory";
+    Layout = "~/Views/Shared/_SystemLayout.cshtml";
+}
+
+
+<section class="common_section">
+    <div class="container">
+
+        <table id="example" class="display nowrap" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Unit ID</th>
+                    <th>Model Name</th>
+                    <th>Asset Number</th>
+                    <th>Serial number</th>
+                    <th>Previous User</th>
+                    <th>Current User</th>
+                    <th>Company</th>
+                    <th>Transfer Date</th>
+                    <th>Transfer By</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var items in Model.history)
+                {
+                    <tr>
+                        @if (items._computer != null)
+                        {
+                            <td>
+                                @items._computer.AUOTID
+                            </td>
+                            <td>
+                                @items._computer.ModelType1.ModelName
+                            </td>
+                            <td>
+                                @items._computer.AssestNo
+                            </td>
+                            <td>
+                                @items._computer.SerialNo
+                            </td>
+                        }
+                        else if (items._mobile != null)
+                        {
+                            <td>
+                                @items._mobile.AUOTID
+                            </td>
+                            <td>
+                                @items._mobile.ModelType1.ModelName
+                            </td>
+                            <td>
+                                @items._mobile.AssestNo
+                            </td>
+                            <td>
+                                @items._mobile.SerialNo
+                            </td>
+                        }
+                        else if (items._voip != null)
+                        {
+                            <td>
+                                @items._voip.AUTOID
+                            </td>
+                            <td>
+                                @items._voip.ModelType1.ModelName
+                            </td>
+                            <td>
+                                @items._voip.AssestNo
+                            </td>
+                            <td>
+                                @items._voip.SerialNo
+                            </td>
+                        }
+                        <td>
+                            @items.PreviousUser.FullName
+                        </td>
+                        <td>
+                            @items.NewUser.FullName
+                        </td>
+                        <td>
+                            @items.NewUser.Company1.CompanyName
+                        </td>
+                        <td>
+                            @items.AddedDate
+                        </td>
+                        <td>
+                            @items.AddedBy
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div style="margin-top:10px;">
+            <input type="button" style="margin-left:10px" class="btn btn-primary" value="Back" onclick="location.href='@Url.Action("ViewTransferHistory", "Asset")'" />
+        </div>
+    </div>
+</section>
+
+@section scriptLocation{
+
+}
+

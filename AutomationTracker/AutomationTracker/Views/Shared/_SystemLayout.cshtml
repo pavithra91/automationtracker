@@ -70,6 +70,15 @@ width: 5rem;
     </style>
 
 
+    @*Validation*@
+    <link href="~/js/Validation/SpryAssets/SpryValidationTextField.css" rel="stylesheet" />
+    <script src="~/js/Validation/SpryAssets/SpryValidationTextField.js"></script>
+    <link href="~/js/Validation/SpryAssets/SpryValidationSelect.css" rel="stylesheet" />
+    <script src="~/js/Validation/SpryAssets/SpryValidationSelect.js"></script>
+
+    @*Alertify*@
+    <link href="~/js/Alertify/alertify.min.css" rel="stylesheet" />
+
     <script>
         $(document).ready(function () {
             $('#example').DataTable({
@@ -200,26 +209,49 @@ width: 5rem;
                             </a>
                         </li>
                         <li>
-                            <a href="notifications.html">
+                            <a href="#">
                                 <i class="fa fa-user-plus"></i>
                                 <p>Assign Users</p>
                             </a>
                         </li>
 
-                        <li>
-                            <a href="@Url.Action("DisposeList","Asset")">
-                                <i class="fa fa-trash-o"></i>
-                                <p>Dispose List</p>
-                            </a>
-                        </li>
+                        @if (ViewBag.Menu != null && ViewBag.Menu == "DisposeList")
+                        {
+                            <li class="active">
+                                <a href="@Url.Action("DisposeList","Asset")">
+                                    <i class="fa fa-trash-o"></i>
+                                    <p>Dispose List</p>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="@Url.Action("DisposeList","Asset")">
+                                    <i class="fa fa-trash-o"></i>
+                                    <p>Dispose List</p>
+                                </a>
+                            </li>
+                        }
 
-                        <li>
-                            <a href="notifications.html">
-                                <i class="fa fa-history"></i>
-                                <p>History</p>
-                            </a>
-                        </li>
-
+                        @if (ViewBag.Menu != null && ViewBag.Menu == "ViewTransferHistory")
+                        {
+                            <li class="active">
+                                <a href="@Url.Action("ViewTransferHistory","Asset")">
+                                    <i class="fa fa-history"></i>
+                                    <p>History</p>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="@Url.Action("ViewTransferHistory","Asset")">
+                                    <i class="fa fa-history"></i>
+                                    <p>History</p>
+                                </a>
+                            </li>
+                        }
 
                         <li class="active-pro">
                             <a href="@Url.Action("ViewUnitTypes", "Config")">

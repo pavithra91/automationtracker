@@ -63,7 +63,7 @@ namespace AutomationTracker.Controllers
                 objModel.user.IsUserOutSource = false;
 
                 objList.companyList = _context.Companies.ToList();
-                objList.marketList = _context.Markets.ToList();
+                objList.marketList = new List<Market>();
                 objList.titlelist = titles.GetAllTitles();
 
                 objModel.userList = objList;
@@ -310,6 +310,42 @@ namespace AutomationTracker.Controllers
             Session.Clear();
 
             return RedirectToAction("Index");
+        }
+
+
+        [HttpGet]
+        public virtual JsonResult GetMarkets(string CompanyID)
+        {
+            try
+            {
+                int ID = Convert.ToInt32(CompanyID);
+
+                return Json(
+                    _context.Markets.Where(w => w.CompanyID == ID).Select(x => new
+                    {
+                        id = x.MarketID,
+                        name = x.MarketName
+                    }), JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        [HttpGet]
+        public int CheckUserAssest(int UserID)
+        {
+            var _userAssest = _context.UserAssets.Where(w => w.UserID == UserID).ToList();
+
+            if(_userAssest.Count > 0)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }

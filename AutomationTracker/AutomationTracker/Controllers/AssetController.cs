@@ -25,7 +25,7 @@ namespace AutomationTracker.Controllers
 
             AssetList objModel = new AssetList();
 
-            objModel.computerList = _context.Computers.ToList();
+            objModel.computerList = _context.Computers.Where(w=>w.IsActive == true).ToList();
 
             return View(objModel);
         }
@@ -113,7 +113,7 @@ namespace AutomationTracker.Controllers
                     _context.Computers.Add(pc);
                     _context.SaveChanges();
 
-                    User _user = _context.Users.Where(w => w.FullName == "IT Pool" && w.Company == objModel.company.CompanyID).FirstOrDefault();
+                    User _user = _context.Users.Where(w => w.FullName.Contains("IT Pool") && w.Company == objModel.company.CompanyID).FirstOrDefault();
                     UnitType _unitType = _context.UnitTypes.Where(w => w.UnitTypeID == pc.UnitType).FirstOrDefault();
 
                     UserAsset _userAssest = new UserAsset();
@@ -148,6 +148,10 @@ namespace AutomationTracker.Controllers
                     _disposePC.UpdateDate = DateTime.Now;
 
                     _context.DisposeLists.Add(_disposePC);
+
+                    var _assest = _context.UserAssets.Where(w => w.AUTOID == pc.AUOTID && w.Category == 1).FirstOrDefault();
+
+                    _context.UserAssets.Remove(_assest);
                     _context.SaveChanges();
                 }
 
@@ -170,7 +174,7 @@ namespace AutomationTracker.Controllers
 
             AssetList objModel = new AssetList();
 
-            objModel.phonesanddongleList = _context.PhoneDongles.ToList();
+            objModel.phonesanddongleList = _context.PhoneDongles.Where(w => w.IsActive == true).ToList();
 
             return View(objModel);
         }
@@ -257,7 +261,7 @@ namespace AutomationTracker.Controllers
                 _context.PhoneDongles.Add(mobile);
                 _context.SaveChanges();
 
-                User _user = _context.Users.Where(w => w.FullName == "IT Pool" && w.Company == objModel.company.CompanyID).FirstOrDefault();
+                User _user = _context.Users.Where(w => w.FullName.Contains("IT Pool") && w.Company == objModel.company.CompanyID).FirstOrDefault();
 
                 UnitType _unitType = _context.UnitTypes.Where(w => w.UnitTypeID == mobile.UnitType).FirstOrDefault();
 
@@ -295,6 +299,11 @@ namespace AutomationTracker.Controllers
 
                     _context.DisposeLists.Add(_disposePC);
                     _context.SaveChanges();
+
+                    var _assest = _context.UserAssets.Where(w => w.AUTOID == mobile.AUOTID && w.Category == 2).FirstOrDefault();
+
+                    _context.UserAssets.Remove(_assest);
+                    _context.SaveChanges();
                 }
 
                 mobile.UpdateBy = _userName;
@@ -316,7 +325,7 @@ namespace AutomationTracker.Controllers
 
             AssetList objModel = new AssetList();
 
-            objModel.voipList = _context.VOIPs.ToList();
+            objModel.voipList = _context.VOIPs.Where(w => w.IsActive == true).ToList();
 
             return View(objModel);
         }
@@ -396,7 +405,7 @@ namespace AutomationTracker.Controllers
                 _context.VOIPs.Add(_voip);
                 _context.SaveChanges();
 
-                User _user = _context.Users.Where(w => w.FullName == "IT Pool" && w.Company == objModel.company.CompanyID).FirstOrDefault();
+                User _user = _context.Users.Where(w => w.FullName.Contains("IT Pool") && w.Company == objModel.company.CompanyID).FirstOrDefault();
 
                 UnitType _unitType = _context.UnitTypes.Where(w => w.UnitTypeID == _voip.UnitType).FirstOrDefault();
 
@@ -431,6 +440,11 @@ namespace AutomationTracker.Controllers
 
                     _context.DisposeLists.Add(_disposePC);
                     _context.SaveChanges();
+
+                    var _assest = _context.UserAssets.Where(w => w.AUTOID == _voip.AUTOID && w.Category == 3).FirstOrDefault();
+
+                    _context.UserAssets.Remove(_assest);
+                    _context.SaveChanges();
                 }
 
                 _voip.UpdateBy = _userName;
@@ -442,7 +456,6 @@ namespace AutomationTracker.Controllers
             }
             return RedirectToAction("ViewVOIP");
         }
-
 
         [HttpPost]
         public ActionResult AssignUser(UserModel objModel)
@@ -471,6 +484,63 @@ namespace AutomationTracker.Controllers
             objList.phonesanddongleList = _context.PhoneDongles.Where(w => w.IsActive == false).ToList();
             objList.voipList = _context.VOIPs.Where(w => w.IsActive == false).ToList();
             //var _other = _context.othe.Where(w => w.Category == 4);
+
+            return View(objList);
+        }
+
+        public ActionResult ViewTransferHistory()
+        {
+            AssetList objList = new AssetList();
+
+            objList.computerList = _context.Computers.ToList();
+            objList.phonesanddongleList = _context.PhoneDongles.ToList();
+            objList.voipList = _context.VOIPs.ToList();
+            //var _other = _context.othe.Where(w => w.Category == 4);
+
+            return View(objList);
+        }
+
+        public ActionResult TransferHistory(int ItemID, int Category)
+        {
+            AssetList objList = new AssetList();
+
+            var _Assesthistory = _context.TransferAssestHistories.Where(w => w.Category == Category && w.ItemID == ItemID);
+
+            History _history = new History();
+
+            if(Category == 1)
+            {
+                _history._computer = _context.Computers.Where(w => w.AUOTID == ItemID).FirstOrDefault();
+            }
+            else if(Category == 2)
+            {
+                _history._mobile = _context.PhoneDongles.Where(w => w.AUOTID == ItemID).FirstOrDefault();
+            }
+            else if(Category == 3)
+            {
+                _history._voip = _context.VOIPs.Where(w => w.AUTOID == ItemID).FirstOrDefault();
+            }
+            else if(Category == 4)
+            {
+
+            }
+
+            objList.history = new List<History>();
+
+            foreach (var item in _Assesthistory)
+            {
+                History _tempHistory = new History();
+                _tempHistory._computer = _history._computer;
+                _tempHistory._mobile = _history._mobile;
+                _tempHistory._voip = _history._voip;
+                _tempHistory.AddedBy = item.AddedBy;
+                _tempHistory.AddedDate = item.AddedDate;
+
+                _tempHistory.PreviousUser = _context.Users.Where(w => w.UserID == item.PreviousUser).FirstOrDefault();
+                _tempHistory.NewUser = _context.Users.Where(w => w.UserID == item.NewUser).FirstOrDefault();
+
+                objList.history.Add(_tempHistory);
+            }
 
             return View(objList);
         }

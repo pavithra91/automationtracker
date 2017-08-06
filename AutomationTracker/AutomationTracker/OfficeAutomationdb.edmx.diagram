@@ -5,22 +5,22 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="68f6eb0174a44f78a107043ad732c960" Name="Diagram1">
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.Category" Width="1.5" PointX="0.75" PointY="11.625" />
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.Company" Width="1.5" PointX="5.25" PointY="8.25" />
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.Computer" Width="1.5" PointX="7.5" PointY="11.125" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.Category" Width="1.5" PointX="0.75" PointY="12" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.Company" Width="1.5" PointX="5.25" PointY="12.25" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.Computer" Width="1.5" PointX="7.5" PointY="15" />
         <EntityTypeShape EntityType="OfficeAutomationdbModel.DisposeList" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.Market" Width="1.5" PointX="5.25" PointY="2.625" />
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.ModelType" Width="1.5" PointX="5.25" PointY="15.75" />
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.OutsourceUser" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.PhoneDongle" Width="1.5" PointX="10.5" PointY="5.125" />
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.Provider" Width="1.5" PointX="8.25" PointY="7.25" />
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.Software" Width="1.5" PointX="5.25" PointY="11.5" />
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.SystemUser" Width="1.5" PointX="9.75" PointY="0.75" />
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.TransferAssestHistory" Width="1.5" PointX="11.75" PointY="0.75" />
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.UnitType" Width="1.5" PointX="3" PointY="9.125" />
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.UserAsset" Width="1.5" PointX="3" PointY="13.25" />
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.User" Width="1.5" PointX="7.5" PointY="1.375" />
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.VOIP" Width="1.5" PointX="10.5" PointY="11.75" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.Market" Width="1.5" PointX="8.25" PointY="9.5" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.ModelType" Width="1.5" PointX="5.25" PointY="19.75" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.OutsourceUser" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.PhoneDongle" Width="1.5" PointX="10.5" PointY="15" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.Provider" Width="1.5" PointX="8.25" PointY="12.125" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.Software" Width="1.5" PointX="5.25" PointY="15.5" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.SystemUser" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.TransferAssestHistory" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.UnitType" Width="1.5" PointX="3" PointY="13" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.UserAsset" Width="1.5" PointX="3" PointY="9.5" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.User" Width="1.5" PointX="10.5" PointY="9.25" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.VOIP" Width="1.5" PointX="13.5" PointY="15.625" />
         <AssociationConnector Association="OfficeAutomationdbModel.CategoryIDfk_UnitType" />
         <AssociationConnector Association="OfficeAutomationdbModel.CategoryIDfk_UserAssest" />
         <AssociationConnector Association="OfficeAutomationdbModel.Companyfk_Computers" />

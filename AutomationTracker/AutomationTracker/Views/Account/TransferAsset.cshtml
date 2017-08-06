@@ -4,16 +4,13 @@
     Layout = "~/Views/Shared/_SystemLayout.cshtml";
 }
 
-
 @using (Html.BeginForm("AssignUser", "Asset"))
 {
     <section class="common_section">
         <div class="container">
-
-
             @if (Model.userAssestList.ComputerList.Count > 0)
             {
-                <table id="example" class="display" cellspacing="0" width="100%">
+                <table id="NoButtonDatatable" class="display" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                             <th>Unit ID</th>
@@ -29,48 +26,48 @@
                     <tbody>
                         @foreach (var items in Model.userAssestList.ComputerList)
                         {
-                            <tr>
-                                <td>
-                                    @items.AUOTID
+                        <tr>
+                            <td>
+                                @items.AUOTID
 
-                                    @{ 
+                                @{
                                         Model.userAssestList.ItemID = items.AUOTID;
                                         Model.userAssestList.Category = items.UnitType1.Category1.CategoryID;
-                                    }
+                                }
 
-                                    @Html.HiddenFor(m=>m.userAssestList.ItemID)
-                                    @Html.HiddenFor(m => m.userAssestList.Category)
-                                </td>
-                                <td>
-                                    @items.UnitType1.UnitTypeName
-                                </td>
-                                <td>
-                                    @items.ModelType1.ModelName
-                                </td>
-                                <td>
-                                    @items.AssestNo
-                                </td>
-                                <td>
-                                    @items.SerialNo
-                                </td>
-                                <td>
-                                    @items.OS
-                                </td>
-                                <td>
-                                    @items.ActualAssignee
-                                </td>
-                                <td>
-                                    @items.Company1.CompanyName
-                                </td>
-                            </tr>
+                                @Html.HiddenFor(m=>m.userAssestList.ItemID)
+                                @Html.HiddenFor(m => m.userAssestList.Category)
+                            </td>
+                            <td>
+                                @items.UnitType1.UnitTypeName
+                            </td>
+                            <td>
+                                @items.ModelType1.ModelName
+                            </td>
+                            <td>
+                                @items.AssestNo
+                            </td>
+                            <td>
+                                @items.SerialNo
+                            </td>
+                            <td>
+                                @items.OS
+                            </td>
+                            <td>
+                                @items.ActualAssignee
+                            </td>
+                            <td>
+                                @items.Company1.CompanyName
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
-            }
+                                    }
 
             @if (Model.userAssestList.PhoneDongleList.Count > 0)
             {
-                <table id="example" class="display" cellspacing="0" width="100%">
+                <table id="NoButtonDatatable" class="display" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                             <th>Unit ID</th>
@@ -89,55 +86,55 @@
                     <tbody>
                         @foreach (var items in Model.userAssestList.PhoneDongleList)
                         {
-                            <tr>
-                                <td>
-                                    @items.AUOTID
+                        <tr>
+                            <td>
+                                @items.AUOTID
 
-                                    @{
+                                @{
                                         Model.userAssestList.ItemID = items.AUOTID;
                                         Model.userAssestList.Category = items.UnitType1.Category1.CategoryID;
-                                    }
+                                }
 
-                                    @Html.HiddenFor(m => m.userAssestList.ItemID)
-                                    @Html.HiddenFor(m => m.userAssestList.Category)
-                                </td>
-                                <td>
-                                    @items.UnitType1.UnitTypeName
-                                </td>
-                                <td>
-                                    @items.ModelType1.ModelName
-                                </td>
-                                <td>
-                                    @items.AssestNo
-                                </td>
-                                <td>
-                                    @items.SerialNo
-                                </td>
-                                <td>
-                                    @items.ConnectionNo
-                                </td>
-                                <td>
-                                    @items.EMEINo1
-                                </td>
-                                <td>
-                                    @items.EMEINo2
-                                </td>
-                                <td>
-                                    @items.Provider1.ProviderName
-                                </td>
-                                <td>
-                                    @items.ActualAssignee
-                                </td>
-                                <td>
-                                    @items.Company1.CompanyName
-                                </td>
-                            </tr>
+                                @Html.HiddenFor(m => m.userAssestList.ItemID)
+                                @Html.HiddenFor(m => m.userAssestList.Category)
+                            </td>
+                            <td>
+                                @items.UnitType1.UnitTypeName
+                            </td>
+                            <td>
+                                @items.ModelType1.ModelName
+                            </td>
+                            <td>
+                                @items.AssestNo
+                            </td>
+                            <td>
+                                @items.SerialNo
+                            </td>
+                            <td>
+                                @items.ConnectionNo
+                            </td>
+                            <td>
+                                @items.EMEINo1
+                            </td>
+                            <td>
+                                @items.EMEINo2
+                            </td>
+                            <td>
+                                @items.Provider1.ProviderName
+                            </td>
+                            <td>
+                                @items.ActualAssignee
+                            </td>
+                            <td>
+                                @items.Company1.CompanyName
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
-            }
+                                    }
 
-            <div class='input-container'>
+            <div class='input-container' style="margin-top:10px;">
                 <label for="dropUser" class="labelcls">User: </label>
                 <div class="icon-ph"><i class="icon-envelope"></i></div>
                 @Html.DropDownListFor(m => Model.user.UserID, new SelectList(Model.userList.usrList, "UserID", "FullName"), "- Please Select User -", new
@@ -147,10 +144,15 @@
            })
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div style="margin-top:15px;">
+                <button type="submit" class="btn btn-primary">Submit</button>
 
-            <input type="button" style="margin-left:10px" class="btn btn-primary" value="Back" onclick="location.href='@Url.Action("ViewUsers", "Account")'" />
-
+                <input type="button" style="margin-left:10px" class="btn btn-primary" value="Back" onclick="location.href='@Url.Action("ViewUsers", "Account")'" />
             </div>
-        </section>
+        </div>
+    </section>
+                                    }
+
+@section scriptLocation{
+    <script src="~/js/Common/DataTable_Custom.js"></script>
 }

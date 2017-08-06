@@ -1,19 +1,16 @@
 ﻿@model AutomationTracker.Models.AssetList
 @{
-    ViewBag.Title = "DisposeList";
-    ViewBag.Menu = "DisposeList";
+    ViewBag.Title = "ViewTransferHistory";
+    ViewBag.Menu = "ViewTransferHistory";
     Layout = "~/Views/Shared/_SystemLayout.cshtml";
 }
+
 
 <section class="common_section">
     <div class="container">
 
-        @*<div class="container" style="padding-bottom:20px;">
-                <input type="button" style="float:right;" class="btn btn-primary" value="Add Computer" onclick="location.href='@Url.Action("ManageComputers", "Asset", new { id = 0 })'" />
-            </div>*@
-
         <h3 style="margin-bottom:20px;">
-            <label class="labelcls">Dispose List </label>
+            <label class="labelcls">Transfer History</label>
         </h3>
 
 
@@ -37,7 +34,7 @@
                                 <th>Asset Number</th>
                                 <th>Serial number</th>
                                 <th>Dispose Date</th>
-                                <th>Dispose Remarks</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -65,7 +62,9 @@
                                             @items.DisposeDate
                                         </td>
                                         <td>
-                                            @items.DisposeRemark
+                                            <a href="@Url.Action("TransferHistory","Asset", new { ItemID = items.AUOTID, Category = 1 })" style="margin-left:15px;">
+                                                <i class="fa fa-pencil-square-o"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 }
@@ -76,8 +75,7 @@
 
             </div>
             <div id="menu1" class="tab-pane fade">
-                <h3>Mobile Phones & Dongles</h3>
-                <div style="margin-top:5px;">
+                <div style="margin-top:10px;">
                     <table id="mobilePhoneTable" class="display nowrap" cellspacing="0" width="100%">
                         <thead>
                             <tr>
@@ -87,7 +85,7 @@
                                 <th>Asset Number</th>
                                 <th>Serial number</th>
                                 <th>Dispose Date</th>
-                                <th>Dispose Remarks</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -115,7 +113,7 @@
                                             @items.DisposeDate
                                         </td>
                                         <td>
-                                            @items.DisposeRemark
+                                            @Html.ActionLink("Edit", "TransferHistory", new { ItemID = items.AUOTID, Category = 2 })
                                         </td>
                                     </tr>
                                 }
@@ -125,7 +123,6 @@
                 </div>
             </div>
             <div id="menu2" class="tab-pane fade">
-                <h3>VOIP</h3>
                 <div style="margin-top:10px;">
                     <table id="voipTable" class="display nowrap" cellspacing="0" width="100%">
                         <thead>
@@ -136,7 +133,7 @@
                                 <th>Asset Number</th>
                                 <th>Serial number</th>
                                 <th>Dispose Date</th>
-                                <th>Dispose Remarks</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -164,7 +161,7 @@
                                             @items.DisposeDate
                                         </td>
                                         <td>
-                                            @items.DisposeRemark
+                                            @Html.ActionLink("Edit", "TransferHistory", new { ItemID = items.AUTOID, Category = 3 })
                                         </td>
                                     </tr>
                                 }
@@ -179,12 +176,11 @@
             </div>
         </div>
 
-        </div>
+    </div>
 </section>
 
 @section scriptLocation{
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="~/js/Assest/DisposeList.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/js/Assest/DisposeList.js"></script>
 }
-
 

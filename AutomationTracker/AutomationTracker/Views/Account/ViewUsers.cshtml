@@ -59,9 +59,13 @@
                             @items.IsActive 
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "ManageUsers", new { id = items.UserID })
+                            <a href="@Url.Action("ManageUsers","Account", new { id = items.UserID })" style="margin-left:10px;">
+                                <i class="fa fa-pencil-square-o"></i>
+                            </a>
 
-                            @Html.ActionLink("Assign", "ViewUserAssests", new { id = items.UserID })
+                            <a href="@Url.Action("ViewUserAssests","Account", new { id = items.UserID })" style="margin-left:10px;">
+                                <i class="fa fa-exchange"></i>
+                            </a>
                         </td>
                     </tr>
                 }

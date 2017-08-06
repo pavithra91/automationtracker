@@ -21,29 +21,60 @@
                         <div class='input-container'>
                             <label for="dropUnitType" class="labelcls">Unit Type: </label>
                             <div class="icon-ph"><i class="icon-envelope"></i></div>
-                            @{
-                                var hiddenstyle = "";
-                                if (Model.computers.AUOTID > 0)
-                                {
-                                    hiddenstyle = "disabled";
-                                }
-                            }
-                            @Html.DropDownListFor(m => Model.computers.UnitType, new SelectList(Model.assetList.unittypeList, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -", new
-               {
-                   @name = "dropUnitType", @*@disabled = hiddenstyle,*@ @class = "form-control",
-                   @id = "dropUnitType"
-               })
+                            <section class="col col-6">
+                                <span id="spryUnitType">
+                                    @if (Model.computers.AUOTID > 0)
+                                    {
+                                        @Html.DropDownListFor(m => Model.computers.UnitType, new SelectList(Model.assetList.unittypeList, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -", new
+                                   {
+                                       @name = "dropUnitType",
+                                       @class = "form-control",
+                                       @disabled = "disabled",
+                                       @id = "dropUnitType"
+                                   })
+                                    }
+                                    else
+                                    {
+                                        @Html.DropDownListFor(m => Model.computers.UnitType, new SelectList(Model.assetList.unittypeList, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -", new
+                                   {
+                                       @name = "dropUnitType",
+                                       @class = "form-control",
+                                       @id = "dropUnitType"
+                                   })
+                                    }
+                                    <span class="selectRequiredMsg">Please select an item.</span>
+                                </span>
+                            </section>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class='input-container'>
                             <label for="dropModelType" class="labelcls">Model Type: </label>
                             <div class="icon-ph"><i class="icon-envelope"></i></div>
-                            @Html.DropDownListFor(m => Model.computers.ModelType, new SelectList(Model.assetList.modelList, "ModelID", "ModelName"), "- Please Select Model type -", new
-               {
-                   @name = "dropModel", @*@disabled = hiddenstyle,*@ @class = "form-control",
-                   @id = "dropModel"
-               })
+                            <section class="col col-6">
+                                <span id="spryModel">
+                                    @if (Model.computers.AUOTID > 0)
+                                    {
+                                        @Html.DropDownListFor(m => Model.computers.ModelType, new SelectList(Model.assetList.modelList, "ModelID", "ModelName"), "- Please Select Model type -", new
+                                   {
+                                       @name = "dropModel",
+                                       @class = "form-control",
+                                       @disabled = "disabled",
+                                       @id = "dropModel"
+                                   })
+                                    }
+                                    else
+                                    {
+                                        @Html.DropDownListFor(m => Model.computers.ModelType, new SelectList(Model.assetList.modelList, "ModelID", "ModelName"), "- Please Select Model type -", new
+                                   {
+                                       @name = "dropModel",
+                                       @class = "form-control",
+                                       @id = "dropModel"
+                                   })
+                                    }
+                                    <span class="selectRequiredMsg">Please select an item.</span>
+                                </span>
+                            </section>
                         </div>
                     </div>
                 </div>
@@ -54,24 +85,35 @@
                         <div class='input-container'>
                             <label for="txtAssestNo" class="labelcls">Assest No: </label>
                             <div class="icon-ph"><i class="icon-envelope"></i></div>
-                            @Html.TextBoxFor(m => Model.computers.AssestNo, new
-               {
-                   @name = "txtAssestNo",
-                   @placeholder = "Assest No", @*@disabled = hiddenstyle,*@ @class = "form-control",
-                   @id = "txtAssestNo"
-               })
+                            <section>
+                                <span id="spryAssestNo">
+                                    @Html.TextBoxFor(m => Model.computers.AssestNo, new
+                               {
+                                   @name = "txtAssestNo",
+                                   @placeholder = "Assest No", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                                   @id = "txtAssestNo"
+                               })
+                                    <span class="textfieldRequiredMsg">A value is required.</span>
+                                </span>
+                            </section>
                         </div>
+
                     </div>
                     <div class="col-md-6">
                         <div class='input-container'>
                             <label for="txtSerialNo" class="labelcls">Serial No: </label>
                             <div class="icon-ph"><i class="icon-envelope"></i></div>
-                            @Html.TextBoxFor(m => Model.computers.SerialNo, new
-               {
-                   @name = "txtSerialNo",
-                   @placeholder = "Serial No", @*@disabled = hiddenstyle,*@ @class = "form-control",
-                   @id = "txtSerialNo"
-               })
+                            <section>
+                                <span id="sprySerialNo">
+                                    @Html.TextBoxFor(m => Model.computers.SerialNo, new
+                               {
+                                   @name = "txtSerialNo",
+                                   @placeholder = "Serial No", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                                   @id = "txtSerialNo"
+                               })
+                                    <span class="textfieldRequiredMsg">A value is required.</span>
+                                </span>
+                            </section>
                         </div>
                     </div>
                 </div>
@@ -82,14 +124,24 @@
                         <div class='input-container'>
                             <label for="txtRAM" class="labelcls">RAM: </label>
                             <div class="icon-ph"><i class="icon-envelope"></i></div>
-                            @Html.TextBoxFor(m => Model.computers.RAM, new { @name = "txtRAM", @placeholder = "RAM Capacity", @class = "form-control", @id = "txtRAM" })
+                            <section>
+                                <span id="spryRam">
+                                    @Html.TextBoxFor(m => Model.computers.RAM, new { @name = "txtRAM", @placeholder = "RAM Capacity", @class = "form-control", @id = "txtRAM" })
+                                    <span class="textfieldRequiredMsg">A value is required.</span>
+                                </span>
+                            </section>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class='input-container'>
                             <label for="txtHDDCapacity" class="labelcls">Hard Disk Capacity: </label>
                             <div class="icon-ph"><i class="icon-envelope"></i></div>
-                            @Html.TextBoxFor(m => Model.computers.HDDCapacity, new { @name = "txtHDDCapacity", @placeholder = "Hard Disk Capacity", @class = "form-control", @id = "txtHDDCapacity" })
+                            <section>
+                                <span id="spryHDD">
+                                    @Html.TextBoxFor(m => Model.computers.HDDCapacity, new { @name = "txtHDDCapacity", @placeholder = "Hard Disk Capacity", @class = "form-control", @id = "txtHDDCapacity" })
+                                    <span class="textfieldRequiredMsg">A value is required.</span>
+                                </span>
+                            </section>
                         </div>
                     </div>
                 </div>
@@ -101,14 +153,24 @@
                         <div class='input-container'>
                             <label for="drpOS" class="labelcls">OS Version: </label>
                             <div class="icon-ph"><i class="icon-envelope"></i></div>
-                            @Html.DropDownListFor(m => Model.computers.OS, new SelectList(Model.assetList.softwareList.Where(w => w.SoftwareType == "OS"), "SoftwareID", "SoftwareName"), "- Please Select Model type -", new { @name = "drpOS", @class = "form-control", @id = "drpOS" })
+                            <section class="col col-6">
+                                <span id="spryOS">
+                                    @Html.DropDownListFor(m => Model.computers.OS, new SelectList(Model.assetList.softwareList.Where(w => w.SoftwareType == "OS"), "SoftwareID", "SoftwareName"), "- Please Select Model type -", new { @name = "drpOS", @class = "form-control", @id = "drpOS" })
+                                    <span class="selectRequiredMsg">Please select an item.</span>
+                                </span>
+                            </section>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class='input-container'>
                             <label for="drpOffice" class="labelcls">Office Version: </label>
                             <div class="icon-ph"><i class="icon-envelope"></i></div>
-                            @Html.DropDownListFor(m => Model.computers.OfficeVersion, new SelectList(Model.assetList.softwareList.Where(w => w.SoftwareType == "Office"), "SoftwareID", "SoftwareName"), "- Please Select Model type -", new { @name = "drpOffice", @class = "form-control", @id = "drpOffice" })
+                            <section class="col col-6">
+                                <span id="spryOffice">
+                                    @Html.DropDownListFor(m => Model.computers.OfficeVersion, new SelectList(Model.assetList.softwareList.Where(w => w.SoftwareType == "Office"), "SoftwareID", "SoftwareName"), "- Please Select Model type -", new { @name = "drpOffice", @class = "form-control", @id = "drpOffice" })
+                                    <span class="selectRequiredMsg">Please select an item.</span>
+                                </span>
+                            </section>
                         </div>
                     </div>
                 </div>
@@ -120,11 +182,16 @@
                         <div class='input-container'>
                             <label for="dropCompany" class="labelcls">Company: </label>
                             <div class="icon-ph"><i class="icon-envelope"></i></div>
-                            @Html.DropDownListFor(m => Model.company.CompanyID, new SelectList(Model.assetList.companyList, "CompanyID", "CompanyName"), "- Please Select Company -", new
-                       {
-                           @name = "dropCompany", @*@disabled = hiddenstyle,*@ @class = "form-control",
-                           @id = "dropCompany"
-                       })
+                            <section class="col col-6">
+                                <span id="spryCompany">
+                                    @Html.DropDownListFor(m => Model.company.CompanyID, new SelectList(Model.assetList.companyList, "CompanyID", "CompanyName"), "- Please Select Company -", new
+                               {
+                                   @name = "dropCompany", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                                   @id = "dropCompany"
+                               })
+                                    <span class="selectRequiredMsg">Please select an item.</span>
+                                </span>
+                            </section>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -215,151 +282,8 @@
                         }
 
 @section scriptLocation{
-    <script>
-        function ShowHideDiv(checkbox) {
-            var dvDisposeRemark = document.getElementById("divDisposeRemark");
-            dvDisposeRemark.style.display = checkbox.checked ? "none" : "block";
-        }
-    </script>
 
-<script>
-    $(function () {
-        $("#dropUnitType").change(function () {
-            var unitID = $('#dropUnitType').val();
-            if (unitID == 1 || unitID == 2)
-            {
-                $.ajax({
-                    type: 'GET',
-                    url: "http://localhost:15707/Asset/GetModels?UnitTypeID=" + unitID,
-                    data: JSON.stringify({ "UnitTypeID": 1 }),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (result) {
-                        var r = result;
-                        if (result != null) {
-                            var dropModel = $("[id*=dropModel]");
-                            dropModel.empty().append('<option selected="selected" value="0">Please select</option>');
-
-                            $.each(result, function () {
-                                dropModel.append($("<option></option>").val(this['id']).html(this['name']));
-                            });
-
-                        } else {
-                            alert("fail");
-                        }
-                    }
-                });
-
-                $.ajax({
-                    type: 'GET',
-                    url: "http://localhost:15707/Asset/GetSoftwares",
-                    data: JSON.stringify({ "UnitTypeID": 1 }),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (result) {
-                        var r = result;
-                        if (result != null) {
-                            var drpOS = $("[id*=drpOS]");
-                            var drpOffice = $("[id*=drpOffice]");
-                            drpOS.empty().append('<option selected="selected" value="0">Please select OS Version</option>');
-                            drpOffice.empty().append('<option selected="selected" value="0">Please select Office Version</option>');
-
-                            $.each(result, function () {
-                                if (this['softwaretype'] == "OS") {
-                                    drpOS.append($("<option></option>").val(this['id']).html(this['name']));
-                                }
-                                if (this['softwaretype'] == "Office") {
-                                    drpOffice.append($("<option></option>").val(this['id']).html(this['name']));
-                                }
-                            });
-                        } else {
-                            alert("fail");
-                        }
-                    }
-                });
-            }
-            else if(unitID==3)
-            {
-
-            }
-        });
-    });
-    </script>
-
-    <script>
-        var drpOSval = $('#drpOS').val();
-        var drpOfficeval = $('#drpOffice').val();
-
-                $.ajax({
-                    type: 'GET',
-                    url: "http://localhost:15707/Asset/GetSoftwares",
-                    data: JSON.stringify({ "UnitTypeID": 1 }),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (result) {
-                        var r = result;
-                        if (result != null) {
-                            var drpOS = $("[id*=drpOS]");
-                            var drpOffice = $("[id*=drpOffice]");
-                            drpOS.empty().append('<option selected="selected" value="0">Please select OS Version</option>');
-                            drpOffice.empty().append('<option selected="selected" value="0">Please select Office Version</option>');
-
-                            $.each(result, function () {
-                                if (this['softwaretype'] == "OS") {
-                                    if (drpOSval  == this['id']) {
-                                        drpOS.append($("<option selected></option>").val(this['id']).html(this['name']));
-                                    }
-                                    else {
-                                        drpOS.append($("<option></option>").val(this['id']).html(this['name']));
-                                    }
-                                }
-                                if (this['softwaretype'] == "Office") {
-                                    if (drpOfficeval == this['id']) {
-                                        drpOffice.append($("<option selected></option>").val(this['id']).html(this['name']));
-                                    }
-                                    else {
-                                        drpOffice.append($("<option></option>").val(this['id']).html(this['name']));
-                                    }
-                                }
-                            });
-                        } else {
-                            alert("fail");
-                        }
-                    }
-                });
-    </script>
-
-<script>
-        debugger;
-        var dropCompanyVal = $('#computers_Company').val();
-                $.ajax({
-                    type: 'GET',
-                    url: "http://localhost:15707/Asset/GetCompany",
-                    data: JSON.stringify({ "UnitTypeID": 1 }),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (result) {
-                        var r = result;
-                        if (result != null) {
-                            var dropCompany = $("[id*=dropCompany]");
-                           dropCompany.empty().append('<option selected="selected" value="0">Please select Company</option>');                          
-
-                            $.each(result, function () {
-                                    if (dropCompanyVal == this['id']) {
-                                        dropCompany.append($("<option selected></option>").val(this['id']).html(this['name']));
-                                    }
-                                    else {
-                                        dropCompany.append($("<option></option>").val(this['id']).html(this['name']));
-                                    }
-                            });
-                        } else {
-                            alert("fail");
-                        }
-                    }
-                });
-</script>
-
-
+<script src="~/js/Assest/ManageComputers.js"></script>
 <script src="~/build/jquery.datetimepicker.full.js"></script>
 <script src="~/js/custom.js"></script>
 
