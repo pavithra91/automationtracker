@@ -7,6 +7,8 @@
 
 @using (Html.BeginForm("SaveUser", "Account"))
 {
+    @Html.AntiForgeryToken()
+
     <section class="common_section">
         <div class="container">
 

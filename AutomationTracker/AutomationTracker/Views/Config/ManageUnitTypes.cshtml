@@ -7,6 +7,8 @@
 
 @using (Html.BeginForm("SaveUnitTypes", "Config"))
 {
+    @Html.AntiForgeryToken()
+
     <section class="common_section">
         <div class="container">
 

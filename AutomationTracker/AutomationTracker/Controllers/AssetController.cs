@@ -82,6 +82,7 @@ namespace AutomationTracker.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SaveComputers(AssetModel objModel)
         {
             if (Session["UserID"] == null)
@@ -229,6 +230,7 @@ namespace AutomationTracker.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SavePhoneDevices(AssetModel objModel)
         {
             if (Session["UserID"] == null)
@@ -377,6 +379,7 @@ namespace AutomationTracker.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SaveVOIPDevices(AssetModel objModel)
         {
             if (Session["UserID"] == null)
@@ -458,6 +461,7 @@ namespace AutomationTracker.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AssignUser(UserModel objModel)
         {
             if (Session["UserID"] == null)

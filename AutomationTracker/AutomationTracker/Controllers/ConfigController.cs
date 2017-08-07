@@ -132,6 +132,7 @@ namespace AutomationTracker.Controllers
 
         #region
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SaveModels(AssetModel asset)
         {
             if (Session["UserID"] == null)
@@ -157,6 +158,7 @@ namespace AutomationTracker.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SaveUnitTypes(AssetModel asset)
         {
             if (Session["UserID"] == null)

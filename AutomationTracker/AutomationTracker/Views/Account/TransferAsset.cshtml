@@ -6,6 +6,7 @@
 
 @using (Html.BeginForm("AssignUser", "Asset"))
 {
+    @Html.AntiForgeryToken()
     <section class="common_section">
         <div class="container">
             @if (Model.userAssestList.ComputerList.Count > 0)

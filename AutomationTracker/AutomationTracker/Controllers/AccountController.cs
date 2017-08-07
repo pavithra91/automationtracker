@@ -95,6 +95,7 @@ namespace AutomationTracker.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SaveUser(UserModel objModel)
         {
             if(Session["UserID"] == null)
@@ -280,6 +281,7 @@ namespace AutomationTracker.Controllers
         }
         
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel objModel)
         {
             if (ModelState.IsValid)
