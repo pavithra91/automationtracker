@@ -12,7 +12,7 @@ function ShowHideDiv(checkbox) {
     var dvDisposeRemark = document.getElementById("divDisposeRemark");
     dvDisposeRemark.style.display = checkbox.checked ? "none" : "block";
 }
-
+//http://automationtracker.azurewebsites.net
 // BindData to Dropdown
 $(function () {
     $("#dropUnitType").change(function () {
@@ -21,7 +21,7 @@ $(function () {
         if (unitID == 5) {
             $.ajax({
                 type: 'GET',
-                url: "http://automationtracker.azurewebsites.net/Asset/GetModels?UnitTypeID=" + unitID,
+                url: "http://localhost:15707/Asset/GetModels?UnitTypeID=" + unitID,
                 data: JSON.stringify({ "UnitTypeID": 1 }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",

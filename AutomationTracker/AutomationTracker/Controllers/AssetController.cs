@@ -104,9 +104,11 @@ namespace AutomationTracker.Controllers
                     pc.RAM = objModel.computers.RAM;
                     pc.HDDCapacity = objModel.computers.HDDCapacity;
                     pc.Remarks = objModel.computers.Remarks;
-                    pc.Company = objModel.company.CompanyID;
+                    pc.Company = objModel.computers.Company1.CompanyID;
                     pc.PurchaseDate = objModel.computers.PurchaseDate;
                     pc.DisposeDate = objModel.computers.DisposeDate;
+                    pc.WarrantyExpireDate = objModel.computers.WarrantyExpireDate;
+                    pc.IsActive = true;
 
                     pc.AddedBy = _userName;
                     pc.AddedDate = DateTime.Now;
@@ -114,7 +116,7 @@ namespace AutomationTracker.Controllers
                     _context.Computers.Add(pc);
                     _context.SaveChanges();
 
-                    User _user = _context.Users.Where(w => w.FullName.Contains("IT Pool") && w.Company == objModel.company.CompanyID).FirstOrDefault();
+                    User _user = _context.Users.Where(w => w.FullName.Contains("IT Pool") && w.Company == objModel.computers.Company1.CompanyID).FirstOrDefault();
                     UnitType _unitType = _context.UnitTypes.Where(w => w.UnitTypeID == pc.UnitType).FirstOrDefault();
 
                     UserAsset _userAssest = new UserAsset();
@@ -122,8 +124,11 @@ namespace AutomationTracker.Controllers
                     _userAssest.ItemID = pc.AUOTID;
                     _userAssest.PANo = _user.PANo;
                     _userAssest.UserID = _user.UserID;
+                    _userAssest.ActualAssignee = _user.UserID;
+                    _userAssest.UpdateBy = _userName;
+                    _userAssest.UpdateDate = DateTime.Now;
 
-                    _context.UserAssets.Add(_userAssest);
+                _context.UserAssets.Add(_userAssest);
                     _context.SaveChanges();
                 }
                 else
@@ -133,9 +138,12 @@ namespace AutomationTracker.Controllers
                     pc.OfficeVersion = objModel.computers.OfficeVersion;
                     pc.HDDCapacity = objModel.computers.HDDCapacity;
                     pc.Remarks = objModel.computers.Remarks;
-                    pc.Company = objModel.company.CompanyID;
+                    pc.Company = objModel.computers.Company1.CompanyID;
+                    pc.PurchaseDate = objModel.computers.PurchaseDate;
+                    pc.DisposeDate = objModel.computers.DisposeDate;
+                    pc.WarrantyExpireDate = objModel.computers.WarrantyExpireDate;
 
-                if(!objModel.computers.IsActive)
+                if (!objModel.computers.IsActive)
                 {
                     pc.IsActive = objModel.computers.IsActive;
                     pc.DisposeRemark = objModel.computers.DisposeRemark;
@@ -253,9 +261,11 @@ namespace AutomationTracker.Controllers
                 mobile.EMEINo1 = objModel.phonesanddongles.EMEINo1;
                 mobile.EMEINo2 = objModel.phonesanddongles.EMEINo2;
                 mobile.Remarks = objModel.phonesanddongles.Remarks;
-                mobile.Company = objModel.company.CompanyID;
+                mobile.Company = objModel.phonesanddongles.Company1.CompanyID;
                 mobile.PurchaseDate = objModel.phonesanddongles.PurchaseDate;
                 mobile.DisposeDate = objModel.phonesanddongles.DisposeDate;
+                mobile.IsActive = true;
+                mobile.IsEmailSend = false;
 
                 mobile.AddedBy = _userName;
                 mobile.AddedDate = DateTime.Now;
@@ -263,7 +273,7 @@ namespace AutomationTracker.Controllers
                 _context.PhoneDongles.Add(mobile);
                 _context.SaveChanges();
 
-                User _user = _context.Users.Where(w => w.FullName.Contains("IT Pool") && w.Company == objModel.company.CompanyID).FirstOrDefault();
+                User _user = _context.Users.Where(w => w.FullName.Contains("IT Pool") && w.Company == objModel.phonesanddongles.Company1.CompanyID).FirstOrDefault();
 
                 UnitType _unitType = _context.UnitTypes.Where(w => w.UnitTypeID == mobile.UnitType).FirstOrDefault();
 
@@ -272,6 +282,9 @@ namespace AutomationTracker.Controllers
                 _userAssest.ItemID = mobile.AUOTID;
                 _userAssest.PANo = _user.PANo;
                 _userAssest.UserID = _user.UserID;
+                _userAssest.ActualAssignee = _user.UserID;
+                _userAssest.UpdateBy = _userName;
+                _userAssest.UpdateDate = DateTime.Now;
 
                 _context.UserAssets.Add(_userAssest);
                 _context.SaveChanges();
@@ -284,12 +297,14 @@ namespace AutomationTracker.Controllers
                 mobile.EMEINo2 = objModel.phonesanddongles.EMEINo2;
                 mobile.SimNo = objModel.phonesanddongles.SimNo;
                 mobile.Remarks = objModel.phonesanddongles.Remarks;
-                mobile.Company = objModel.company.CompanyID;
+                mobile.Company = objModel.phonesanddongles.Company1.CompanyID;
+                mobile.PurchaseDate = objModel.phonesanddongles.PurchaseDate;
+                mobile.DisposeDate = objModel.phonesanddongles.DisposeDate;
 
                 if (!objModel.phonesanddongles.IsActive)
                 {
-                    mobile.IsActive = objModel.computers.IsActive;
-                    mobile.DisposeRemark = objModel.computers.DisposeRemark;
+                    mobile.IsActive = objModel.phonesanddongles.IsActive;
+                    mobile.DisposeRemark = objModel.phonesanddongles.DisposeRemark;
 
                     DisposeList _disposePC = new DisposeList();
                     _disposePC.Category = 2;
@@ -398,9 +413,10 @@ namespace AutomationTracker.Controllers
                 _voip.SerialNo = objModel.voip.SerialNo;
                 _voip.ExtentionNo = objModel.voip.ExtentionNo;
                 _voip.Remarks = objModel.voip.Remarks;
-                _voip.Company = objModel.company.CompanyID;
+                _voip.Company = objModel.voip.Company1.CompanyID;
                 _voip.PurchaseDate = objModel.voip.PurchaseDate;
                 _voip.DisposeDate = objModel.voip.DisposeDate;
+                _voip.IsActive = true;
 
                 _voip.AddedBy = _userName;
                 _voip.AddedDate = DateTime.Now;
@@ -417,6 +433,9 @@ namespace AutomationTracker.Controllers
                 _userAssest.ItemID = _voip.AUTOID;
                 _userAssest.PANo = _user.PANo;
                 _userAssest.UserID = _user.UserID;
+                _userAssest.ActualAssignee = _user.UserID;
+                _userAssest.UpdateBy = _userName;
+                _userAssest.UpdateDate = DateTime.Now;
 
                 _context.UserAssets.Add(_userAssest);
                 _context.SaveChanges();
@@ -424,14 +443,16 @@ namespace AutomationTracker.Controllers
             else
             {
                 VOIP _voip = _context.VOIPs.Where(m => m.AUTOID == objModel.voip.AUTOID).FirstOrDefault();
-                _voip.ExtentionNo = objModel.phonesanddongles.ConnectionNo;
-                _voip.Remarks = objModel.phonesanddongles.Remarks;
-                _voip.Company = objModel.company.CompanyID;
+                _voip.ExtentionNo = objModel.voip.ExtentionNo;
+                _voip.Remarks = objModel.voip.Remarks;
+                _voip.Company = objModel.voip.Company1.CompanyID;
+                _voip.PurchaseDate = objModel.voip.PurchaseDate;
+                _voip.DisposeDate = objModel.voip.DisposeDate;
 
                 if (!objModel.voip.IsActive)
                 {
-                    _voip.IsActive = objModel.computers.IsActive;
-                    _voip.DisposeRemark = objModel.computers.DisposeRemark;
+                    _voip.IsActive = objModel.voip.IsActive;
+                    _voip.DisposeRemark = objModel.voip.DisposeRemark;
 
                     DisposeList _disposePC = new DisposeList();
                     _disposePC.Category = 3;

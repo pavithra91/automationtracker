@@ -131,9 +131,9 @@
                         <div class="icon-ph"><i class="icon-envelope"></i></div>
                         <section class="col col-6">
                             <span id="spryCompany">
-                                @Html.DropDownListFor(m => Model.company.CompanyID, new SelectList(Model.assetList.companyList, "CompanyID", "CompanyName"), "- Please Select Company -", new
+                                @Html.DropDownListFor(m => Model.voip.Company1.CompanyID, new SelectList(Model.assetList.companyList, "CompanyID", "CompanyName"), "- Please Select Company -", new
                            {
-                               @name = "dropCompany", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                               @name = "dropCompany", @class = "form-control",
                                @id = "dropCompany"
                            })
                                 <span class="selectRequiredMsg">Please select an item.</span>
@@ -222,5 +222,7 @@
 
 @section scriptLocation{
 <script src="~/js/Assest/ManageVOIP.js"></script>
+<script src="~/build/jquery.datetimepicker.full.js"></script>
+<script src="~/js/custom.js"></script>
 }
 

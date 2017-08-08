@@ -37,9 +37,9 @@
           <Property Name="PurchaseDate" Type="date" />
           <Property Name="DisposeDate" Type="date" />
           <Property Name="AddedDate" Type="date" />
-          <Property Name="AddedBy" Type="nvarchar" MaxLength="1" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="UpdateDate" Type="date" />
-          <Property Name="UpdateBy" Type="nvarchar" MaxLength="1" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
           <Property Name="Company" Type="int" />
           <Property Name="ActualAssignee" Type="int" />
           <Property Name="WarrantyExpireDate" Type="date" />
@@ -205,14 +205,14 @@
           <Property Name="AUTOID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UnitType" Type="int" />
           <Property Name="ModelType" Type="int" />
-          <Property Name="AssestNo" Type="nvarchar" MaxLength="1" />
-          <Property Name="SerialNo" Type="nvarchar" MaxLength="1" />
+          <Property Name="AssestNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="SerialNo" Type="nvarchar" MaxLength="50" />
           <Property Name="ExtentionNo" Type="int" />
-          <Property Name="Remarks" Type="nvarchar" MaxLength="1" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
           <Property Name="AddedDate" Type="date" />
-          <Property Name="AddedBy" Type="nvarchar" MaxLength="1" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="UpdateDate" Type="date" />
-          <Property Name="UpdateBy" Type="nvarchar" MaxLength="1" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
           <Property Name="Company" Type="int" />
           <Property Name="PurchaseDate" Type="date" />
           <Property Name="DisposeDate" Type="date" />
@@ -650,9 +650,9 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
           <Property Name="DisposeDate" Type="DateTime" Precision="0" />
           <Property Name="AddedDate" Type="DateTime" Precision="0" />
-          <Property Name="AddedBy" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdateDate" Type="DateTime" Precision="0" />
-          <Property Name="UpdateBy" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Company" Type="Int32" />
           <Property Name="ActualAssignee" Type="Int32" />
           <Property Name="WarrantyExpireDate" Type="DateTime" Precision="0" />
@@ -843,14 +843,14 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="AUTOID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UnitType" Type="Int32" />
           <Property Name="ModelType" Type="Int32" />
-          <Property Name="AssestNo" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="SerialNo" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="AssestNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SerialNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ExtentionNo" Type="Int32" />
-          <Property Name="Remarks" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="AddedDate" Type="DateTime" Precision="0" />
-          <Property Name="AddedBy" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdateDate" Type="DateTime" Precision="0" />
-          <Property Name="UpdateBy" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Company" Type="Int32" />
           <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
           <Property Name="DisposeDate" Type="DateTime" Precision="0" />

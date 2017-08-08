@@ -34,6 +34,7 @@
                                 <th>Asset Number</th>
                                 <th>Serial number</th>
                                 <th>Dispose Date</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -62,6 +63,16 @@
                                             @items.DisposeDate
                                         </td>
                                         <td>
+                                            @if (items.IsActive)
+                                            {
+                                                <i class="fa fa-check" style="color:lightgreen; font-size:20px; margin-left:25px;"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-times" style="color:red; font-size:20px; margin-left:25px;"></i>
+                                            }
+                                        </td>
+                                        <td>
                                             <a href="@Url.Action("TransferHistory","Asset", new { ItemID = items.AUOTID, Category = 1 })" style="margin-left:15px;">
                                                 <i class="fa fa-pencil-square-o"></i>
                                             </a>
@@ -85,6 +96,7 @@
                                 <th>Asset Number</th>
                                 <th>Serial number</th>
                                 <th>Dispose Date</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -113,6 +125,16 @@
                                             @items.DisposeDate
                                         </td>
                                         <td>
+                                            @if (items.IsActive)
+                                            {
+                                                <i class="fa fa-check" style="color:lightgreen; font-size:20px; margin-left:25px;"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-times" style="color:red; font-size:20px; margin-left:25px;"></i>
+                                            }
+                                        </td>
+                                        <td>
                                             @Html.ActionLink("Edit", "TransferHistory", new { ItemID = items.AUOTID, Category = 2 })
                                         </td>
                                     </tr>
@@ -133,6 +155,7 @@
                                 <th>Asset Number</th>
                                 <th>Serial number</th>
                                 <th>Dispose Date</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -159,6 +182,16 @@
                                         </td>
                                         <td>
                                             @items.DisposeDate
+                                        </td>
+                                        <td>
+                                            @if (items.IsActive)
+                                            {
+                                                <i class="fa fa-check" style="color:lightgreen; font-size:20px; margin-left:25px;"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-times" style="color:red; font-size:20px; margin-left:25px;"></i>
+                                            }
                                         </td>
                                         <td>
                                             @Html.ActionLink("Edit", "TransferHistory", new { ItemID = items.AUTOID, Category = 3 })

@@ -56,7 +56,14 @@
                             @items.Remarks
                         </td>
                         <td>
-                            @items.IsActive 
+                            @if (items.IsActive)
+                            {
+                                <i class="fa fa-check" style="color:lightgreen; font-size:20px; margin-left:25px;"></i>
+                            }
+                            else
+                            {
+                                <i class="fa fa-times" style="color:red; font-size:20px; margin-left:25px;"></i>
+                            }
                         </td>
                         <td>
                             <a href="@Url.Action("ManageUsers","Account", new { id = items.UserID })" style="margin-left:10px;">

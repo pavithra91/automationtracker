@@ -48,12 +48,10 @@
                                 @Model.userAssestList.ActualAssignee.UserID
                             </td>
                             <td>
-                                <a href="@Url.Action("TransferAsset","Account", new { id = items.AUOTID, category = 1 })" style="margin-left:10px;">
+                                <a href="@Url.Action("TransferAsset","Account", new { id = items.AUOTID, category = 1, company = Model.userAssestList.User.Company })" style="margin-left:10px;">
                                     <i class="fa fa-exchange"></i>
                                     Transfer
                                 </a>
-
-                                @*@Html.ActionLink("Edit", "TransferAsset", new { id = items.AUOTID, category = 1 })*@
                             </td>
                         </tr>
                     }
@@ -86,7 +84,10 @@
                                 @Model.userAssestList.ActualAssignee.UserID
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "TransferAsset", new { id = items.AUOTID, category = 2 })
+                                <a href="@Url.Action("TransferAsset","Account", new { id = items.AUOTID, category = 2, company = Model.userAssestList.User.Company })" style="margin-left:10px;">
+                                    <i class="fa fa-exchange"></i>
+                                    Transfer
+                                </a>
                             </td>
                         </tr>
                     }
@@ -119,7 +120,10 @@
                                 @Model.userAssestList.ActualAssignee.UserID
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "TransferAsset", new { id = items.AUTOID, category = 3 })
+                                <a href="@Url.Action("TransferAsset","Account", new { id = items.AUTOID, category = 3, company = Model.userAssestList.User.Company })" style="margin-left:10px;">
+                                    <i class="fa fa-exchange"></i>
+                                    Transfer
+                                </a>
                             </td>
                         </tr>
                     }

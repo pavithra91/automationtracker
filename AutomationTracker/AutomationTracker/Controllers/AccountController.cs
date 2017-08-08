@@ -236,7 +236,7 @@ namespace AutomationTracker.Controllers
             return View(objModel);
         }
 
-        public ActionResult TransferAsset(int? id, int category)
+        public ActionResult TransferAsset(int? id, int category, int company)
         {
             if (Session["UserID"] == null)
             {
@@ -259,24 +259,31 @@ namespace AutomationTracker.Controllers
 
             if (category == 1)
             {
-                var _computers = _context.Computers.Where(w => w.AUOTID == id).FirstOrDefault();
+                var _computers = _context.Computers.Where(w => w.AUOTID == id && w.Company == company).FirstOrDefault();
                 objModel.userAssestList.ComputerList.Add(_computers);
 
                 objList.companyList.Add(_computers.Company1);
-                objModel.userList.usrList = _context.Users.Where(w => w.Company == _computers.Company1.CompanyID).ToList();
+                //objModel.userList.usrList = _context.Users.Where(w => w.Company == _computers.Company1.CompanyID).ToList();
             }
             else if(category == 2)
             {
-                var _phones = _context.PhoneDongles.Where(w => w.AUOTID == id).FirstOrDefault();
+                var _phones = _context.PhoneDongles.Where(w => w.AUOTID == id && w.Company == company).FirstOrDefault();
+                objModel.userAssestList.PhoneDongleList.Add(_phones);
+
                 objList.companyList.Add(_phones.Company1);
-                objModel.userList.usrList = _context.Users.Where(w => w.Company == _phones.Company1.CompanyID).ToList();
+                //objModel.userList.usrList = _context.Users.Where(w => w.Company == _phones.Company1.CompanyID).ToList();
             }
             else if(category == 3)
             {
-                var _voip = _context.VOIPs.Where(w => w.AUTOID == id).FirstOrDefault();
+                var _voip = _context.VOIPs.Where(w => w.AUTOID == id && w.Company == company).FirstOrDefault();
+                objModel.userAssestList.VOIPList.Add(_voip);
+
                 objList.companyList.Add(_voip.Company1);
-                objModel.userList.usrList = _context.Users.Where(w => w.Company == _voip.Company1.CompanyID).ToList();
+                //objModel.userList.usrList = _context.Users.Where(w => w.Company == _voip.Company1.CompanyID).ToList();
             }
+
+            objModel.userList.usrList = _context.Users.Where(w => w.Company == company && w.IsActive == true).ToList();
+
             return View(objModel);
         }
         

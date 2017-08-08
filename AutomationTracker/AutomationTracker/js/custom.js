@@ -44,17 +44,17 @@ $('#datetimepicker_mask').datetimepicker({
 
 $('#datetimepicker1').datetimepicker({
     timepicker: false,
-    format: 'd/m/Y',
+    format: 'Y/m/d',
     formatDate: 'Y/m/d',
 });
 $('#datetimepicker2').datetimepicker({
     timepicker:false,
-    format:'d/m/Y',
+    format: 'Y/m/d',
     formatDate:'Y/m/d',
 });
 $('#datetimepicker3').datetimepicker({
     timepicker: false,
-    format: 'd/m/Y',
+    format: 'Y/m/d',
     formatDate: 'Y/m/d',
 });
 $('#datetimepicker4').datetimepicker();

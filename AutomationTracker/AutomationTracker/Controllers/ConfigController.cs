@@ -142,12 +142,14 @@ namespace AutomationTracker.Controllers
 
             string _userName = Session["UserName"].ToString();
 
-            if (asset.assetList.modelList.FirstOrDefault().ModelID == 0)
+            if (asset.Modeltype.ModelID == 0)
             {
-                asset.assetList.modelList.FirstOrDefault().AddedBy = _userName;
-                asset.assetList.modelList.FirstOrDefault().AddedDate = DateTime.Now;
-                _context.ModelTypes.Add(asset.assetList.modelList.FirstOrDefault());
+                asset.Modeltype.AddedBy = _userName;
+                asset.Modeltype.AddedDate = DateTime.Now;
+                _context.ModelTypes.Add(asset.Modeltype);
                 _context.SaveChanges();
+
+                return RedirectToAction("ViewModels", "Config");
             }
             else
             {
@@ -173,7 +175,7 @@ namespace AutomationTracker.Controllers
             _context.UnitTypes.Add(asset.Unittype);
             _context.SaveChanges();
 
-            return null;
+            return RedirectToAction("ViewUnitTypes", "Config");
         }
         #endregion
     }

@@ -22,7 +22,7 @@
             <div class='input-container'>
                 <label for="dropUnitType" class="labelcls">Unit Type: </label>
                 <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.DropDownListFor(m => Model.assetList.unittypeList, new SelectList(Model.assetList.unittypeList, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -", new { @name = "dropUnitType", @class = "form-control", @id = "dropUnitType" })
+                @Html.DropDownListFor(m => Model.Modeltype.UnitType, new SelectList(Model.assetList.unittypeList, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -", new { @name = "dropUnitType", @class = "form-control", @id = "dropUnitType" })
             </div>
 
             <div style="margin-top:10px;">
