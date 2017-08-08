@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_SystemLayout.cshtml";
 }
 
-@using (Html.BeginForm("SaveUser", "Account"))
+@using (Html.BeginForm("SaveUser", "Account", FormMethod.Post, new { name = "theForm" }))
 {
     @Html.AntiForgeryToken()
 
@@ -108,7 +108,7 @@
                         @Html.TextBoxFor(m => Model.user.PANo, new
                    {
                        @name = "txtPANo",
-                       @placeholder = "PA No", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                       @placeholder = "PA No", @class = "form-control",
                        @id = "txtPANo"
                    })
                     </div>
@@ -119,11 +119,11 @@
                             <div class="funkyradio-success">
                                 @if (Model.user.UserID == 0)
                                 {
-                                    @Html.CheckBoxFor(m => Model.user.IsUserOutSource, new { @name = "IsUserOutSource", @id = "IsUserOutSource" })
+                                    @Html.CheckBoxFor(m => Model.user.IsUserOutSource, new { @name = "IsUserOutSource", @onclick = "toggleTB(this)", @id = "IsUserOutSource" })
                                 }
                                 else
                                 {
-                                    @Html.CheckBoxFor(m => Model.user.IsUserOutSource, new { @name = "IsUserOutSource", @disabled = "disabled", @checked = "checked", @id = "IsUserOutSource" })
+                                    @Html.CheckBoxFor(m => Model.user.IsUserOutSource, new { @name = "IsUserOutSource", @onclick = "toggleTB(this)", @disabled = "disabled", @checked = "checked", @id = "IsUserOutSource" })
                                 }
                                 <label for="IsUserOutSource">Create Outsource PA</label>
                             </div>
@@ -140,7 +140,7 @@
                         @Html.TextBoxFor(m => Model.user.SAPNo, new
                    {
                        @name = "txtSAPNo",
-                       @placeholder = "SAP No", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                       @placeholder = "SAP No",  @class = "form-control",
                        @id = "txtSAPNo"
                    })
                         <span class="textfieldRequiredMsg">A value is required.</span>
@@ -190,7 +190,12 @@
 <script src="~/js/Alertify/alertify.min.js"></script>
 
     <script>
-        debugger;
+        //Show Hide Dispose Remark
+        function toggleTB(what) {
+            if (what.checked) { document.theForm.txtPANo.disabled = 1 }
+            else { document.theForm.txtPANo.disabled = 0 }
+        }
+
     </script>
 }
 
