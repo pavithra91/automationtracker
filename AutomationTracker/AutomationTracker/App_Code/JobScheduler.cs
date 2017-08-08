@@ -19,7 +19,7 @@ namespace AutomationTracker.App_Code
             ITrigger trigger = TriggerBuilder.Create()
                 .WithDailyTimeIntervalSchedule
                   (s =>
-                     s.WithIntervalInSeconds(30)
+                     s.WithIntervalInMinutes(30)
                     .OnEveryDay()
                     .StartingDailyAt(TimeOfDay.HourMinuteAndSecondOfDay(19, 18,30))
                   )
