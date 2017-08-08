@@ -29,6 +29,7 @@ namespace AutomationTracker
         public DbSet<Company> Companies { get; set; }
         public DbSet<Computer> Computers { get; set; }
         public DbSet<DisposeList> DisposeLists { get; set; }
+        public DbSet<EmailConfig> EmailConfigs { get; set; }
         public DbSet<Market> Markets { get; set; }
         public DbSet<ModelType> ModelTypes { get; set; }
         public DbSet<OutsourceUser> OutsourceUsers { get; set; }

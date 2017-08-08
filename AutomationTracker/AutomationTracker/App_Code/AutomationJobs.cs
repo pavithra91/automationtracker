@@ -1,4 +1,5 @@
-﻿using Quartz;
+﻿using AutomationTracker.Models;
+using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,17 @@ namespace AutomationTracker.App_Code
                     //item.IsEmailSend = true;
                     //_context.PhoneDongles.Attach(item);
                 }
+
+                EmailConfig email = _context.EmailConfigs.FirstOrDefault();
+
+                EmailModel em = new EmailModel();
+                em.EmailCC = email.EmailCC;
+                em.EmailBCC = email.EmailBCC;
+                em.To = email.EmailTo;
+                em.DisposeList = disposeList.ToList();
+
+                em.SendEmail(em);
+
 
                 _context.SaveChanges();
             }
