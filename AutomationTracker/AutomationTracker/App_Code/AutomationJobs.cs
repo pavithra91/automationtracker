@@ -2,6 +2,7 @@
 using Quartz;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -27,8 +28,8 @@ namespace AutomationTracker.App_Code
                     _context.DisposeLists.Add(_disposeObj);
 
 
-                    //item.IsEmailSend = true;
-                    //_context.PhoneDongles.Attach(item);
+                    item.IsEmailSend = true;
+                    _context.PhoneDongles.Attach(item);
                 }
 
                 EmailConfig email = _context.EmailConfigs.FirstOrDefault();
