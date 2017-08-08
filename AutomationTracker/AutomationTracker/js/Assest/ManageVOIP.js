@@ -1,13 +1,11 @@
 ﻿//Validation 
 var sprytextfield1 = new Spry.Widget.ValidationTextField("spryAssestNo");
 var sprytextfield2 = new Spry.Widget.ValidationTextField("sprySerialNo");
-var sprytextfield3 = new Spry.Widget.ValidationTextField("spryENEI1");
-var sprytextfield4 = new Spry.Widget.ValidationTextField("spryHDD");
-var spryselect5 = new Spry.Widget.ValidationSelect("spryCompany");
-var spryselect2 = new Spry.Widget.ValidationSelect("spryModel");
-var spryselect3 = new Spry.Widget.ValidationSelect("spryOS");
-var spryselect4 = new Spry.Widget.ValidationSelect("spryOffice");
-var spryselect5 = new Spry.Widget.ValidationSelect("spryUnitType");
+var sprytextfield3 = new Spry.Widget.ValidationTextField("spryPurchaseDate");
+var sprytextfield4 = new Spry.Widget.ValidationTextField("spryDisposeDate");
+var spryselect1 = new Spry.Widget.ValidationSelect("spryModel");
+var spryselect2 = new Spry.Widget.ValidationSelect("spryUnitType");
+var spryselect3 = new Spry.Widget.ValidationSelect("spryCompany");
 
 //Show Hide Dispose Remark
 function ShowHideDiv(checkbox) {

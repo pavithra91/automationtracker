@@ -1,10 +1,10 @@
 ﻿//Validation
 var sprytextfield1 = new Spry.Widget.ValidationTextField("spryFullName");
 var sprytextfield2 = new Spry.Widget.ValidationTextField("spryNIC");
+var sprytextfield3 = new Spry.Widget.ValidationTextField("sprySAPNo");
 var spryselect1 = new Spry.Widget.ValidationSelect("spryTitle");
 var spryselect2 = new Spry.Widget.ValidationSelect("spryCompany");
 var spryselect3 = new Spry.Widget.ValidationSelect("spryMarket");
-
 
 
 $("#dropCompany").change(function () {

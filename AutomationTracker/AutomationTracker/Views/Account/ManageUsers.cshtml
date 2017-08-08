@@ -135,13 +135,21 @@
             <div class='input-container'>
                 <label for="txtSAPNo" class="labelcls">SAP No: </label>
                 <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextBoxFor(m => Model.user.SAPNo, new
+                <section>
+                    <span id="sprySAPNo">
+                        @Html.TextBoxFor(m => Model.user.SAPNo, new
                    {
                        @name = "txtSAPNo",
                        @placeholder = "SAP No", @*@disabled = hiddenstyle,*@ @class = "form-control",
                        @id = "txtSAPNo"
                    })
+                        <span class="textfieldRequiredMsg">A value is required.</span>
+                    </span>
+                </section>
             </div>
+
+
+
 
 
             <div class='input-container'>

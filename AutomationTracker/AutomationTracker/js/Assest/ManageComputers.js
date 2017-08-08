@@ -1,8 +1,10 @@
 ﻿//Validation 
 var sprytextfield1 = new Spry.Widget.ValidationTextField("spryAssestNo");
 var sprytextfield2 = new Spry.Widget.ValidationTextField("sprySerialNo");
-var sprytextfield3 = new Spry.Widget.ValidationTextField("spryRam");
-var sprytextfield4 = new Spry.Widget.ValidationTextField("spryHDD");
+var sprytextfield3 = new Spry.Widget.ValidationTextField("spryRam"); 
+var sprytextfield4 = new Spry.Widget.ValidationTextField("spryHDD"); 
+var sprytextfield5 = new Spry.Widget.ValidationTextField("spryPurchaseDate");
+var sprytextfield6 = new Spry.Widget.ValidationTextField("spryDisposeDate");
 var spryselect5 = new Spry.Widget.ValidationSelect("spryCompany");
 var spryselect2 = new Spry.Widget.ValidationSelect("spryModel");
 var spryselect3 = new Spry.Widget.ValidationSelect("spryOS");

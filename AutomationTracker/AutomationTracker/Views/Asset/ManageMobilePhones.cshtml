@@ -9,244 +9,265 @@
 {
     @Html.AntiForgeryToken()
 
-    <section class="common_section">
-        <div class="container">
+<section class="common_section">
+    <div class="container">
 
-            @Html.HiddenFor(m => Model.phonesanddongles.AUOTID)
-            @Html.HiddenFor(m => Model.phonesanddongles.Company)
+        @Html.HiddenFor(m => Model.phonesanddongles.AUOTID)
+        @Html.HiddenFor(m => Model.phonesanddongles.Company)
 
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class='input-container'>
-                        <label for="dropUnitType" class="labelcls">Unit Type: </label>
-                        <div class="icon-ph"><i class="icon-envelope"></i></div>
-                        <section class="col col-6">
-                            <span id="spryUnitType">
-                                @if (Model.phonesanddongles.AUOTID > 0)
+        <div class="row">
+            <div class="col-md-6">
+                <div class='input-container'>
+                    <label for="dropUnitType" class="labelcls">Unit Type: </label>
+                    <div class="icon-ph"><i class="icon-envelope"></i></div>
+                    <section class="col col-6">
+                        <span id="spryUnitType">
+                            @if (Model.phonesanddongles.AUOTID > 0)
+                            {
+                                @Html.DropDownListFor(m => Model.phonesanddongles.UnitType, new SelectList(Model.assetList.unittypeList, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -", new
                                 {
-                                    @Html.DropDownListFor(m => Model.phonesanddongles.UnitType, new SelectList(Model.assetList.unittypeList, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -", new
-                               {
-                                   @name = "dropUnitType",
-                                   @class = "form-control",
-                                   @disabled = "disabled",
-                                   @id = "dropUnitType"
-                               })
-                                }
-                                else
+                                    @name = "dropUnitType",
+                                    @class = "form-control",
+                                    @disabled = "disabled",
+                                    @id = "dropUnitType"
+                                })
+                            }
+                            else
+                            {
+                                @Html.DropDownListFor(m => Model.phonesanddongles.UnitType, new SelectList(Model.assetList.unittypeList, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -", new
                                 {
-                                    @Html.DropDownListFor(m => Model.phonesanddongles.UnitType, new SelectList(Model.assetList.unittypeList, "UnitTypeID", "UnitTypeName"), "- Please Select Unit type -", new
-                               {
-                                   @name = "dropUnitType",
-                                   @class = "form-control",
-                                   @id = "dropUnitType"
-                               })
-                                }
-                                <span class="selectRequiredMsg">Please select an item.</span>
-                            </span>
-                        </section>
-                    </div>
+                                    @name = "dropUnitType",
+                                    @class = "form-control",
+                                    @id = "dropUnitType"
+                                })
+                            }
+                            <span class="selectRequiredMsg">Please select an item.</span>
+                        </span>
+                    </section>
                 </div>
-                <div class="col-md-6">
-                    <div class='input-container'>
-                        <label for="dropModelType" class="labelcls">Model Type: </label>
-                        <div class="icon-ph"><i class="icon-envelope"></i></div>
-                        <section class="col col-6">
-                            <span id="spryModel">
-                                @if (Model.phonesanddongles.AUOTID > 0)
+            </div>
+            <div class="col-md-6">
+                <div class='input-container'>
+                    <label for="dropModelType" class="labelcls">Model Type: </label>
+                    <div class="icon-ph"><i class="icon-envelope"></i></div>
+                    <section class="col col-6">
+                        <span id="spryModel">
+                            @if (Model.phonesanddongles.AUOTID > 0)
+                            {
+                                @Html.DropDownListFor(m => Model.phonesanddongles.ModelType, new SelectList(Model.assetList.modelList, "ModelID", "ModelName"), "- Please Select Model type -", new
                                 {
-                                    @Html.DropDownListFor(m => Model.phonesanddongles.ModelType, new SelectList(Model.assetList.modelList, "ModelID", "ModelName"), "- Please Select Model type -", new
-                                    {
-                                        @name = "dropModel",
-                                        @disabled = "disabled",
-                                        @class = "form-control",
-                                        @id = "dropModel"
-                                    })
-                                }
-                                else
-                                {
-                                    @Html.DropDownListFor(m => Model.phonesanddongles.ModelType, new SelectList(Model.assetList.modelList, "ModelID", "ModelName"), "- Please Select Model type -", new
-                                    {
-                                        @name = "dropModel",
-                                        @class = "form-control",
-                                        @id = "dropModel"
-                                    })
-                                }
-                                <span class="selectRequiredMsg">Please select an item.</span>
-                            </span>
-                        </section>
-                    </div>
-
+                                    @name = "dropModel",
+                                    @disabled = "disabled",
+                                    @class = "form-control",
+                                    @id = "dropModel"
+                                })
+                            }
+                            else
+                            {
+                                @Html.DropDownListFor(m => Model.phonesanddongles.ModelType, new SelectList(Model.assetList.modelList, "ModelID", "ModelName"), "- Please Select Model type -", new
+                                {   
+                                    @name = "dropModel",
+                                    @class = "form-control",
+                                    @id = "dropModel"
+                                })
+                            }
+                            <span class="selectRequiredMsg">Please select an item.</span>
+                        </span>
+                    </section>
                 </div>
+
             </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class='input-container'>
-                        <label for="txtAssestNo" class="labelcls">Assest No: </label>
-                        <div class="icon-ph"><i class="icon-envelope"></i></div>
-                        <section>
-                            <span id="spryAssestNo">
-                                @Html.TextBoxFor(m => Model.phonesanddongles.AssestNo, new
-                           {
-                               @name = "txtAssestNo",
-                               @placeholder = "Assest No", @*@disabled = hiddenstyle,*@ @class = "form-control",
-                               @id = "txtAssestNo"
-                           })
-                                <span class="textfieldRequiredMsg">A value is required.</span>
-                            </span>
-                        </section>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class='input-container'>
-                        <label for="txtSerialNo" class="labelcls">Serial No: </label>
-                        <div class="icon-ph"><i class="icon-envelope"></i></div>
-                        <section>
-                            <span id="sprySerialNo">
-                                @Html.TextBoxFor(m => Model.phonesanddongles.SerialNo, new
-                           {
-                               @name = "txtSerialNo",
-                               @placeholder = "Serial No", @*@disabled = hiddenstyle,*@ @class = "form-control",
-                               @id = "txtSerialNo"
-                           })
-                                <span class="textfieldRequiredMsg">A value is required.</span>
-                            </span>
-                        </section>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class='input-container'>
-                        <label for="drpProvider" class="labelcls">Provider: </label>
-                        <div class="icon-ph"><i class="icon-envelope"></i></div>
-                        @Html.DropDownListFor(m => Model.phonesanddongles.Provider, new SelectList(Model.assetList.providerList, "AUTOID", "ProviderName"), "- Please Select Provider -", new { @name = "drpProvider", @class = "form-control", @id = "drpProvider" })
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class='input-container'>
-                        <label for="txtConnectionNo" class="labelcls">Connection No: </label>
-                        <div class="icon-ph"><i class="icon-envelope"></i></div>
-                        @Html.TextBoxFor(m => Model.phonesanddongles.ConnectionNo, new { @name = "txtConnectionNo", @placeholder = "Connection No", @class = "form-control", @id = "txtConnectionNo" })
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class='input-container'>
-                        <label for="dropCompany" class="labelcls">Company: </label>
-                        <div class="icon-ph"><i class="icon-envelope"></i></div>
-                        @Html.DropDownListFor(m => Model.company.CompanyID, new SelectList(Model.assetList.companyList, "CompanyID", "CompanyName"), "- Please Select Company -", new
-                   {
-                       @name = "dropCompany", @*@disabled = hiddenstyle,*@ @class = "form-control",
-                       @id = "dropCompany"
-                   })
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class='input-container'>
-                        <label for="txtSimNo" class="labelcls">Sim No: </label>
-                        <div class="icon-ph"><i class="icon-envelope"></i></div>
-                        @Html.TextBoxFor(m => Model.phonesanddongles.SimNo, new { @name = "txtSimNo", @placeholder = "Sim Number", @class = "form-control", @id = "txtSimNo" })
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class='input-container'>
-                        <label for="txtEMEINo1" class="labelcls">EMEI No 1: </label>
-                        <div class="icon-ph"><i class="icon-envelope"></i></div>
-                        <section>
-                            <span id="spryENEI1">
-                                @Html.TextBoxFor(m => Model.phonesanddongles.EMEINo1, new { @name = "txtEMEINo1", @placeholder = "EMEI No 1", @class = "form-control", @id = "txtEMEINo1" })
-                                <span class="textfieldRequiredMsg">A value is required.</span>
-                            </span>
-                        </section>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class='input-container'>
-                        <label for="txtEMEINo2" class="labelcls">EMEI No 2: </label>
-                        <div class="icon-ph"><i class="icon-envelope"></i></div>
-                        @Html.TextBoxFor(m => Model.phonesanddongles.EMEINo2, new { @name = "txtEMEINo2", @placeholder = "EMEI No 2", @class = "form-control", @id = "txtEMEINo2" })
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class='input-container'>
-                        <label for="datetimepicker1" class="labelcls">Purchase Date: </label>
-                        <div class="icon-ph"><i class="icon-envelope"></i></div>
-                        @Html.TextBoxFor(m => Model.phonesanddongles.PurchaseDate, new
-                   {
-                       @name = "datetimepicker1",
-                       @placeholder = "Purchase Date", @*@disabled = hiddenstyle,*@ @class = "form-control",
-                       @id = "datetimepicker1"
-                   })
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class='input-container'>
-                        <label for="datetimepicker2" class="labelcls">Dispose Date: </label>
-                        <div class="icon-ph"><i class="icon-envelope"></i></div>
-                        @Html.TextBoxFor(m => Model.phonesanddongles.DisposeDate, new
-                   {
-                       @name = "datetimepicker2",
-                       @placeholder = "Dispose Date", @*@disabled = hiddenstyle,*@ @class = "form-control",
-                       @id = "datetimepicker2"
-                   })
-                    </div>
-                </div>
-            </div>
-
-            <div class='input-container'>
-                <label for="txtRemarks" class="labelcls">Remarks: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextAreaFor(m => Model.phonesanddongles.Remarks, new { @name = "txtRemarks", @placeholder = "Remarks", @class = "form-control", @id = "txtRemarks" })
-            </div>
-
-            <div class='input-container'>
-                <label for="chactive" class="labelcls">Active: </label>
-                <div class="funkyradio">
-                    <div class="funkyradio-success">
-                        @if (Model.phonesanddongles.AUOTID == 0)
-                        {
-                            @Html.CheckBoxFor(m => Model.phonesanddongles.IsActive, new { @name = "checkbox", @disabled = "disabled", @checked = "checked", @id = "checkbox3" })
-                        }
-                        else
-                        {
-                            @Html.CheckBoxFor(m => Model.phonesanddongles.IsActive, new { @name = "checkbox", @checked = "checked", @id = "checkbox3" })
-                        }
-                        <label for="checkbox3">Active</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class='input-container' id="divDisposeRemark" style="display: none">
-                <label for="txtDisposeRemarks" class="labelcls">Dispose Remarks: </label>
-                <div class="icon-ph"><i class="icon-envelope"></i></div>
-                @Html.TextAreaFor(m => Model.phonesanddongles.DisposeRemark, new { @name = "txtDisposeRemarks", @placeholder = "Dispose Remarks", @class = "form-control", @id = "txtDisposeRemarks" })
-            </div>
-
-
-
-            <div style="margin-top:10px;">
-                <button type="submit" class="btn btn-primary">Submit</button>
-
-                <input type="button" style="margin-left:10px" class="btn btn-primary" value="Back" onclick="location.href='@Url.Action("ViewMobilePhones", "Asset")'" />
-            </div>
-
         </div>
-    </section>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class='input-container'>
+                    <label for="txtAssestNo" class="labelcls">Assest No: </label>
+                    <div class="icon-ph"><i class="icon-envelope"></i></div>
+                    <section>
+                        <span id="spryAssestNo">
+                            @Html.TextBoxFor(m => Model.phonesanddongles.AssestNo, new
+                            {
+                            @name = "txtAssestNo",
+                            @placeholder = "Assest No", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                            @id = "txtAssestNo"
+                            })
+                            <span class="textfieldRequiredMsg">A value is required.</span>
+                        </span>
+                    </section>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class='input-container'>
+                    <label for="txtSerialNo" class="labelcls">Serial No: </label>
+                    <div class="icon-ph"><i class="icon-envelope"></i></div>
+                    <section>
+                        <span id="sprySerialNo">
+                            @Html.TextBoxFor(m => Model.phonesanddongles.SerialNo, new
+                            {
+                            @name = "txtSerialNo",
+                            @placeholder = "Serial No", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                            @id = "txtSerialNo"
+                            })
+                            <span class="textfieldRequiredMsg">A value is required.</span>
+                        </span>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class='input-container'>
+                    <label for="drpProvider" class="labelcls">Provider: </label>
+                    <div class="icon-ph"><i class="icon-envelope"></i></div>
+                    <section class="col col-6">
+                        <span id="spryProvider">
+                            @Html.DropDownListFor(m => Model.phonesanddongles.Provider, new SelectList(Model.assetList.providerList, "AUTOID", "ProviderName"), "- Please Select Provider -", new { @name = "drpProvider", @class = "form-control", @id = "drpProvider" })
+                            <span class="selectRequiredMsg">Please select an item.</span>
+                        </span>
+                    </section>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class='input-container'>
+                    <label for="txtConnectionNo" class="labelcls">Connection No: </label>
+                    <div class="icon-ph"><i class="icon-envelope"></i></div>
+                    @Html.TextBoxFor(m => Model.phonesanddongles.ConnectionNo, new { @name = "txtConnectionNo", @placeholder = "Connection No", @class = "form-control", @id = "txtConnectionNo" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class='input-container'>
+                    <label for="dropCompany" class="labelcls">Company: </label>
+                    <div class="icon-ph"><i class="icon-envelope"></i></div>
+                    <section class="col col-6">
+                        <span id="spryCompany">
+                            @Html.DropDownListFor(m => Model.company.CompanyID, new SelectList(Model.assetList.companyList, "CompanyID", "CompanyName"), "- Please Select Company -", new
+                       {
+                           @name = "dropCompany", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                           @id = "dropCompany"
+                       })
+                            <span class="selectRequiredMsg">Please select an item.</span>
+                        </span>
+                    </section>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class='input-container'>
+                    <label for="txtSimNo" class="labelcls">Sim No: </label>
+                    <div class="icon-ph"><i class="icon-envelope"></i></div>
+                    @Html.TextBoxFor(m => Model.phonesanddongles.SimNo, new { @name = "txtSimNo", @placeholder = "Sim Number", @class = "form-control", @id = "txtSimNo" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class='input-container'>
+                    <label for="txtEMEINo1" class="labelcls">EMEI No 1: </label>
+                    <div class="icon-ph"><i class="icon-envelope"></i></div>
+                    <section>
+                        <span id="spryENEI1">
+                            @Html.TextBoxFor(m => Model.phonesanddongles.EMEINo1, new { @name = "txtEMEINo1", @placeholder = "EMEI No 1", @class = "form-control", @id = "txtEMEINo1" })
+                            <span class="textfieldRequiredMsg">A value is required.</span>
+                        </span>
+                    </section>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class='input-container'>
+                    <label for="txtEMEINo2" class="labelcls">EMEI No 2: </label>
+                    <div class="icon-ph"><i class="icon-envelope"></i></div>
+                    @Html.TextBoxFor(m => Model.phonesanddongles.EMEINo2, new { @name = "txtEMEINo2", @placeholder = "EMEI No 2", @class = "form-control", @id = "txtEMEINo2" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class='input-container'>
+                    <label for="datetimepicker1" class="labelcls">Purchase Date: </label>
+                    <div class="icon-ph"><i class="icon-envelope"></i></div>
+                    <section>
+                        <span id="spryPurchaseDate">
+                            @Html.TextBoxFor(m => Model.phonesanddongles.PurchaseDate, new
+                            {
+                            @name = "datetimepicker1",
+                            @placeholder = "Purchase Date", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                            @id = "datetimepicker1"
+                            })
+                            <span class="textfieldRequiredMsg">A value is required.</span>
+                        </span>
+                    </section>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class='input-container'>
+                    <label for="datetimepicker2" class="labelcls">Dispose Date: </label>
+                    <div class="icon-ph"><i class="icon-envelope"></i></div>
+                    <section>
+                        <span id="spryDisposeDate">
+                            @Html.TextBoxFor(m => Model.phonesanddongles.DisposeDate, new
+                            {
+                            @name = "datetimepicker2",
+                            @placeholder = "Dispose Date", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                            @id = "datetimepicker2"
+                            })
+                            <span class="textfieldRequiredMsg">A value is required.</span>
+                        </span>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div class='input-container'>
+            <label for="txtRemarks" class="labelcls">Remarks: </label>
+            <div class="icon-ph"><i class="icon-envelope"></i></div>
+            @Html.TextAreaFor(m => Model.phonesanddongles.Remarks, new { @name = "txtRemarks", @placeholder = "Remarks", @class = "form-control", @id = "txtRemarks" })
+        </div>
+
+        <div class='input-container'>
+            <label for="chactive" class="labelcls">Active: </label>
+            <div class="funkyradio">
+                <div class="funkyradio-success">
+                    @if (Model.phonesanddongles.AUOTID == 0)
+                    {
+                    @Html.CheckBoxFor(m => Model.phonesanddongles.IsActive, new { @name = "checkbox", @disabled = "disabled", @checked = "checked", @id = "checkbox3" })
+                    }
+                    else
+                    {
+                    @Html.CheckBoxFor(m => Model.phonesanddongles.IsActive, new { @name = "checkbox", @checked = "checked", @id = "checkbox3" })
+                    }
+                    <label for="checkbox3">Active</label>
+                </div>
+            </div>
+        </div>
+
+        <div class='input-container' id="divDisposeRemark" style="display: none">
+            <label for="txtDisposeRemarks" class="labelcls">Dispose Remarks: </label>
+            <div class="icon-ph"><i class="icon-envelope"></i></div>
+            @Html.TextAreaFor(m => Model.phonesanddongles.DisposeRemark, new { @name = "txtDisposeRemarks", @placeholder = "Dispose Remarks", @class = "form-control", @id = "txtDisposeRemarks" })
+        </div>
+
+
+
+        <div style="margin-top:10px;">
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+            <input type="button" style="margin-left:10px" class="btn btn-primary" value="Back" onclick="location.href='@Url.Action("ViewMobilePhones", "Asset")'" />
+        </div>
+
+    </div>
+</section>
 }
 
 @section scriptLocation{
-    <script src="~/js/Assest/ManagePhones.js"></script>
+<script src="~/js/Assest/ManagePhones.js"></script>
 }
 

@@ -129,11 +129,16 @@
                     <div class='input-container'>
                         <label for="dropCompany" class="labelcls">Company: </label>
                         <div class="icon-ph"><i class="icon-envelope"></i></div>
-                        @Html.DropDownListFor(m => Model.company.CompanyID, new SelectList(Model.assetList.companyList, "CompanyID", "CompanyName"), "- Please Select Company -", new
-                   {
-                       @name = "dropCompany", @*@disabled = hiddenstyle,*@ @class = "form-control",
-                       @id = "dropCompany"
-                   })
+                        <section class="col col-6">
+                            <span id="spryCompany">
+                                @Html.DropDownListFor(m => Model.company.CompanyID, new SelectList(Model.assetList.companyList, "CompanyID", "CompanyName"), "- Please Select Company -", new
+                           {
+                               @name = "dropCompany", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                               @id = "dropCompany"
+                           })
+                                <span class="selectRequiredMsg">Please select an item.</span>
+                            </span>
+                        </section>
                     </div>
                 </div>
             </div>
@@ -143,24 +148,34 @@
                     <div class='input-container'>
                         <label for="datetimepicker1" class="labelcls">Purchase Date: </label>
                         <div class="icon-ph"><i class="icon-envelope"></i></div>
-                        @Html.TextBoxFor(m => Model.voip.PurchaseDate, new
-                   {
-                       @name = "datetimepicker1",
-                       @placeholder = "Purchase Date", @*@disabled = hiddenstyle,*@ @class = "form-control",
-                       @id = "datetimepicker1"
-                   })
+                        <section>
+                            <span id="spryPurchaseDate">
+                                @Html.TextBoxFor(m => Model.voip.PurchaseDate, new
+                           {
+                               @name = "datetimepicker1",
+                               @placeholder = "Purchase Date", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                               @id = "datetimepicker1"
+                           })
+                                <span class="textfieldRequiredMsg">A value is required.</span>
+                            </span>
+                        </section>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class='input-container'>
                         <label for="datetimepicker2" class="labelcls">Dispose Date: </label>
                         <div class="icon-ph"><i class="icon-envelope"></i></div>
-                        @Html.TextBoxFor(m => Model.voip.DisposeDate, new
-                   {
-                       @name = "datetimepicker2",
-                       @placeholder = "Dispose Date", @*@disabled = hiddenstyle,*@ @class = "form-control",
-                       @id = "datetimepicker2"
-                   })
+                        <section>
+                            <span id="spryDisposeDate">
+                                @Html.TextBoxFor(m => Model.voip.DisposeDate, new
+                           {
+                               @name = "datetimepicker2",
+                               @placeholder = "Dispose Date", @*@disabled = hiddenstyle,*@ @class = "form-control",
+                               @id = "datetimepicker2"
+                           })
+                                <span class="textfieldRequiredMsg">A value is required.</span>
+                            </span>
+                        </section>
                     </div>
                 </div>
             </div>
