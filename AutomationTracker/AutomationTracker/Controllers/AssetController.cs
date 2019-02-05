@@ -1,4 +1,5 @@
 ﻿using AutomationTracker.Models;
+using Postal;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,6 +12,32 @@ namespace AutomationTracker.Controllers
     {
         OfficeAutomationdbEntities _context = new OfficeAutomationdbEntities();
         // GET: Asset
+
+        public ActionResult Test()
+        {
+            var disposeList = _context.PhoneDongles.SqlQuery("Select * FROM dbo.PhoneDongles where DisposeDate<=DATEADD(m, 3, GETDATE()) and IsEmailSend = 0");
+
+            dynamic email = new Postal.Email("DisposeEmail");
+            email.To = "pavidsscst@gmail.com"; //objEmail.To;
+            email.From = "pavithra@walkerstours.com";//objEmail.From;
+
+            //if (objEmail.EmailBCC != null)
+            //{
+            //    email.Cc = objEmail.EmailCC;
+            //}
+            //if (objEmail.EmailCC != null)
+            //{
+            //    email.Bcc = objEmail.EmailBCC;
+            //}
+
+            email.DisposeList = disposeList;
+
+            //return new EmailViewResult(email);
+            email.Send();
+            return new EmailViewResult(email);
+        }
+
+
         public ActionResult Index()
         {
             return View();

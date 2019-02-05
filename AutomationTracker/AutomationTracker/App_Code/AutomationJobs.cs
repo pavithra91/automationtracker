@@ -2,6 +2,7 @@
 using Quartz;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -26,23 +27,21 @@ namespace AutomationTracker.App_Code
 
                     _context.DisposeLists.Add(_disposeObj);
 
-
-                    //item.IsEmailSend = true;
-                    //_context.PhoneDongles.Attach(item);
+                    item.IsEmailSend = true;
+                    _context.PhoneDongles.Attach(item);
                 }
+
+                _context.SaveChanges();
 
                 EmailConfig email = _context.EmailConfigs.FirstOrDefault();
 
                 EmailModel em = new EmailModel();
-                em.EmailCC = email.EmailCC;
-                em.EmailBCC = email.EmailBCC;
-                em.To = email.EmailTo;
-                em.DisposeList = disposeList.ToList();
+                //em.EmailCC = email.EmailCC;
+                //em.EmailBCC = email.EmailBCC;
+                //em.To = email.EmailTo;
+                //em.DisposeList = disposeList.ToList();
 
                 em.SendEmail(em);
-
-
-                _context.SaveChanges();
             }
         }
     }

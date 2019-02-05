@@ -16,19 +16,19 @@ namespace AutomationTracker.Models
         public void SendEmail(EmailModel objEmail)
         {
             dynamic email = new Postal.Email("DisposeEmail");
-            email.To = objEmail.To;
-            email.From = objEmail.From;
+            email.To = "pavidsscst@gmail.com"; //objEmail.To;
+            email.From = "pavithra@walkerstours.com";//objEmail.From;
 
-            if (objEmail.EmailBCC != null)
-            {
-                email.Cc = objEmail.EmailCC;
-            }
-            if (objEmail.EmailCC != null)
-            {
-                email.Bcc = objEmail.EmailBCC;
-            }
+            //if (objEmail.EmailBCC != null)
+            //{
+            //    email.Cc = objEmail.EmailCC;
+            //}
+            //if (objEmail.EmailCC != null)
+            //{
+            //    email.Bcc = objEmail.EmailBCC;
+            //}
 
-            email.DisposeList = objEmail.DisposeList;
+            //email.DisposeList = objEmail.DisposeList;
 
             email.Send();
 

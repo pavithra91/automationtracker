@@ -2,7 +2,9 @@
 @{
     ViewBag.Title = "DisposeEmail";
 }
-
+To: @ViewBag.To
+From: @ViewBag.From
+Subject: Dispose List
 <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#1e1e1e">
     <tr>
         <td align="center" valign="top">
@@ -105,27 +107,16 @@
                                                 <!-- Button --><!-- END Button -->
                                                 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="spacer" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%"><tr><td height="40" class="spacer" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%">&nbsp;</td></tr></table>
                                                 <table width="538" height="152" border="0" align="center">
-                                                    <tr>
-                                                        <td height="49">&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td height="51">&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                    </tr>
+                                                    @foreach (var item in ViewBag.DisposeList)
+                                                    {
+                                                        <tr>
+                                                            <td>@item.AssestNo</td>
+                                                            <td>Test</td>
+                                                            <td>&nbsp;</td>
+                                                            <td>&nbsp;</td>
+                                                            <td>&nbsp;</td>
+                                                        </tr>
+                                                    }                                                  
                                                 </table>
 
 
