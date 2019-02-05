@@ -15,7 +15,7 @@ namespace AutomationTracker.App_Code
             scheduler.Start();
 
             IJobDetail job = JobBuilder.Create<AutomationJobs>().Build();
-
+            
             ITrigger trigger = TriggerBuilder.Create()
                 .WithDailyTimeIntervalSchedule
                   (s =>
