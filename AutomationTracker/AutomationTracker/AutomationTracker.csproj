@@ -178,6 +178,7 @@
       <DependentUpon>OfficeAutomationdb.edmx</DependentUpon>
       <LastGenOutput>OfficeAutomationdb.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="OfficeAutomationdb.edmx.sql" />
     <Content Include="OfficeAutomationdb.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OfficeAutomationdb.edmx</DependentUpon>
@@ -313,7 +314,9 @@
     <Content Include="Views\Asset\DisposeList.cshtml" />
     <Content Include="Views\Asset\TransferHistory.cshtml" />
     <Content Include="Views\Asset\ViewTransferHistory.cshtml" />
+    <None Include="Properties\PublishProfiles\automationtracker - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\automationtracker - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\automationtracker - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\automationtracker - Web Deploy.pubxml" />
     <Content Include="Views\Emails\_ViewStart.cshtml" />
     <Content Include="Views\Emails\Web.config" />

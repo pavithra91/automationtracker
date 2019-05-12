@@ -121,6 +121,8 @@ namespace AutomationTracker.Controllers
 
             if (objModel.computers.AUOTID == 0)
                 {
+                try
+                {
                     Computer pc = new Computer();
                     pc.ModelType = objModel.computers.ModelType;
                     pc.UnitType = objModel.computers.UnitType;
@@ -134,6 +136,8 @@ namespace AutomationTracker.Controllers
                     pc.Company = objModel.company.CompanyID;
                     pc.PurchaseDate = objModel.computers.PurchaseDate;
                     pc.DisposeDate = objModel.computers.DisposeDate;
+                    pc.IsActive = true;
+                    pc.WarrantyExpireDate = objModel.computers.WarrantyExpireDate;
 
                     pc.AddedBy = _userName;
                     pc.AddedDate = DateTime.Now;
@@ -145,13 +149,18 @@ namespace AutomationTracker.Controllers
                     UnitType _unitType = _context.UnitTypes.Where(w => w.UnitTypeID == pc.UnitType).FirstOrDefault();
 
                     UserAsset _userAssest = new UserAsset();
-                    _userAssest.Category = _unitType.Category;
+                    _userAssest.Category = objModel.computers.UnitType;
                     _userAssest.ItemID = pc.AUOTID;
                     _userAssest.PANo = _user.PANo;
                     _userAssest.UserID = _user.UserID;
 
                     _context.UserAssets.Add(_userAssest);
                     _context.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+
+                }
                 }
                 else
                 {

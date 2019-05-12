@@ -5,14 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="OfficeAutomationdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Category">
+        <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="CategoryID" />
           </Key>
           <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryName" Type="nvarchar" MaxLength="20" />
         </EntityType>
-        <EntityType Name="Company">
+        <EntityType Name="Companies">
           <Key>
             <PropertyRef Name="CompanyID" />
           </Key>
@@ -34,31 +34,31 @@
           <Property Name="OfficeVersion" Type="int" />
           <Property Name="HDDCapacity" Type="nvarchar" MaxLength="20" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
-          <Property Name="PurchaseDate" Type="date" />
-          <Property Name="DisposeDate" Type="date" />
-          <Property Name="AddedDate" Type="date" />
-          <Property Name="AddedBy" Type="nvarchar" MaxLength="1" />
-          <Property Name="UpdateDate" Type="date" />
+          <Property Name="PurchaseDate" Type="datetime" />
+          <Property Name="DisposeDate" Type="datetime" />
+          <Property Name="AddedDate" Type="datetime" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="UpdateDate" Type="datetime" />
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="1" />
           <Property Name="Company" Type="int" />
           <Property Name="ActualAssignee" Type="int" />
-          <Property Name="WarrantyExpireDate" Type="date" />
+          <Property Name="WarrantyExpireDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="DisposeRemark" Type="nvarchar" MaxLength="500" />
         </EntityType>
-        <EntityType Name="DisposeList">
+        <EntityType Name="DisposeLists">
           <Key>
             <PropertyRef Name="AUTOID" />
           </Key>
           <Property Name="AUTOID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ItemID" Type="int" />
           <Property Name="Category" Type="int" />
-          <Property Name="DisposeDate" Type="date" />
+          <Property Name="DisposeDate" Type="datetime" />
           <Property Name="IsDisposed" Type="bit" />
-          <Property Name="UpdateDate" Type="date" />
+          <Property Name="UpdateDate" Type="datetime" />
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="20" />
         </EntityType>
-        <EntityType Name="EmailConfig">
+        <EntityType Name="EmailConfigs">
           <Key>
             <PropertyRef Name="AUTOID" />
           </Key>
@@ -69,7 +69,7 @@
           <Property Name="Subject" Type="nvarchar" MaxLength="200" />
           <Property Name="EmailFrom" Type="nvarchar" MaxLength="200" />
         </EntityType>
-        <EntityType Name="Market">
+        <EntityType Name="Markets">
           <Key>
             <PropertyRef Name="MarketID" />
           </Key>
@@ -77,7 +77,7 @@
           <Property Name="MarketName" Type="varchar" MaxLength="100" />
           <Property Name="CompanyID" Type="int" />
         </EntityType>
-        <EntityType Name="ModelType">
+        <EntityType Name="ModelTypes">
           <Key>
             <PropertyRef Name="ModelID" />
           </Key>
@@ -86,9 +86,9 @@
           <Property Name="UnitType" Type="int" />
           <Property Name="Description" Type="nvarchar" MaxLength="300" />
           <Property Name="AddedBy" Type="nvarchar" MaxLength="100" />
-          <Property Name="AddedDate" Type="date" />
+          <Property Name="AddedDate" Type="datetime" />
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="100" />
-          <Property Name="UpdateDate" Type="date" />
+          <Property Name="UpdateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="OutsourceUsers">
           <Key>
@@ -112,19 +112,19 @@
           <Property Name="EMEINo1" Type="int" />
           <Property Name="EMEINo2" Type="int" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
-          <Property Name="AddedDate" Type="date" />
+          <Property Name="AddedDate" Type="datetime" />
           <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
-          <Property Name="UpdateDate" Type="date" />
+          <Property Name="UpdateDate" Type="datetime" />
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
           <Property Name="Company" Type="int" />
           <Property Name="ActualAssignee" Type="int" />
-          <Property Name="DisposeDate" Type="date" />
-          <Property Name="PurchaseDate" Type="date" />
+          <Property Name="DisposeDate" Type="datetime" />
+          <Property Name="PurchaseDate" Type="datetime" />
           <Property Name="IsEmailSend" Type="bit" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="DisposeRemark" Type="nvarchar" MaxLength="500" />
         </EntityType>
-        <EntityType Name="Provider">
+        <EntityType Name="Providers">
           <Key>
             <PropertyRef Name="AUTOID" />
           </Key>
@@ -132,7 +132,7 @@
           <Property Name="ProviderName" Type="nvarchar" MaxLength="100" />
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
         </EntityType>
-        <EntityType Name="Software">
+        <EntityType Name="Softwares">
           <Key>
             <PropertyRef Name="SoftwareID" />
           </Key>
@@ -151,7 +151,7 @@
           <Property Name="Hashkey" Type="nvarchar" MaxLength="100" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
-        <EntityType Name="TransferAssestHistory">
+        <EntityType Name="TransferAssestHistories">
           <Key>
             <PropertyRef Name="AUTOID" />
           </Key>
@@ -163,16 +163,16 @@
           <Property Name="AddedDate" Type="datetime" Nullable="false" />
           <Property Name="AddedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <EntityType Name="UnitType">
+        <EntityType Name="UnitTypes">
           <Key>
             <PropertyRef Name="UnitTypeID" />
           </Key>
           <Property Name="UnitTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UnitTypeName" Type="varchar" MaxLength="100" />
           <Property Name="AddedBy" Type="nvarchar" MaxLength="100" />
-          <Property Name="AddedDate" Type="date" />
+          <Property Name="AddedDate" Type="datetime" />
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="100" />
-          <Property Name="UpdateDate" Type="date" />
+          <Property Name="UpdateDate" Type="datetime" />
           <Property Name="Category" Type="int" />
         </EntityType>
         <EntityType Name="UserAssets">
@@ -203,13 +203,13 @@
           <Property Name="NIC" Type="varchar" MaxLength="10" />
           <Property Name="Remarks" Type="varchar" MaxLength="500" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="AddedDate" Type="date" />
+          <Property Name="AddedDate" Type="datetime" />
           <Property Name="AddedBy" Type="varchar" MaxLength="100" />
-          <Property Name="UpdateDate" Type="date" />
+          <Property Name="UpdateDate" Type="datetime" />
           <Property Name="UpdateBy" Type="varchar" MaxLength="100" />
           <Property Name="IsUserOutSource" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="VOIP">
+        <EntityType Name="VOIPs">
           <Key>
             <PropertyRef Name="AUTOID" />
           </Key>
@@ -220,34 +220,34 @@
           <Property Name="SerialNo" Type="nvarchar" MaxLength="1" />
           <Property Name="ExtentionNo" Type="int" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="1" />
-          <Property Name="AddedDate" Type="date" />
+          <Property Name="AddedDate" Type="datetime" />
           <Property Name="AddedBy" Type="nvarchar" MaxLength="1" />
-          <Property Name="UpdateDate" Type="date" />
+          <Property Name="UpdateDate" Type="datetime" />
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="1" />
           <Property Name="Company" Type="int" />
-          <Property Name="PurchaseDate" Type="date" />
-          <Property Name="DisposeDate" Type="date" />
+          <Property Name="PurchaseDate" Type="datetime" />
+          <Property Name="DisposeDate" Type="datetime" />
           <Property Name="ActualAssignee" Type="int" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="DisposeRemark" Type="nvarchar" MaxLength="500" />
         </EntityType>
-        <Association Name="CategoryIDfk_UnitType">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
-          <End Role="UnitType" Type="Self.UnitType" Multiplicity="*" />
+        <Association Name="FK_CategoryIDfk_UnitType">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="UnitTypes" Type="Self.UnitTypes" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Category">
+            <Principal Role="Categories">
               <PropertyRef Name="CategoryID" />
             </Principal>
-            <Dependent Role="UnitType">
+            <Dependent Role="UnitTypes">
               <PropertyRef Name="Category" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CategoryIDfk_UserAssest">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+        <Association Name="FK_CategoryIDfk_UserAssest">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
           <End Role="UserAssets" Type="Self.UserAssets" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Category">
+            <Principal Role="Categories">
               <PropertyRef Name="CategoryID" />
             </Principal>
             <Dependent Role="UserAssets">
@@ -255,11 +255,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Companyfk_Computers">
-          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+        <Association Name="FK_Companyfk_Computers">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
           <End Role="Computers" Type="Self.Computers" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Company">
+            <Principal Role="Companies">
               <PropertyRef Name="CompanyID" />
             </Principal>
             <Dependent Role="Computers">
@@ -267,11 +267,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Companyfk_Phones">
-          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+        <Association Name="FK_Companyfk_Phones">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
           <End Role="PhoneDongles" Type="Self.PhoneDongles" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Company">
+            <Principal Role="Companies">
               <PropertyRef Name="CompanyID" />
             </Principal>
             <Dependent Role="PhoneDongles">
@@ -279,23 +279,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Companyfk_VOIP">
-          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
-          <End Role="VOIP" Type="Self.VOIP" Multiplicity="*" />
+        <Association Name="FK_Companyfk_VOIP">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+          <End Role="VOIPs" Type="Self.VOIPs" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Company">
+            <Principal Role="Companies">
               <PropertyRef Name="CompanyID" />
             </Principal>
-            <Dependent Role="VOIP">
+            <Dependent Role="VOIPs">
               <PropertyRef Name="Company" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CompanyIDfk_Users">
-          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+        <Association Name="FK_CompanyIDfk_Users">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Company">
+            <Principal Role="Companies">
               <PropertyRef Name="CompanyID" />
             </Principal>
             <Dependent Role="Users">
@@ -303,23 +303,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_UnitTypeID_Models">
-          <End Role="UnitType" Type="Self.UnitType" Multiplicity="0..1" />
-          <End Role="ModelType" Type="Self.ModelType" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UnitType">
-              <PropertyRef Name="UnitTypeID" />
-            </Principal>
-            <Dependent Role="ModelType">
-              <PropertyRef Name="UnitType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Marketfk_Users">
-          <End Role="Market" Type="Self.Market" Multiplicity="0..1" />
+        <Association Name="FK_Marketfk_Users">
+          <End Role="Markets" Type="Self.Markets" Multiplicity="0..1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Market">
+            <Principal Role="Markets">
               <PropertyRef Name="MarketID" />
             </Principal>
             <Dependent Role="Users">
@@ -327,11 +315,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ModelTypefk_Computers">
-          <End Role="ModelType" Type="Self.ModelType" Multiplicity="0..1" />
+        <Association Name="FK_ModelTypefk_Computers">
+          <End Role="ModelTypes" Type="Self.ModelTypes" Multiplicity="0..1" />
           <End Role="Computers" Type="Self.Computers" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ModelType">
+            <Principal Role="ModelTypes">
               <PropertyRef Name="ModelID" />
             </Principal>
             <Dependent Role="Computers">
@@ -339,11 +327,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ModelTypefk_Phone">
-          <End Role="ModelType" Type="Self.ModelType" Multiplicity="0..1" />
+        <Association Name="FK_ModelTypefk_Phone">
+          <End Role="ModelTypes" Type="Self.ModelTypes" Multiplicity="0..1" />
           <End Role="PhoneDongles" Type="Self.PhoneDongles" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ModelType">
+            <Principal Role="ModelTypes">
               <PropertyRef Name="ModelID" />
             </Principal>
             <Dependent Role="PhoneDongles">
@@ -351,26 +339,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ModelTypefk_VOIP">
-          <End Role="ModelType" Type="Self.ModelType" Multiplicity="0..1" />
-          <End Role="VOIP" Type="Self.VOIP" Multiplicity="*" />
+        <Association Name="FK_ModelTypefk_VOIP">
+          <End Role="ModelTypes" Type="Self.ModelTypes" Multiplicity="0..1" />
+          <End Role="VOIPs" Type="Self.VOIPs" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ModelType">
+            <Principal Role="ModelTypes">
               <PropertyRef Name="ModelID" />
             </Principal>
-            <Dependent Role="VOIP">
+            <Dependent Role="VOIPs">
               <PropertyRef Name="ModelType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'NewUserIDfk_TransferAssestHistory' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="NewUserIDfk_TransferAssestHistory" />-->
-        <Association Name="OfficeVersionfk_Computers">
-          <End Role="Software" Type="Self.Software" Multiplicity="0..1" />
+        <Association Name="FK_OfficeVersionfk_Computers">
+          <End Role="Softwares" Type="Self.Softwares" Multiplicity="0..1" />
           <End Role="Computers" Type="Self.Computers" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Software">
+            <Principal Role="Softwares">
               <PropertyRef Name="SoftwareID" />
             </Principal>
             <Dependent Role="Computers">
@@ -378,11 +363,11 @@ warning 6035: The relationship 'NewUserIDfk_TransferAssestHistory' has columns t
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="OSfk_Computers">
-          <End Role="Software" Type="Self.Software" Multiplicity="0..1" />
+        <Association Name="FK_OSfk_Computers">
+          <End Role="Softwares" Type="Self.Softwares" Multiplicity="0..1" />
           <End Role="Computers" Type="Self.Computers" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Software">
+            <Principal Role="Softwares">
               <PropertyRef Name="SoftwareID" />
             </Principal>
             <Dependent Role="Computers">
@@ -390,17 +375,11 @@ warning 6035: The relationship 'NewUserIDfk_TransferAssestHistory' has columns t
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'PANofk_userAssest' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="PANofk_userAssest" />-->
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'PerviousUserIDfk_TransferAssestHistory' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="PerviousUserIDfk_TransferAssestHistory" />-->
-        <Association Name="Providerfk_Phones">
-          <End Role="Provider" Type="Self.Provider" Multiplicity="0..1" />
+        <Association Name="FK_Providerfk_Phones">
+          <End Role="Providers" Type="Self.Providers" Multiplicity="0..1" />
           <End Role="PhoneDongles" Type="Self.PhoneDongles" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Provider">
+            <Principal Role="Providers">
               <PropertyRef Name="AUTOID" />
             </Principal>
             <Dependent Role="PhoneDongles">
@@ -408,11 +387,11 @@ warning 6035: The relationship 'PerviousUserIDfk_TransferAssestHistory' has colu
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="UnitTypefk_Computers">
-          <End Role="UnitType" Type="Self.UnitType" Multiplicity="0..1" />
+        <Association Name="FK_UnitTypefk_Computers">
+          <End Role="UnitTypes" Type="Self.UnitTypes" Multiplicity="0..1" />
           <End Role="Computers" Type="Self.Computers" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UnitType">
+            <Principal Role="UnitTypes">
               <PropertyRef Name="UnitTypeID" />
             </Principal>
             <Dependent Role="Computers">
@@ -420,11 +399,11 @@ warning 6035: The relationship 'PerviousUserIDfk_TransferAssestHistory' has colu
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="UnitTypefk_Phone">
-          <End Role="UnitType" Type="Self.UnitType" Multiplicity="0..1" />
+        <Association Name="FK_UnitTypefk_Phone">
+          <End Role="UnitTypes" Type="Self.UnitTypes" Multiplicity="0..1" />
           <End Role="PhoneDongles" Type="Self.PhoneDongles" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UnitType">
+            <Principal Role="UnitTypes">
               <PropertyRef Name="UnitTypeID" />
             </Principal>
             <Dependent Role="PhoneDongles">
@@ -432,106 +411,115 @@ warning 6035: The relationship 'PerviousUserIDfk_TransferAssestHistory' has colu
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="UnitTypefk_VOIP">
-          <End Role="UnitType" Type="Self.UnitType" Multiplicity="0..1" />
-          <End Role="VOIP" Type="Self.VOIP" Multiplicity="*" />
+        <Association Name="FK_UnitTypefk_VOIP">
+          <End Role="UnitTypes" Type="Self.UnitTypes" Multiplicity="0..1" />
+          <End Role="VOIPs" Type="Self.VOIPs" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UnitType">
+            <Principal Role="UnitTypes">
               <PropertyRef Name="UnitTypeID" />
             </Principal>
-            <Dependent Role="VOIP">
+            <Dependent Role="VOIPs">
               <PropertyRef Name="UnitType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="UserIDfk_UserAssest" />-->
+        <Association Name="fk_UnitTypeID_Models">
+          <End Role="UnitTypes" Type="Self.UnitTypes" Multiplicity="0..1" />
+          <End Role="ModelTypes" Type="Self.ModelTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitTypes">
+              <PropertyRef Name="UnitTypeID" />
+            </Principal>
+            <Dependent Role="ModelTypes">
+              <PropertyRef Name="UnitType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="OfficeAutomationdbModelStoreContainer">
-          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Computers" EntityType="Self.Computers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DisposeList" EntityType="Self.DisposeList" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EmailConfig" EntityType="Self.EmailConfig" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Market" EntityType="Self.Market" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ModelType" EntityType="Self.ModelType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DisposeLists" EntityType="Self.DisposeLists" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailConfigs" EntityType="Self.EmailConfigs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Markets" EntityType="Self.Markets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModelTypes" EntityType="Self.ModelTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OutsourceUsers" EntityType="Self.OutsourceUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhoneDongles" EntityType="Self.PhoneDongles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Software" EntityType="Self.Software" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Providers" EntityType="Self.Providers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Softwares" EntityType="Self.Softwares" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SystemUsers" EntityType="Self.SystemUsers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TransferAssestHistory" EntityType="Self.TransferAssestHistory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UnitType" EntityType="Self.UnitType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransferAssestHistories" EntityType="Self.TransferAssestHistories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnitTypes" EntityType="Self.UnitTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAssets" EntityType="Self.UserAssets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="VOIP" EntityType="Self.VOIP" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="CategoryIDfk_UnitType" Association="Self.CategoryIDfk_UnitType">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="UnitType" EntitySet="UnitType" />
+          <EntitySet Name="VOIPs" EntityType="Self.VOIPs" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CategoryIDfk_UnitType" Association="Self.FK_CategoryIDfk_UnitType">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="UnitTypes" EntitySet="UnitTypes" />
           </AssociationSet>
-          <AssociationSet Name="CategoryIDfk_UserAssest" Association="Self.CategoryIDfk_UserAssest">
-            <End Role="Category" EntitySet="Category" />
+          <AssociationSet Name="FK_CategoryIDfk_UserAssest" Association="Self.FK_CategoryIDfk_UserAssest">
+            <End Role="Categories" EntitySet="Categories" />
             <End Role="UserAssets" EntitySet="UserAssets" />
           </AssociationSet>
-          <AssociationSet Name="Companyfk_Computers" Association="Self.Companyfk_Computers">
-            <End Role="Company" EntitySet="Company" />
+          <AssociationSet Name="FK_Companyfk_Computers" Association="Self.FK_Companyfk_Computers">
+            <End Role="Companies" EntitySet="Companies" />
             <End Role="Computers" EntitySet="Computers" />
           </AssociationSet>
-          <AssociationSet Name="Companyfk_Phones" Association="Self.Companyfk_Phones">
-            <End Role="Company" EntitySet="Company" />
+          <AssociationSet Name="FK_Companyfk_Phones" Association="Self.FK_Companyfk_Phones">
+            <End Role="Companies" EntitySet="Companies" />
             <End Role="PhoneDongles" EntitySet="PhoneDongles" />
           </AssociationSet>
-          <AssociationSet Name="Companyfk_VOIP" Association="Self.Companyfk_VOIP">
-            <End Role="Company" EntitySet="Company" />
-            <End Role="VOIP" EntitySet="VOIP" />
+          <AssociationSet Name="FK_Companyfk_VOIP" Association="Self.FK_Companyfk_VOIP">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="VOIPs" EntitySet="VOIPs" />
           </AssociationSet>
-          <AssociationSet Name="CompanyIDfk_Users" Association="Self.CompanyIDfk_Users">
-            <End Role="Company" EntitySet="Company" />
+          <AssociationSet Name="FK_CompanyIDfk_Users" Association="Self.FK_CompanyIDfk_Users">
+            <End Role="Companies" EntitySet="Companies" />
             <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marketfk_Users" Association="Self.FK_Marketfk_Users">
+            <End Role="Markets" EntitySet="Markets" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModelTypefk_Computers" Association="Self.FK_ModelTypefk_Computers">
+            <End Role="ModelTypes" EntitySet="ModelTypes" />
+            <End Role="Computers" EntitySet="Computers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModelTypefk_Phone" Association="Self.FK_ModelTypefk_Phone">
+            <End Role="ModelTypes" EntitySet="ModelTypes" />
+            <End Role="PhoneDongles" EntitySet="PhoneDongles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModelTypefk_VOIP" Association="Self.FK_ModelTypefk_VOIP">
+            <End Role="ModelTypes" EntitySet="ModelTypes" />
+            <End Role="VOIPs" EntitySet="VOIPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfficeVersionfk_Computers" Association="Self.FK_OfficeVersionfk_Computers">
+            <End Role="Softwares" EntitySet="Softwares" />
+            <End Role="Computers" EntitySet="Computers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OSfk_Computers" Association="Self.FK_OSfk_Computers">
+            <End Role="Softwares" EntitySet="Softwares" />
+            <End Role="Computers" EntitySet="Computers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Providerfk_Phones" Association="Self.FK_Providerfk_Phones">
+            <End Role="Providers" EntitySet="Providers" />
+            <End Role="PhoneDongles" EntitySet="PhoneDongles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UnitTypefk_Computers" Association="Self.FK_UnitTypefk_Computers">
+            <End Role="UnitTypes" EntitySet="UnitTypes" />
+            <End Role="Computers" EntitySet="Computers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UnitTypefk_Phone" Association="Self.FK_UnitTypefk_Phone">
+            <End Role="UnitTypes" EntitySet="UnitTypes" />
+            <End Role="PhoneDongles" EntitySet="PhoneDongles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UnitTypefk_VOIP" Association="Self.FK_UnitTypefk_VOIP">
+            <End Role="UnitTypes" EntitySet="UnitTypes" />
+            <End Role="VOIPs" EntitySet="VOIPs" />
           </AssociationSet>
           <AssociationSet Name="fk_UnitTypeID_Models" Association="Self.fk_UnitTypeID_Models">
-            <End Role="UnitType" EntitySet="UnitType" />
-            <End Role="ModelType" EntitySet="ModelType" />
-          </AssociationSet>
-          <AssociationSet Name="Marketfk_Users" Association="Self.Marketfk_Users">
-            <End Role="Market" EntitySet="Market" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="ModelTypefk_Computers" Association="Self.ModelTypefk_Computers">
-            <End Role="ModelType" EntitySet="ModelType" />
-            <End Role="Computers" EntitySet="Computers" />
-          </AssociationSet>
-          <AssociationSet Name="ModelTypefk_Phone" Association="Self.ModelTypefk_Phone">
-            <End Role="ModelType" EntitySet="ModelType" />
-            <End Role="PhoneDongles" EntitySet="PhoneDongles" />
-          </AssociationSet>
-          <AssociationSet Name="ModelTypefk_VOIP" Association="Self.ModelTypefk_VOIP">
-            <End Role="ModelType" EntitySet="ModelType" />
-            <End Role="VOIP" EntitySet="VOIP" />
-          </AssociationSet>
-          <AssociationSet Name="OfficeVersionfk_Computers" Association="Self.OfficeVersionfk_Computers">
-            <End Role="Software" EntitySet="Software" />
-            <End Role="Computers" EntitySet="Computers" />
-          </AssociationSet>
-          <AssociationSet Name="OSfk_Computers" Association="Self.OSfk_Computers">
-            <End Role="Software" EntitySet="Software" />
-            <End Role="Computers" EntitySet="Computers" />
-          </AssociationSet>
-          <AssociationSet Name="Providerfk_Phones" Association="Self.Providerfk_Phones">
-            <End Role="Provider" EntitySet="Provider" />
-            <End Role="PhoneDongles" EntitySet="PhoneDongles" />
-          </AssociationSet>
-          <AssociationSet Name="UnitTypefk_Computers" Association="Self.UnitTypefk_Computers">
-            <End Role="UnitType" EntitySet="UnitType" />
-            <End Role="Computers" EntitySet="Computers" />
-          </AssociationSet>
-          <AssociationSet Name="UnitTypefk_Phone" Association="Self.UnitTypefk_Phone">
-            <End Role="UnitType" EntitySet="UnitType" />
-            <End Role="PhoneDongles" EntitySet="PhoneDongles" />
-          </AssociationSet>
-          <AssociationSet Name="UnitTypefk_VOIP" Association="Self.UnitTypefk_VOIP">
-            <End Role="UnitType" EntitySet="UnitType" />
-            <End Role="VOIP" EntitySet="VOIP" />
+            <End Role="UnitTypes" EntitySet="UnitTypes" />
+            <End Role="ModelTypes" EntitySet="ModelTypes" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -660,15 +648,15 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="OfficeVersion" Type="Int32" />
           <Property Name="HDDCapacity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
-          <Property Name="DisposeDate" Type="DateTime" Precision="0" />
-          <Property Name="AddedDate" Type="DateTime" Precision="0" />
-          <Property Name="AddedBy" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="PurchaseDate" Type="DateTime" Precision="3" />
+          <Property Name="DisposeDate" Type="DateTime" Precision="3" />
+          <Property Name="AddedDate" Type="DateTime" Precision="3" />
+          <Property Name="AddedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <Property Name="UpdateBy" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="Company" Type="Int32" />
           <Property Name="ActualAssignee" Type="Int32" />
-          <Property Name="WarrantyExpireDate" Type="DateTime" Precision="0" />
+          <Property Name="WarrantyExpireDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="DisposeRemark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Company1" Relationship="OfficeAutomationdbModel.Companyfk_Computers" FromRole="Computer" ToRole="Company" />
@@ -684,9 +672,9 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="AUTOID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ItemID" Type="Int32" />
           <Property Name="Category" Type="Int32" />
-          <Property Name="DisposeDate" Type="DateTime" Precision="0" />
+          <Property Name="DisposeDate" Type="DateTime" Precision="3" />
           <Property Name="IsDisposed" Type="Boolean" />
-          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <Property Name="UpdateBy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="EmailConfig">
@@ -718,9 +706,9 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="UnitType" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="AddedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="AddedDate" Type="DateTime" Precision="0" />
+          <Property Name="AddedDate" Type="DateTime" Precision="3" />
           <Property Name="UpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Computers" Relationship="OfficeAutomationdbModel.ModelTypefk_Computers" FromRole="ModelType" ToRole="Computer" />
           <NavigationProperty Name="UnitType1" Relationship="OfficeAutomationdbModel.fk_UnitTypeID_Models" FromRole="ModelType" ToRole="UnitType" />
           <NavigationProperty Name="PhoneDongles" Relationship="OfficeAutomationdbModel.ModelTypefk_Phone" FromRole="ModelType" ToRole="PhoneDongle" />
@@ -748,14 +736,14 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="EMEINo1" Type="Int32" />
           <Property Name="EMEINo2" Type="Int32" />
           <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="AddedDate" Type="DateTime" Precision="0" />
+          <Property Name="AddedDate" Type="DateTime" Precision="3" />
           <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Company" Type="Int32" />
           <Property Name="ActualAssignee" Type="Int32" />
-          <Property Name="DisposeDate" Type="DateTime" Precision="0" />
-          <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
+          <Property Name="DisposeDate" Type="DateTime" Precision="3" />
+          <Property Name="PurchaseDate" Type="DateTime" Precision="3" />
           <Property Name="IsEmailSend" Type="Boolean" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="DisposeRemark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -813,9 +801,9 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="UnitTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UnitTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="AddedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="AddedDate" Type="DateTime" Precision="0" />
+          <Property Name="AddedDate" Type="DateTime" Precision="3" />
           <Property Name="UpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <Property Name="Category" Type="Int32" />
           <NavigationProperty Name="Category1" Relationship="OfficeAutomationdbModel.CategoryIDfk_UnitType" FromRole="UnitType" ToRole="Category" />
           <NavigationProperty Name="Computers" Relationship="OfficeAutomationdbModel.UnitTypefk_Computers" FromRole="UnitType" ToRole="Computer" />
@@ -852,9 +840,9 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="NIC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="AddedDate" Type="DateTime" Precision="0" />
+          <Property Name="AddedDate" Type="DateTime" Precision="3" />
           <Property Name="AddedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <Property Name="UpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IsUserOutSource" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Company1" Relationship="OfficeAutomationdbModel.CompanyIDfk_Users" FromRole="User" ToRole="Company" />
@@ -871,13 +859,13 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
           <Property Name="SerialNo" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="ExtentionNo" Type="Int32" />
           <Property Name="Remarks" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="AddedDate" Type="DateTime" Precision="0" />
+          <Property Name="AddedDate" Type="DateTime" Precision="3" />
           <Property Name="AddedBy" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <Property Name="UpdateBy" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="Company" Type="Int32" />
-          <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
-          <Property Name="DisposeDate" Type="DateTime" Precision="0" />
+          <Property Name="PurchaseDate" Type="DateTime" Precision="3" />
+          <Property Name="DisposeDate" Type="DateTime" Precision="3" />
           <Property Name="ActualAssignee" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="DisposeRemark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -1093,253 +1081,252 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="OfficeAutomationdbModelStoreContainer" CdmEntityContainer="OfficeAutomationdbEntities">
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="OfficeAutomationdbModel.Category">
-              <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Companies">
-            <EntityTypeMapping TypeName="OfficeAutomationdbModel.Company">
-              <MappingFragment StoreEntitySet="Company">
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Computers">
-            <EntityTypeMapping TypeName="OfficeAutomationdbModel.Computer">
-              <MappingFragment StoreEntitySet="Computers">
-                <ScalarProperty Name="DisposeRemark" ColumnName="DisposeRemark" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="WarrantyExpireDate" ColumnName="WarrantyExpireDate" />
-                <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
-                <ScalarProperty Name="Company" ColumnName="Company" />
-                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
-                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
-                <ScalarProperty Name="DisposeDate" ColumnName="DisposeDate" />
-                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="HDDCapacity" ColumnName="HDDCapacity" />
-                <ScalarProperty Name="OfficeVersion" ColumnName="OfficeVersion" />
-                <ScalarProperty Name="OS" ColumnName="OS" />
-                <ScalarProperty Name="RAM" ColumnName="RAM" />
-                <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
-                <ScalarProperty Name="AssestNo" ColumnName="AssestNo" />
-                <ScalarProperty Name="ModelType" ColumnName="ModelType" />
-                <ScalarProperty Name="UnitType" ColumnName="UnitType" />
-                <ScalarProperty Name="AUOTID" ColumnName="AUOTID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DisposeLists">
-            <EntityTypeMapping TypeName="OfficeAutomationdbModel.DisposeList">
-              <MappingFragment StoreEntitySet="DisposeList">
-                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="IsDisposed" ColumnName="IsDisposed" />
-                <ScalarProperty Name="DisposeDate" ColumnName="DisposeDate" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
-                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EmailConfigs">
-            <EntityTypeMapping TypeName="OfficeAutomationdbModel.EmailConfig">
-              <MappingFragment StoreEntitySet="EmailConfig">
-                <ScalarProperty Name="EmailFrom" ColumnName="EmailFrom" />
-                <ScalarProperty Name="Subject" ColumnName="Subject" />
-                <ScalarProperty Name="EmailBCC" ColumnName="EmailBCC" />
-                <ScalarProperty Name="EmailCC" ColumnName="EmailCC" />
-                <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
-                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Markets">
-            <EntityTypeMapping TypeName="OfficeAutomationdbModel.Market">
-              <MappingFragment StoreEntitySet="Market">
-                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-                <ScalarProperty Name="MarketName" ColumnName="MarketName" />
-                <ScalarProperty Name="MarketID" ColumnName="MarketID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ModelTypes">
-            <EntityTypeMapping TypeName="OfficeAutomationdbModel.ModelType">
-              <MappingFragment StoreEntitySet="ModelType">
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
-                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
-                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="UnitType" ColumnName="UnitType" />
-                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
-                <ScalarProperty Name="ModelID" ColumnName="ModelID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OutsourceUsers">
-            <EntityTypeMapping TypeName="OfficeAutomationdbModel.OutsourceUser">
-              <MappingFragment StoreEntitySet="OutsourceUsers">
-                <ScalarProperty Name="OutSourceID" ColumnName="OutSourceID" />
-                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PhoneDongles">
-            <EntityTypeMapping TypeName="OfficeAutomationdbModel.PhoneDongle">
-              <MappingFragment StoreEntitySet="PhoneDongles">
-                <ScalarProperty Name="DisposeRemark" ColumnName="DisposeRemark" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsEmailSend" ColumnName="IsEmailSend" />
-                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
-                <ScalarProperty Name="DisposeDate" ColumnName="DisposeDate" />
-                <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
-                <ScalarProperty Name="Company" ColumnName="Company" />
-                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
-                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="EMEINo2" ColumnName="EMEINo2" />
-                <ScalarProperty Name="EMEINo1" ColumnName="EMEINo1" />
-                <ScalarProperty Name="SimNo" ColumnName="SimNo" />
-                <ScalarProperty Name="ConnectionNo" ColumnName="ConnectionNo" />
-                <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
-                <ScalarProperty Name="AssestNo" ColumnName="AssestNo" />
-                <ScalarProperty Name="Provider" ColumnName="Provider" />
-                <ScalarProperty Name="ModelType" ColumnName="ModelType" />
-                <ScalarProperty Name="UnitType" ColumnName="UnitType" />
-                <ScalarProperty Name="AUOTID" ColumnName="AUOTID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Providers">
-            <EntityTypeMapping TypeName="OfficeAutomationdbModel.Provider">
-              <MappingFragment StoreEntitySet="Provider">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
-                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Softwares">
-            <EntityTypeMapping TypeName="OfficeAutomationdbModel.Software">
-              <MappingFragment StoreEntitySet="Software">
-                <ScalarProperty Name="SoftwareType" ColumnName="SoftwareType" />
-                <ScalarProperty Name="SoftwareName" ColumnName="SoftwareName" />
-                <ScalarProperty Name="SoftwareID" ColumnName="SoftwareID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SystemUsers">
-            <EntityTypeMapping TypeName="OfficeAutomationdbModel.SystemUser">
-              <MappingFragment StoreEntitySet="SystemUsers">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Hashkey" ColumnName="Hashkey" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TransferAssestHistories">
-            <EntityTypeMapping TypeName="OfficeAutomationdbModel.TransferAssestHistory">
-              <MappingFragment StoreEntitySet="TransferAssestHistory">
-                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
-                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
-                <ScalarProperty Name="NewUser" ColumnName="NewUser" />
-                <ScalarProperty Name="PreviousUser" ColumnName="PreviousUser" />
-                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UnitTypes">
-            <EntityTypeMapping TypeName="OfficeAutomationdbModel.UnitType">
-              <MappingFragment StoreEntitySet="UnitType">
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
-                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
-                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
-                <ScalarProperty Name="UnitTypeName" ColumnName="UnitTypeName" />
-                <ScalarProperty Name="UnitTypeID" ColumnName="UnitTypeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserAssets">
-            <EntityTypeMapping TypeName="OfficeAutomationdbModel.UserAsset">
-              <MappingFragment StoreEntitySet="UserAssets">
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="PANo" ColumnName="PANo" />
-                <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
-                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="OfficeAutomationdbModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="IsUserOutSource" ColumnName="IsUserOutSource" />
-                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
-                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="NIC" ColumnName="NIC" />
-                <ScalarProperty Name="SAPNo" ColumnName="SAPNo" />
-                <ScalarProperty Name="PANo" ColumnName="PANo" />
-                <ScalarProperty Name="Market" ColumnName="Market" />
-                <ScalarProperty Name="Company" ColumnName="Company" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VOIPs">
-            <EntityTypeMapping TypeName="OfficeAutomationdbModel.VOIP">
-              <MappingFragment StoreEntitySet="VOIP">
-                <ScalarProperty Name="DisposeRemark" ColumnName="DisposeRemark" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
-                <ScalarProperty Name="DisposeDate" ColumnName="DisposeDate" />
-                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
-                <ScalarProperty Name="Company" ColumnName="Company" />
-                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
-                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="ExtentionNo" ColumnName="ExtentionNo" />
-                <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
-                <ScalarProperty Name="AssestNo" ColumnName="AssestNo" />
-                <ScalarProperty Name="ModelType" ColumnName="ModelType" />
-                <ScalarProperty Name="UnitType" ColumnName="UnitType" />
-                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OfficeAutomationdbModelStoreContainer" CdmEntityContainer="OfficeAutomationdbEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="IsTypeOf(OfficeAutomationdbModel.Category)">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="IsTypeOf(OfficeAutomationdbModel.Company)">
+        <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Computers">
+      <EntityTypeMapping TypeName="IsTypeOf(OfficeAutomationdbModel.Computer)">
+        <MappingFragment StoreEntitySet="Computers">
+          <ScalarProperty Name="AUOTID" ColumnName="AUOTID" />
+          <ScalarProperty Name="UnitType" ColumnName="UnitType" />
+          <ScalarProperty Name="ModelType" ColumnName="ModelType" />
+          <ScalarProperty Name="AssestNo" ColumnName="AssestNo" />
+          <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
+          <ScalarProperty Name="RAM" ColumnName="RAM" />
+          <ScalarProperty Name="OS" ColumnName="OS" />
+          <ScalarProperty Name="OfficeVersion" ColumnName="OfficeVersion" />
+          <ScalarProperty Name="HDDCapacity" ColumnName="HDDCapacity" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+          <ScalarProperty Name="DisposeDate" ColumnName="DisposeDate" />
+          <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+          <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
+          <ScalarProperty Name="WarrantyExpireDate" ColumnName="WarrantyExpireDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DisposeRemark" ColumnName="DisposeRemark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DisposeLists">
+      <EntityTypeMapping TypeName="IsTypeOf(OfficeAutomationdbModel.DisposeList)">
+        <MappingFragment StoreEntitySet="DisposeLists">
+          <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="DisposeDate" ColumnName="DisposeDate" />
+          <ScalarProperty Name="IsDisposed" ColumnName="IsDisposed" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmailConfigs">
+      <EntityTypeMapping TypeName="IsTypeOf(OfficeAutomationdbModel.EmailConfig)">
+        <MappingFragment StoreEntitySet="EmailConfigs">
+          <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+          <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+          <ScalarProperty Name="EmailCC" ColumnName="EmailCC" />
+          <ScalarProperty Name="EmailBCC" ColumnName="EmailBCC" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="EmailFrom" ColumnName="EmailFrom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Markets">
+      <EntityTypeMapping TypeName="IsTypeOf(OfficeAutomationdbModel.Market)">
+        <MappingFragment StoreEntitySet="Markets">
+          <ScalarProperty Name="MarketID" ColumnName="MarketID" />
+          <ScalarProperty Name="MarketName" ColumnName="MarketName" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModelTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(OfficeAutomationdbModel.ModelType)">
+        <MappingFragment StoreEntitySet="ModelTypes">
+          <ScalarProperty Name="ModelID" ColumnName="ModelID" />
+          <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+          <ScalarProperty Name="UnitType" ColumnName="UnitType" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+          <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OutsourceUsers">
+      <EntityTypeMapping TypeName="IsTypeOf(OfficeAutomationdbModel.OutsourceUser)">
+        <MappingFragment StoreEntitySet="OutsourceUsers">
+          <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+          <ScalarProperty Name="OutSourceID" ColumnName="OutSourceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhoneDongles">
+      <EntityTypeMapping TypeName="IsTypeOf(OfficeAutomationdbModel.PhoneDongle)">
+        <MappingFragment StoreEntitySet="PhoneDongles">
+          <ScalarProperty Name="AUOTID" ColumnName="AUOTID" />
+          <ScalarProperty Name="UnitType" ColumnName="UnitType" />
+          <ScalarProperty Name="ModelType" ColumnName="ModelType" />
+          <ScalarProperty Name="Provider" ColumnName="Provider" />
+          <ScalarProperty Name="AssestNo" ColumnName="AssestNo" />
+          <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
+          <ScalarProperty Name="ConnectionNo" ColumnName="ConnectionNo" />
+          <ScalarProperty Name="SimNo" ColumnName="SimNo" />
+          <ScalarProperty Name="EMEINo1" ColumnName="EMEINo1" />
+          <ScalarProperty Name="EMEINo2" ColumnName="EMEINo2" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+          <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
+          <ScalarProperty Name="DisposeDate" ColumnName="DisposeDate" />
+          <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+          <ScalarProperty Name="IsEmailSend" ColumnName="IsEmailSend" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DisposeRemark" ColumnName="DisposeRemark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Providers">
+      <EntityTypeMapping TypeName="IsTypeOf(OfficeAutomationdbModel.Provider)">
+        <MappingFragment StoreEntitySet="Providers">
+          <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+          <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Softwares">
+      <EntityTypeMapping TypeName="IsTypeOf(OfficeAutomationdbModel.Software)">
+        <MappingFragment StoreEntitySet="Softwares">
+          <ScalarProperty Name="SoftwareID" ColumnName="SoftwareID" />
+          <ScalarProperty Name="SoftwareName" ColumnName="SoftwareName" />
+          <ScalarProperty Name="SoftwareType" ColumnName="SoftwareType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemUsers">
+      <EntityTypeMapping TypeName="IsTypeOf(OfficeAutomationdbModel.SystemUser)">
+        <MappingFragment StoreEntitySet="SystemUsers">
+          <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Hashkey" ColumnName="Hashkey" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransferAssestHistories">
+      <EntityTypeMapping TypeName="IsTypeOf(OfficeAutomationdbModel.TransferAssestHistory)">
+        <MappingFragment StoreEntitySet="TransferAssestHistories">
+          <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+          <ScalarProperty Name="PreviousUser" ColumnName="PreviousUser" />
+          <ScalarProperty Name="NewUser" ColumnName="NewUser" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+          <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnitTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(OfficeAutomationdbModel.UnitType)">
+        <MappingFragment StoreEntitySet="UnitTypes">
+          <ScalarProperty Name="UnitTypeID" ColumnName="UnitTypeID" />
+          <ScalarProperty Name="UnitTypeName" ColumnName="UnitTypeName" />
+          <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+          <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAssets">
+      <EntityTypeMapping TypeName="IsTypeOf(OfficeAutomationdbModel.UserAsset)">
+        <MappingFragment StoreEntitySet="UserAssets">
+          <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
+          <ScalarProperty Name="PANo" ColumnName="PANo" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(OfficeAutomationdbModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="PANo" ColumnName="PANo" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="Market" ColumnName="Market" />
+          <ScalarProperty Name="SAPNo" ColumnName="SAPNo" />
+          <ScalarProperty Name="NIC" ColumnName="NIC" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+          <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="IsUserOutSource" ColumnName="IsUserOutSource" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VOIPs">
+      <EntityTypeMapping TypeName="IsTypeOf(OfficeAutomationdbModel.VOIP)">
+        <MappingFragment StoreEntitySet="VOIPs">
+          <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+          <ScalarProperty Name="UnitType" ColumnName="UnitType" />
+          <ScalarProperty Name="ModelType" ColumnName="ModelType" />
+          <ScalarProperty Name="AssestNo" ColumnName="AssestNo" />
+          <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
+          <ScalarProperty Name="ExtentionNo" ColumnName="ExtentionNo" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+          <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+          <ScalarProperty Name="DisposeDate" ColumnName="DisposeDate" />
+          <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DisposeRemark" ColumnName="DisposeRemark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -1353,7 +1340,7 @@ warning 6035: The relationship 'UserIDfk_UserAssest' has columns that are not pa
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
