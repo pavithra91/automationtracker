@@ -3,6 +3,7 @@ using Postal;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -119,48 +120,50 @@ namespace AutomationTracker.Controllers
 
             string _userName = Session["UserName"].ToString();
 
-            if (objModel.computers.AUOTID == 0)
+            try
+            {
+                if (objModel.computers.AUOTID == 0)
                 {
-                try
-                {
-                    Computer pc = new Computer();
-                    pc.ModelType = objModel.computers.ModelType;
-                    pc.UnitType = objModel.computers.UnitType;
-                    pc.AssestNo = objModel.computers.AssestNo;
-                    pc.SerialNo = objModel.computers.SerialNo;
-                    pc.OS = objModel.computers.OS;
-                    pc.OfficeVersion = objModel.computers.OfficeVersion;
-                    pc.RAM = objModel.computers.RAM;
-                    pc.HDDCapacity = objModel.computers.HDDCapacity;
-                    pc.Remarks = objModel.computers.Remarks;
-                    pc.Company = objModel.company.CompanyID;
-                    pc.PurchaseDate = objModel.computers.PurchaseDate;
-                    pc.DisposeDate = objModel.computers.DisposeDate;
-                    pc.IsActive = true;
-                    pc.WarrantyExpireDate = objModel.computers.WarrantyExpireDate;
+                    try
+                    {
+                        Computer pc = new Computer();
+                        pc.ModelType = objModel.computers.ModelType;
+                        pc.UnitType = objModel.computers.UnitType;
+                        pc.AssestNo = objModel.computers.AssestNo;
+                        pc.SerialNo = objModel.computers.SerialNo;
+                        pc.OS = objModel.computers.OS;
+                        pc.OfficeVersion = objModel.computers.OfficeVersion;
+                        pc.RAM = objModel.computers.RAM;
+                        pc.HDDCapacity = objModel.computers.HDDCapacity;
+                        pc.Remarks = objModel.computers.Remarks;
+                        pc.Company = objModel.company.CompanyID;
+                        pc.PurchaseDate = objModel.computers.PurchaseDate;
+                        pc.DisposeDate = objModel.computers.DisposeDate;
+                        pc.IsActive = true;
+                        pc.WarrantyExpireDate = objModel.computers.WarrantyExpireDate;
 
-                    pc.AddedBy = _userName;
-                    pc.AddedDate = DateTime.Now;
+                        pc.AddedBy = _userName;
+                        pc.AddedDate = DateTime.Now;
 
-                    _context.Computers.Add(pc);
-                    _context.SaveChanges();
+                        _context.Computers.Add(pc);
+                        _context.SaveChanges();
 
-                    User _user = _context.Users.Where(w => w.FullName.Contains("IT Pool") && w.Company == objModel.company.CompanyID).FirstOrDefault();
-                    UnitType _unitType = _context.UnitTypes.Where(w => w.UnitTypeID == pc.UnitType).FirstOrDefault();
+                        User _user = _context.Users.Where(w => w.FullName.Contains("IT Pool") && w.Company == objModel.company.CompanyID).FirstOrDefault();
+                        UnitType _unitType = _context.UnitTypes.Where(w => w.UnitTypeID == pc.UnitType).FirstOrDefault();
 
-                    UserAsset _userAssest = new UserAsset();
-                    _userAssest.Category = objModel.computers.UnitType;
-                    _userAssest.ItemID = pc.AUOTID;
-                    _userAssest.PANo = _user.PANo;
-                    _userAssest.UserID = _user.UserID;
+                        UserAsset _userAssest = new UserAsset();
+                        _userAssest.Category = _unitType.Category;
+                        _userAssest.ItemID = pc.AUOTID;
+                        _userAssest.PANo = _user.PANo;
+                        _userAssest.UserID = _user.UserID;
 
-                    _context.UserAssets.Add(_userAssest);
-                    _context.SaveChanges();
-                }
-                catch(Exception ex)
-                {
+                        _context.UserAssets.Add(_userAssest);
+                        _context.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
 
-                }
+                    }
                 }
                 else
                 {
@@ -171,35 +174,41 @@ namespace AutomationTracker.Controllers
                     pc.Remarks = objModel.computers.Remarks;
                     pc.Company = objModel.company.CompanyID;
 
-                if(!objModel.computers.IsActive)
-                {
-                    pc.IsActive = objModel.computers.IsActive;
-                    pc.DisposeRemark = objModel.computers.DisposeRemark;
+                    if (!objModel.computers.IsActive)
+                    {
+                        pc.IsActive = objModel.computers.IsActive;
+                        pc.DisposeRemark = objModel.computers.DisposeRemark;
 
-                    DisposeList _disposePC = new DisposeList();
-                    _disposePC.Category = 1;
-                    _disposePC.DisposeDate = pc.DisposeDate;
-                    _disposePC.IsDisposed = true;
-                    _disposePC.ItemID = pc.AUOTID;
-                    _disposePC.UpdateBy = _userName;
-                    _disposePC.UpdateDate = DateTime.Now;
+                        DisposeList _disposePC = new DisposeList();
+                        _disposePC.Category = 1;
+                        _disposePC.DisposeDate = pc.DisposeDate;
+                        _disposePC.IsDisposed = true;
+                        _disposePC.ItemID = pc.AUOTID;
+                        _disposePC.UpdateBy = _userName;
+                        _disposePC.UpdateDate = DateTime.Now;
 
-                    _context.DisposeLists.Add(_disposePC);
+                        _context.DisposeLists.Add(_disposePC);
 
-                    var _assest = _context.UserAssets.Where(w => w.AUTOID == pc.AUOTID && w.Category == 1).FirstOrDefault();
+                        var _assest = _context.UserAssets.Where(w => w.ItemID == pc.AUOTID && w.Category == 1).FirstOrDefault();
 
-                    _context.UserAssets.Remove(_assest);
-                    _context.SaveChanges();
-                }
+                        _context.UserAssets.Remove(_assest);
+                        _context.SaveChanges();
+                    }
 
                     pc.UpdateBy = _userName;
                     pc.UpdateDate = DateTime.Now;
 
-                    _context.Computers.Attach(pc);
-                    _context.Entry(pc).State = EntityState.Modified;
+                    //_context.Computers.Attach(pc);
+                    //_context.Entry(pc).State = EntityState.Modified;
                     _context.SaveChanges();
                 }
-            return RedirectToAction("ViewComputers");
+                return RedirectToAction("ViewComputers");
+            }
+            catch(DbEntityValidationException e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
         }
 
         public ActionResult ViewMobilePhones()
@@ -505,13 +514,28 @@ namespace AutomationTracker.Controllers
                 return RedirectToAction("Index", "Account");
             }
 
+            string _userName = Session["UserName"].ToString();
+
             var item = _context.UserAssets.Where(w => w.ItemID == objModel.userAssestList.ItemID && w.Category == objModel.userAssestList.Category).FirstOrDefault();
+            
+            TransferAssestHistory objHistory = new TransferAssestHistory();
+            objHistory.PreviousUser = item.UserID;
+            objHistory.NewUser = objModel.user.UserID;
+            objHistory.ItemID = item.ItemID;
+            objHistory.Category = item.Category;
+            objHistory.AddedBy = _userName;
+            objHistory.AddedDate = DateTime.Now;
+
+            _context.TransferAssestHistories.Add(objHistory);
+
             item.UserID = objModel.user.UserID;
             item.ActualAssignee = objModel.user.UserID;
-
             _context.UserAssets.Attach(item);
             _context.Entry(item).State = EntityState.Modified;
             _context.SaveChanges();
+
+            
+            //_context.SaveChanges();
 
             return RedirectToAction("ViewUsers", "Account");
         }

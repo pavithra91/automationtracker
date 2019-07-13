@@ -263,7 +263,7 @@ namespace AutomationTracker.Controllers
                 objModel.userAssestList.ComputerList.Add(_computers);
 
                 objList.companyList.Add(_computers.Company1);
-                objModel.userList.usrList = _context.Users.Where(w => w.Company == _computers.Company1.CompanyID).ToList();
+                objModel.userList.usrList = _context.Users.Where(w => w.Company == _computers.Company1.CompanyID).OrderBy(w => w.FullName).ToList();
             }
             else if(category == 2)
             {

@@ -1,6 +1,7 @@
 ﻿using AutomationTracker.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -142,19 +143,31 @@ namespace AutomationTracker.Controllers
 
             string _userName = Session["UserName"].ToString();
 
-            if (asset.assetList.modelList.FirstOrDefault().ModelID == 0)
+            if (asset.Modeltype.ModelID > 0)
             {
-                asset.assetList.modelList.FirstOrDefault().AddedBy = _userName;
-                asset.assetList.modelList.FirstOrDefault().AddedDate = DateTime.Now;
-                _context.ModelTypes.Add(asset.assetList.modelList.FirstOrDefault());
+                ModelType objModel = _context.ModelTypes.Where(w => w.ModelID == asset.Modeltype.ModelID).FirstOrDefault();
+                objModel.ModelName = asset.Modeltype.ModelName;
+                objModel.UnitType = asset.Modeltype.UnitType;
+                objModel.UpdateBy = _userName;
+                objModel.UpdateDate = DateTime.Now;
+
+                _context.ModelTypes.Attach(objModel);
+                _context.Entry(objModel).State = EntityState.Modified;
                 _context.SaveChanges();
             }
             else
             {
+                ModelType objModel = new ModelType();
+                objModel.ModelName = asset.Modeltype.ModelName;
+                objModel.UnitType = asset.Modeltype.UnitType;
+                objModel.AddedBy = _userName;
+                objModel.AddedDate = DateTime.Now;
 
+                _context.ModelTypes.Add(objModel);
+                _context.SaveChanges();
             }
 
-            return null;
+            return RedirectToAction("ViewModels", "Config");
         }
 
         [HttpPost]

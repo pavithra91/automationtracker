@@ -16,19 +16,19 @@ namespace AutomationTracker
     {
         public Company()
         {
-            this.Computers = new HashSet<Computer>();
             this.PhoneDongles = new HashSet<PhoneDongle>();
             this.VOIPs = new HashSet<VOIP>();
             this.Users = new HashSet<User>();
+            this.Computers = new HashSet<Computer>();
         }
     
         public int CompanyID { get; set; }
         public string CompanyCode { get; set; }
         public string CompanyName { get; set; }
     
-        public virtual ICollection<Computer> Computers { get; set; }
         public virtual ICollection<PhoneDongle> PhoneDongles { get; set; }
         public virtual ICollection<VOIP> VOIPs { get; set; }
         public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<Computer> Computers { get; set; }
     }
 }

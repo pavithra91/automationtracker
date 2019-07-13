@@ -16,10 +16,10 @@ namespace AutomationTracker
     {
         public UnitType()
         {
-            this.Computers = new HashSet<Computer>();
             this.ModelTypes = new HashSet<ModelType>();
             this.PhoneDongles = new HashSet<PhoneDongle>();
             this.VOIPs = new HashSet<VOIP>();
+            this.Computers = new HashSet<Computer>();
         }
     
         public int UnitTypeID { get; set; }
@@ -31,9 +31,9 @@ namespace AutomationTracker
         public Nullable<int> Category { get; set; }
     
         public virtual Category Category1 { get; set; }
-        public virtual ICollection<Computer> Computers { get; set; }
         public virtual ICollection<ModelType> ModelTypes { get; set; }
         public virtual ICollection<PhoneDongle> PhoneDongles { get; set; }
         public virtual ICollection<VOIP> VOIPs { get; set; }
+        public virtual ICollection<Computer> Computers { get; set; }
     }
 }

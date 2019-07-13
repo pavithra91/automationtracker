@@ -39,7 +39,7 @@
           <Property Name="AddedDate" Type="datetime" />
           <Property Name="AddedBy" Type="nvarchar" MaxLength="100" />
           <Property Name="UpdateDate" Type="datetime" />
-          <Property Name="UpdateBy" Type="nvarchar" MaxLength="1" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="15" />
           <Property Name="Company" Type="int" />
           <Property Name="ActualAssignee" Type="int" />
           <Property Name="WarrantyExpireDate" Type="datetime" />
@@ -200,7 +200,7 @@
           <Property Name="Market" Type="int" />
           <Property Name="PANo" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="SAPNo" Type="varchar" MaxLength="20" />
-          <Property Name="NIC" Type="varchar" MaxLength="10" />
+          <Property Name="NIC" Type="varchar" MaxLength="15" />
           <Property Name="Remarks" Type="varchar" MaxLength="500" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="AddedDate" Type="datetime" />
@@ -529,7 +529,6 @@
         <EntityContainer Name="OfficeAutomationdbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="OfficeAutomationdbModel.Category" />
           <EntitySet Name="Companies" EntityType="OfficeAutomationdbModel.Company" />
-          <EntitySet Name="Computers" EntityType="OfficeAutomationdbModel.Computer" />
           <EntitySet Name="DisposeLists" EntityType="OfficeAutomationdbModel.DisposeList" />
           <EntitySet Name="EmailConfigs" EntityType="OfficeAutomationdbModel.EmailConfig" />
           <EntitySet Name="Markets" EntityType="OfficeAutomationdbModel.Market" />
@@ -552,10 +551,6 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="UserAsset" EntitySet="UserAssets" />
           </AssociationSet>
-          <AssociationSet Name="Companyfk_Computers" Association="OfficeAutomationdbModel.Companyfk_Computers">
-            <End Role="Company" EntitySet="Companies" />
-            <End Role="Computer" EntitySet="Computers" />
-          </AssociationSet>
           <AssociationSet Name="Companyfk_Phones" Association="OfficeAutomationdbModel.Companyfk_Phones">
             <End Role="Company" EntitySet="Companies" />
             <End Role="PhoneDongle" EntitySet="PhoneDongles" />
@@ -567,22 +562,6 @@
           <AssociationSet Name="CompanyIDfk_Users" Association="OfficeAutomationdbModel.CompanyIDfk_Users">
             <End Role="Company" EntitySet="Companies" />
             <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="ModelTypefk_Computers" Association="OfficeAutomationdbModel.ModelTypefk_Computers">
-            <End Role="ModelType" EntitySet="ModelTypes" />
-            <End Role="Computer" EntitySet="Computers" />
-          </AssociationSet>
-          <AssociationSet Name="OfficeVersionfk_Computers" Association="OfficeAutomationdbModel.OfficeVersionfk_Computers">
-            <End Role="Software" EntitySet="Softwares" />
-            <End Role="Computer" EntitySet="Computers" />
-          </AssociationSet>
-          <AssociationSet Name="OSfk_Computers" Association="OfficeAutomationdbModel.OSfk_Computers">
-            <End Role="Software" EntitySet="Softwares" />
-            <End Role="Computer" EntitySet="Computers" />
-          </AssociationSet>
-          <AssociationSet Name="UnitTypefk_Computers" Association="OfficeAutomationdbModel.UnitTypefk_Computers">
-            <End Role="UnitType" EntitySet="UnitTypes" />
-            <End Role="Computer" EntitySet="Computers" />
           </AssociationSet>
           <AssociationSet Name="Marketfk_Users" Association="OfficeAutomationdbModel.Marketfk_Users">
             <End Role="Market" EntitySet="Markets" />
@@ -612,6 +591,27 @@
             <End Role="UnitType" EntitySet="UnitTypes" />
             <End Role="VOIP" EntitySet="VOIPs" />
           </AssociationSet>
+          <EntitySet Name="Computers" EntityType="OfficeAutomationdbModel.Computer" />
+          <AssociationSet Name="FK_Companyfk_Computers" Association="OfficeAutomationdbModel.FK_Companyfk_Computers">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Computer" EntitySet="Computers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModelTypefk_Computers" Association="OfficeAutomationdbModel.FK_ModelTypefk_Computers">
+            <End Role="ModelType" EntitySet="ModelTypes" />
+            <End Role="Computer" EntitySet="Computers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfficeVersionfk_Computers" Association="OfficeAutomationdbModel.FK_OfficeVersionfk_Computers">
+            <End Role="Software" EntitySet="Softwares" />
+            <End Role="Computer" EntitySet="Computers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OSfk_Computers" Association="OfficeAutomationdbModel.FK_OSfk_Computers">
+            <End Role="Software" EntitySet="Softwares" />
+            <End Role="Computer" EntitySet="Computers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UnitTypefk_Computers" Association="OfficeAutomationdbModel.FK_UnitTypefk_Computers">
+            <End Role="UnitType" EntitySet="UnitTypes" />
+            <End Role="Computer" EntitySet="Computers" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Category">
           <Key>
@@ -629,41 +629,10 @@
           <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CompanyCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Computers" Relationship="OfficeAutomationdbModel.Companyfk_Computers" FromRole="Company" ToRole="Computer" />
           <NavigationProperty Name="PhoneDongles" Relationship="OfficeAutomationdbModel.Companyfk_Phones" FromRole="Company" ToRole="PhoneDongle" />
           <NavigationProperty Name="VOIPs" Relationship="OfficeAutomationdbModel.Companyfk_VOIP" FromRole="Company" ToRole="VOIP" />
           <NavigationProperty Name="Users" Relationship="OfficeAutomationdbModel.CompanyIDfk_Users" FromRole="Company" ToRole="User" />
-        </EntityType>
-        <EntityType Name="Computer">
-          <Key>
-            <PropertyRef Name="AUOTID" />
-          </Key>
-          <Property Name="AUOTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UnitType" Type="Int32" />
-          <Property Name="ModelType" Type="Int32" />
-          <Property Name="AssestNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="SerialNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="RAM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="OS" Type="Int32" />
-          <Property Name="OfficeVersion" Type="Int32" />
-          <Property Name="HDDCapacity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="PurchaseDate" Type="DateTime" Precision="3" />
-          <Property Name="DisposeDate" Type="DateTime" Precision="3" />
-          <Property Name="AddedDate" Type="DateTime" Precision="3" />
-          <Property Name="AddedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
-          <Property Name="UpdateBy" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="Company" Type="Int32" />
-          <Property Name="ActualAssignee" Type="Int32" />
-          <Property Name="WarrantyExpireDate" Type="DateTime" Precision="3" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="DisposeRemark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Company1" Relationship="OfficeAutomationdbModel.Companyfk_Computers" FromRole="Computer" ToRole="Company" />
-          <NavigationProperty Name="ModelType1" Relationship="OfficeAutomationdbModel.ModelTypefk_Computers" FromRole="Computer" ToRole="ModelType" />
-          <NavigationProperty Name="Software" Relationship="OfficeAutomationdbModel.OfficeVersionfk_Computers" FromRole="Computer" ToRole="Software" />
-          <NavigationProperty Name="Software1" Relationship="OfficeAutomationdbModel.OSfk_Computers" FromRole="Computer" ToRole="Software" />
-          <NavigationProperty Name="UnitType1" Relationship="OfficeAutomationdbModel.UnitTypefk_Computers" FromRole="Computer" ToRole="UnitType" />
+          <NavigationProperty Name="Computers" Relationship="OfficeAutomationdbModel.FK_Companyfk_Computers" FromRole="Company" ToRole="Computer" />
         </EntityType>
         <EntityType Name="DisposeList">
           <Key>
@@ -709,10 +678,10 @@
           <Property Name="AddedDate" Type="DateTime" Precision="3" />
           <Property Name="UpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UpdateDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Computers" Relationship="OfficeAutomationdbModel.ModelTypefk_Computers" FromRole="ModelType" ToRole="Computer" />
           <NavigationProperty Name="UnitType1" Relationship="OfficeAutomationdbModel.fk_UnitTypeID_Models" FromRole="ModelType" ToRole="UnitType" />
           <NavigationProperty Name="PhoneDongles" Relationship="OfficeAutomationdbModel.ModelTypefk_Phone" FromRole="ModelType" ToRole="PhoneDongle" />
           <NavigationProperty Name="VOIPs" Relationship="OfficeAutomationdbModel.ModelTypefk_VOIP" FromRole="ModelType" ToRole="VOIP" />
+          <NavigationProperty Name="Computers" Relationship="OfficeAutomationdbModel.FK_ModelTypefk_Computers" FromRole="ModelType" ToRole="Computer" />
         </EntityType>
         <EntityType Name="OutsourceUser">
           <Key>
@@ -768,8 +737,8 @@
           <Property Name="SoftwareID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SoftwareName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="SoftwareType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Computers" Relationship="OfficeAutomationdbModel.OfficeVersionfk_Computers" FromRole="Software" ToRole="Computer" />
-          <NavigationProperty Name="Computers1" Relationship="OfficeAutomationdbModel.OSfk_Computers" FromRole="Software" ToRole="Computer" />
+          <NavigationProperty Name="Computers" Relationship="OfficeAutomationdbModel.FK_OfficeVersionfk_Computers" FromRole="Software" ToRole="Computer" />
+          <NavigationProperty Name="Computers1" Relationship="OfficeAutomationdbModel.FK_OSfk_Computers" FromRole="Software" ToRole="Computer" />
         </EntityType>
         <EntityType Name="SystemUser">
           <Key>
@@ -806,10 +775,10 @@
           <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <Property Name="Category" Type="Int32" />
           <NavigationProperty Name="Category1" Relationship="OfficeAutomationdbModel.CategoryIDfk_UnitType" FromRole="UnitType" ToRole="Category" />
-          <NavigationProperty Name="Computers" Relationship="OfficeAutomationdbModel.UnitTypefk_Computers" FromRole="UnitType" ToRole="Computer" />
           <NavigationProperty Name="ModelTypes" Relationship="OfficeAutomationdbModel.fk_UnitTypeID_Models" FromRole="UnitType" ToRole="ModelType" />
           <NavigationProperty Name="PhoneDongles" Relationship="OfficeAutomationdbModel.UnitTypefk_Phone" FromRole="UnitType" ToRole="PhoneDongle" />
           <NavigationProperty Name="VOIPs" Relationship="OfficeAutomationdbModel.UnitTypefk_VOIP" FromRole="UnitType" ToRole="VOIP" />
+          <NavigationProperty Name="Computers" Relationship="OfficeAutomationdbModel.FK_UnitTypefk_Computers" FromRole="UnitType" ToRole="Computer" />
         </EntityType>
         <EntityType Name="UserAsset">
           <Key>
@@ -837,7 +806,7 @@
           <Property Name="Market" Type="Int32" />
           <Property Name="PANo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="SAPNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="NIC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NIC" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="AddedDate" Type="DateTime" Precision="3" />
@@ -897,18 +866,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Companyfk_Computers">
-          <End Type="OfficeAutomationdbModel.Company" Role="Company" Multiplicity="0..1" />
-          <End Type="OfficeAutomationdbModel.Computer" Role="Computer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Company">
-              <PropertyRef Name="CompanyID" />
-            </Principal>
-            <Dependent Role="Computer">
-              <PropertyRef Name="Company" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="Companyfk_Phones">
           <End Type="OfficeAutomationdbModel.Company" Role="Company" Multiplicity="0..1" />
           <End Type="OfficeAutomationdbModel.PhoneDongle" Role="PhoneDongle" Multiplicity="*" />
@@ -942,54 +899,6 @@
             </Principal>
             <Dependent Role="User">
               <PropertyRef Name="Company" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ModelTypefk_Computers">
-          <End Type="OfficeAutomationdbModel.ModelType" Role="ModelType" Multiplicity="0..1" />
-          <End Type="OfficeAutomationdbModel.Computer" Role="Computer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ModelType">
-              <PropertyRef Name="ModelID" />
-            </Principal>
-            <Dependent Role="Computer">
-              <PropertyRef Name="ModelType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="OfficeVersionfk_Computers">
-          <End Type="OfficeAutomationdbModel.Software" Role="Software" Multiplicity="0..1" />
-          <End Type="OfficeAutomationdbModel.Computer" Role="Computer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Software">
-              <PropertyRef Name="SoftwareID" />
-            </Principal>
-            <Dependent Role="Computer">
-              <PropertyRef Name="OfficeVersion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="OSfk_Computers">
-          <End Type="OfficeAutomationdbModel.Software" Role="Software" Multiplicity="0..1" />
-          <End Type="OfficeAutomationdbModel.Computer" Role="Computer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Software">
-              <PropertyRef Name="SoftwareID" />
-            </Principal>
-            <Dependent Role="Computer">
-              <PropertyRef Name="OS" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="UnitTypefk_Computers">
-          <End Type="OfficeAutomationdbModel.UnitType" Role="UnitType" Multiplicity="0..1" />
-          <End Type="OfficeAutomationdbModel.Computer" Role="Computer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UnitType">
-              <PropertyRef Name="UnitTypeID" />
-            </Principal>
-            <Dependent Role="Computer">
-              <PropertyRef Name="UnitType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1077,6 +986,97 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Computer">
+          <Key>
+            <PropertyRef Name="AUOTID" />
+          </Key>
+          <Property Name="AUOTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UnitType" Type="Int32" />
+          <Property Name="ModelType" Type="Int32" />
+          <Property Name="AssestNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SerialNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RAM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="OS" Type="Int32" />
+          <Property Name="OfficeVersion" Type="Int32" />
+          <Property Name="HDDCapacity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PurchaseDate" Type="DateTime" Precision="3" />
+          <Property Name="DisposeDate" Type="DateTime" Precision="3" />
+          <Property Name="AddedDate" Type="DateTime" Precision="3" />
+          <Property Name="AddedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="Int32" />
+          <Property Name="ActualAssignee" Type="Int32" />
+          <Property Name="WarrantyExpireDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="DisposeRemark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Company1" Relationship="OfficeAutomationdbModel.FK_Companyfk_Computers" FromRole="Computer" ToRole="Company" />
+          <NavigationProperty Name="ModelType1" Relationship="OfficeAutomationdbModel.FK_ModelTypefk_Computers" FromRole="Computer" ToRole="ModelType" />
+          <NavigationProperty Name="Software" Relationship="OfficeAutomationdbModel.FK_OfficeVersionfk_Computers" FromRole="Computer" ToRole="Software" />
+          <NavigationProperty Name="Software1" Relationship="OfficeAutomationdbModel.FK_OSfk_Computers" FromRole="Computer" ToRole="Software" />
+          <NavigationProperty Name="UnitType1" Relationship="OfficeAutomationdbModel.FK_UnitTypefk_Computers" FromRole="Computer" ToRole="UnitType" />
+        </EntityType>
+        <Association Name="FK_Companyfk_Computers">
+          <End Type="OfficeAutomationdbModel.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="OfficeAutomationdbModel.Computer" Role="Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModelTypefk_Computers">
+          <End Type="OfficeAutomationdbModel.ModelType" Role="ModelType" Multiplicity="0..1" />
+          <End Type="OfficeAutomationdbModel.Computer" Role="Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModelType">
+              <PropertyRef Name="ModelID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="ModelType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OfficeVersionfk_Computers">
+          <End Type="OfficeAutomationdbModel.Software" Role="Software" Multiplicity="0..1" />
+          <End Type="OfficeAutomationdbModel.Computer" Role="Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Software">
+              <PropertyRef Name="SoftwareID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="OfficeVersion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OSfk_Computers">
+          <End Type="OfficeAutomationdbModel.Software" Role="Software" Multiplicity="0..1" />
+          <End Type="OfficeAutomationdbModel.Computer" Role="Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Software">
+              <PropertyRef Name="SoftwareID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="OS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UnitTypefk_Computers">
+          <End Type="OfficeAutomationdbModel.UnitType" Role="UnitType" Multiplicity="0..1" />
+          <End Type="OfficeAutomationdbModel.Computer" Role="Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitType">
+              <PropertyRef Name="UnitTypeID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="UnitType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1097,33 +1097,6 @@
           <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
           <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
           <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Computers">
-      <EntityTypeMapping TypeName="IsTypeOf(OfficeAutomationdbModel.Computer)">
-        <MappingFragment StoreEntitySet="Computers">
-          <ScalarProperty Name="AUOTID" ColumnName="AUOTID" />
-          <ScalarProperty Name="UnitType" ColumnName="UnitType" />
-          <ScalarProperty Name="ModelType" ColumnName="ModelType" />
-          <ScalarProperty Name="AssestNo" ColumnName="AssestNo" />
-          <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
-          <ScalarProperty Name="RAM" ColumnName="RAM" />
-          <ScalarProperty Name="OS" ColumnName="OS" />
-          <ScalarProperty Name="OfficeVersion" ColumnName="OfficeVersion" />
-          <ScalarProperty Name="HDDCapacity" ColumnName="HDDCapacity" />
-          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-          <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
-          <ScalarProperty Name="DisposeDate" ColumnName="DisposeDate" />
-          <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
-          <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
-          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
-          <ScalarProperty Name="Company" ColumnName="Company" />
-          <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
-          <ScalarProperty Name="WarrantyExpireDate" ColumnName="WarrantyExpireDate" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="DisposeRemark" ColumnName="DisposeRemark" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1325,6 +1298,33 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+          <EntitySetMapping Name="Computers">
+            <EntityTypeMapping TypeName="OfficeAutomationdbModel.Computer">
+              <MappingFragment StoreEntitySet="Computers">
+                <ScalarProperty Name="DisposeRemark" ColumnName="DisposeRemark" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="WarrantyExpireDate" ColumnName="WarrantyExpireDate" />
+                <ScalarProperty Name="ActualAssignee" ColumnName="ActualAssignee" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="DisposeDate" ColumnName="DisposeDate" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="HDDCapacity" ColumnName="HDDCapacity" />
+                <ScalarProperty Name="OfficeVersion" ColumnName="OfficeVersion" />
+                <ScalarProperty Name="OS" ColumnName="OS" />
+                <ScalarProperty Name="RAM" ColumnName="RAM" />
+                <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
+                <ScalarProperty Name="AssestNo" ColumnName="AssestNo" />
+                <ScalarProperty Name="ModelType" ColumnName="ModelType" />
+                <ScalarProperty Name="UnitType" ColumnName="UnitType" />
+                <ScalarProperty Name="AUOTID" ColumnName="AUOTID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

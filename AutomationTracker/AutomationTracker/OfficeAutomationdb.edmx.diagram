@@ -7,7 +7,6 @@
       <Diagram DiagramId="68f6eb0174a44f78a107043ad732c960" Name="Diagram1">
         <EntityTypeShape EntityType="OfficeAutomationdbModel.Category" Width="1.5" PointX="0.75" PointY="12" />
         <EntityTypeShape EntityType="OfficeAutomationdbModel.Company" Width="1.5" PointX="5.25" PointY="8.75" />
-        <EntityTypeShape EntityType="OfficeAutomationdbModel.Computer" Width="1.5" PointX="7.5" PointY="11.5" />
         <EntityTypeShape EntityType="OfficeAutomationdbModel.DisposeList" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="OfficeAutomationdbModel.EmailConfig" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="OfficeAutomationdbModel.Market" Width="1.5" PointX="8.25" PointY="6" />
@@ -24,14 +23,9 @@
         <EntityTypeShape EntityType="OfficeAutomationdbModel.VOIP" Width="1.5" PointX="13.5" PointY="12.125" />
         <AssociationConnector Association="OfficeAutomationdbModel.CategoryIDfk_UnitType" />
         <AssociationConnector Association="OfficeAutomationdbModel.CategoryIDfk_UserAssest" />
-        <AssociationConnector Association="OfficeAutomationdbModel.Companyfk_Computers" />
         <AssociationConnector Association="OfficeAutomationdbModel.Companyfk_Phones" />
         <AssociationConnector Association="OfficeAutomationdbModel.Companyfk_VOIP" />
         <AssociationConnector Association="OfficeAutomationdbModel.CompanyIDfk_Users" />
-        <AssociationConnector Association="OfficeAutomationdbModel.ModelTypefk_Computers" />
-        <AssociationConnector Association="OfficeAutomationdbModel.OfficeVersionfk_Computers" />
-        <AssociationConnector Association="OfficeAutomationdbModel.OSfk_Computers" />
-        <AssociationConnector Association="OfficeAutomationdbModel.UnitTypefk_Computers" />
         <AssociationConnector Association="OfficeAutomationdbModel.Marketfk_Users" />
         <AssociationConnector Association="OfficeAutomationdbModel.fk_UnitTypeID_Models" />
         <AssociationConnector Association="OfficeAutomationdbModel.ModelTypefk_Phone" />
@@ -39,6 +33,12 @@
         <AssociationConnector Association="OfficeAutomationdbModel.Providerfk_Phones" />
         <AssociationConnector Association="OfficeAutomationdbModel.UnitTypefk_Phone" />
         <AssociationConnector Association="OfficeAutomationdbModel.UnitTypefk_VOIP" />
+        <EntityTypeShape EntityType="OfficeAutomationdbModel.Computer" Width="1.5" PointX="7.5" PointY="11.125" />
+        <AssociationConnector Association="OfficeAutomationdbModel.FK_Companyfk_Computers" />
+        <AssociationConnector Association="OfficeAutomationdbModel.FK_ModelTypefk_Computers" />
+        <AssociationConnector Association="OfficeAutomationdbModel.FK_OfficeVersionfk_Computers" />
+        <AssociationConnector Association="OfficeAutomationdbModel.FK_OSfk_Computers" />
+        <AssociationConnector Association="OfficeAutomationdbModel.FK_UnitTypefk_Computers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

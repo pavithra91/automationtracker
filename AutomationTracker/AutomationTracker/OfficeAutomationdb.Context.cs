@@ -27,7 +27,6 @@ namespace AutomationTracker
     
         public DbSet<Category> Categories { get; set; }
         public DbSet<Company> Companies { get; set; }
-        public DbSet<Computer> Computers { get; set; }
         public DbSet<DisposeList> DisposeLists { get; set; }
         public DbSet<EmailConfig> EmailConfigs { get; set; }
         public DbSet<Market> Markets { get; set; }
@@ -42,5 +41,6 @@ namespace AutomationTracker
         public DbSet<UserAsset> UserAssets { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<VOIP> VOIPs { get; set; }
+        public DbSet<Computer> Computers { get; set; }
     }
 }
